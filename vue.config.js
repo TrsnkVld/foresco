@@ -6,10 +6,10 @@ module.exports = {
 	productionSourceMap: false,
 	lintOnSave: false,
 
-	publicPath: process.env.NODE_ENV === 'production' ? '/build/' : '/',
+	//publicPath: process.env.NODE_ENV === 'production' ? '/build/' : '/',
 	assetsDir: './',
-	outputDir: './htdocs/build/',
-    indexPath: '../index.html',
+	outputDir: './htdocs/',
+    	indexPath: './index.html',
     /*
 	configureWebpack: {
 		plugins: [
