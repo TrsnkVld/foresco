@@ -1,5 +1,5 @@
 <template>
-	<b-col cols="12" class="content-block">
+	<b-col cols="12" class="content-block" data-aos="fade-up" >
 		<div class="content-block-inner" :style="`${bgStyle} ${textStyle}`">
 			<b-row>
 				<b-col cols="12" sm="6" class="content-block-inner__text" :order="(image=='left') ? 2 : 1">

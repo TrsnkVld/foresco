@@ -1,5 +1,5 @@
 <template>
-	<b-col cols="12" sm="5" class="content-block content-block--sm">
+	<b-col cols="12" sm="5" class="content-block content-block--sm" data-aos="fade-up" >
         <div class="content-block-inner" :style="`${bgStyle} ${textStyle}`">
             <b-row>
                 <b-col cols="12" class="content-block-inner__text">

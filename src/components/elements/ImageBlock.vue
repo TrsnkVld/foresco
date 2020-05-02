@@ -1,5 +1,5 @@
 <template>
-    <b-container class="image-block-wrap">
+    <b-container class="image-block-wrap" data-aos="fade-up" >
         <div class="image-block">
             <img :src="imageSrc" alt="case_preview" />
         </div>

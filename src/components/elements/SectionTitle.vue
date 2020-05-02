@@ -1,6 +1,6 @@
 <template>
 	<b-container>
-		<h2 class="section-title">
+		<h2 class="section-title" data-aos="fade-up" >
 			<slot></slot>
 		</h2>
 	</b-container>

@@ -26,7 +26,7 @@
 					textStyle="color: #000000;"
 				/>
 			</ContentBlockWrap>
-			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" />
+			<ImageBlock :imageSrc="require('../assets/img/big-img.png')"/>
 			<ContentBlockWrap>
 				<ContentBlock
 					title="Создавайте метки"
@@ -68,7 +68,16 @@
 			<ImageBlock :imageSrc="require('../assets/img/big-img-3.png')" />
 		</SingleSection>
 		<SingleSection>
-			<SectionTitle>🤖 Технологии</SectionTitle>
+			<SliderInfo title="🤖 Технологии" />
+		</SingleSection>
+		<SingleSection bgStyle="background-color: #ffffff;">
+			<PaletteBlock :colors="colors"/>
+		</SingleSection>
+		<SingleSection>
+			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" />
+		</SingleSection>
+		<SingleSection>
+			<SliderFaq title="Вопрос-Ответ 🙄" />
 		</SingleSection>
 
 		<!--
@@ -89,6 +98,9 @@ import TitleText from "@/components/elements/TitleText";
 import ImageBlock from "@/components/elements/ImageBlock";
 import TextBlock from "@/components/elements/TextBlock";
 import ListBlock from "@/components/elements/ListBlock";
+import SliderInfo from "@/components/elements/SliderInfo";
+import SliderFaq from "@/components/elements/SliderFaq";
+import PaletteBlock from "@/components/elements/PaletteBlock";
 
 export default {
 	name: "Home",
@@ -103,8 +115,19 @@ export default {
 		TitleText,
 		ImageBlock,
 		TextBlock,
-		ListBlock
-	}
+		ListBlock,
+		SliderInfo,
+		SliderFaq,
+		PaletteBlock
+	},
+	data: () => ({
+		colors: [
+			"background-color: #f04f6c;",
+			"background-color: #141516;",
+			"background-color: #2d2d32;",
+			"background-color: #ffffff;"
+		]
+	})
 };
 </script>
 

@@ -1,14 +1,16 @@
 @import 'mixins';
 
 $--color-primary: #27AE60;
-$white: #ffffff;
-$black: #000000;
+$white:           #ffffff;
+$black:           #000000;
+$dark-grey:       #222222;
 
-$gutter-xs: 10px;
-$gutter: 20px;
-$gutter-sm: 40px;
-$gutter-md: 60px;
-$gutter-lg: 90px;
+$gutter-xs:  10px;
+$gutter:     20px;
+$gutter-sm:  40px;
+$gutter-md:  60px;
+$gutter-lg:  90px;
 $gutter-xl: 120px;
 
 $border-radius: 8px;
+$border-radius-lg: 100px;

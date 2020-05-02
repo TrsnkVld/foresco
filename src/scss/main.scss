@@ -11,6 +11,7 @@ body {
     line-height: 31px;
     letter-spacing: 1px;
     color: $black;
+    cursor: default;
 }
 
 img {
@@ -59,10 +60,19 @@ h4, ul {
 
 h5 {
     font-size: 25px;
+    font-family: TT Norms;
+    font-weight: bold;
 }
 
 h6 {
     font-size: 20px;
+}
+
+small {
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 0.28px;
+    display: block;
 }
 
 ul {
