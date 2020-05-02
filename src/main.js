@@ -1,5 +1,8 @@
-import './scss/main.scss';
+import '@babel/polyfill'
+import 'mutationobserver-shim'
+import './plugins/bootstrap-vue'
 
+import './scss/main.scss';
 
 import Vue from 'vue';
 import App from './App.vue';
@@ -12,4 +15,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#foresco')
