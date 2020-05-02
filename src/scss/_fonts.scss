@@ -1,0 +1,49 @@
+/*
+** Source Sans Pro
+*/
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: local("Source Sans Pro"), local("SourceSansPro-Regular"), 
+        url("../assets/fonts/SourceSansPro/sourcesanspro.woff2") format("woff2"),
+        url("../assets/fonts/SourceSansPro/sourcesanspro.woff") format("woff"), 
+        url("../assets/fonts/SourceSansPro/sourcesanspro.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: local("Source Sans Pro"), local("SourceSansPro-Regular"), 
+        url("../assets/fonts/SourceSansPro/sourcesansprobold.woff2") format("woff2"),
+        url("../assets/fonts/SourceSansPro/sourcesansprobold.woff") format("woff"), 
+        url("../assets/fonts/SourceSansPro/sourcesansprobold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/*
+** TT Norms
+*/
+
+@font-face {
+    font-family: "TT Norms";
+    src: url("../assets/fonts/TTNorms/TTNorms-Regular.eot");
+    src: local("TT Norms Regular"), local("TTNorms-Regular"), 
+        url("../assets/fonts/TTNorms/TTNorms-Regular.eot?#iefix") format("embedded-opentype"),
+        url("../assets/fonts/TTNorms/TTNorms-Regular.woff") format("woff"), 
+        url("../assets/fonts/TTNorms/TTNorms-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "TT Norms";
+    src: url("../assets/fonts/TTNorms/TTNorms-Bold.eot");
+    src: local("TT Norms Bold"), local("TTNorms-Bold"), 
+        url("../assets/fonts/TTNorms/TTNorms-Bold.eot?#iefix") format("embedded-opentype"),
+        url("../assets/fonts/TTNorms/TTNorms-Bold.woff") format("woff"), 
+        url("../assets/fonts/TTNorms/TTNorms-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
