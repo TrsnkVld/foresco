@@ -1,2 +1,83 @@
+@import "override-bootstrap";
+@import "variables";
+@import "fonts";
 
-@import 'variables';
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    font-family: TT Norms;
+    font-size: 25px;
+    line-height: 31px;
+    letter-spacing: 1px;
+    color: $black;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: Source Sans Pro;
+    font-weight: bold;
+    line-height: normal;
+}
+
+h1 {
+    font-size: 75px;
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: 65px;
+    letter-spacing: -0.3px;
+    line-height: 85px;
+}
+
+h3 {
+    font-size: 37px;
+    letter-spacing: 0.26px;
+    line-height: 38px;
+}
+
+h4, ul {
+    font-size: 33px;
+    letter-spacing: 0.5px;
+    line-height: 49px;
+}
+
+h5 {
+    font-size: 25px;
+}
+
+h6 {
+    font-size: 20px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 60px;
+
+    li {
+        position: relative;
+        margin-bottom: $gutter-sm;
+
+        &::before {
+            content: "👉";
+            position: absolute;
+            top: 0;
+            left: -60px;
+        }
+    }
+}
