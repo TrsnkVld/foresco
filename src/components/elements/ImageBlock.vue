@@ -28,7 +28,11 @@ export default {
     }
 
     &-wrap {
-        padding: $gutter-lg 0;
+        padding: $gutter-sm 0;
+
+        @include up($lg) {
+            padding: $gutter-lg 0;
+        }
     }
 }
 </style>

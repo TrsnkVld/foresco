@@ -13,7 +13,11 @@ export default {
 
 <style lang="scss">
 .section-title {
-	padding: $gutter-lg 0;
+	padding: $gutter-sm 0;
 	color: $white;
+
+    @include up($lg) {
+		padding: $gutter-lg 0;
+    }
 }
 </style>

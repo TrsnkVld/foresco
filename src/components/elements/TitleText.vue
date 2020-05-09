@@ -24,10 +24,14 @@ export default {
 	text-align: center;
 	max-width: 1000px;
 	margin: 0 auto;
-	padding: $gutter-lg 0;
+	padding: $gutter-sm 0;
 
 	h2 {
 		margin-bottom: $gutter-md;
 	}
+
+    @include up($lg) {
+        padding: $gutter-lg 0;
+    }
 }
 </style>

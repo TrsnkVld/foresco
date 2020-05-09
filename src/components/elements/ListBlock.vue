@@ -30,10 +30,14 @@ export default {
 
 <style lang="scss">
 .list-block {
-	padding: $gutter-lg 0;
+	padding: $gutter-sm 0;
 
 	h2 {
 		margin-bottom: $gutter-md;
 	}
+
+    @include up($lg) {
+        padding: $gutter-lg 0;
+    }
 }
 </style>

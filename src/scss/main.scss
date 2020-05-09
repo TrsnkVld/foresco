@@ -7,11 +7,18 @@ body {
     display: flex;
     flex-flow: column;
     font-family: TT Norms;
-    font-size: 25px;
-    line-height: 31px;
-    letter-spacing: 1px;
+    font-size: 21px;
+    line-height: normal;
+    letter-spacing: 0.42px;
     color: $black;
     cursor: default;
+    overflow-x: hidden;
+
+    @include up($lg) {
+        font-size: 25px;
+        line-height: 31px;
+        letter-spacing: 1px;
+    }
 }
 
 img {
@@ -36,14 +43,26 @@ h3 {
 }
 
 h1 {
-    font-size: 75px;
-    letter-spacing: -2px;
+    font-size: 40px;  
+    letter-spacing: -0.78px;
+    line-height: normal;
+
+    @include up($lg) {
+        font-size: 75px;
+        letter-spacing: -2px;
+    }
 }
 
-h2 {
-    font-size: 65px;
-    letter-spacing: -0.3px;
-    line-height: 85px;
+h2 { 
+    font-size: 35px;
+    letter-spacing: -0.42px;
+    line-height: normal;
+
+    @include up($lg) {
+        font-size: 65px;
+        letter-spacing: -0.3px;
+        line-height: 85px;
+    }
 }
 
 h3 {
@@ -52,20 +71,32 @@ h3 {
     line-height: 38px;
 }
 
-h4, ul {
-    font-size: 33px;
-    letter-spacing: 0.5px;
-    line-height: 49px;
+h4, ul {  
+    font-size: 24px;
+    line-height: normal;
+    letter-spacing: -0.02px;
+
+    @include up($lg) {
+        font-size: 33px;
+        letter-spacing: 0.5px;
+        line-height: 49px;
+    }
 }
 
 h5 {
-    font-size: 25px;
     font-family: TT Norms;
     font-weight: bold;
+    font-size: 21px;
+    line-height: normal;
+
+    @include up($lg) {
+        font-size: 25px;
+    }
 }
 
 h6 {
     font-size: 20px;
+    letter-spacing: 0px;
 }
 
 small {
@@ -89,5 +120,86 @@ ul {
             top: 0;
             left: -60px;
         }
+    }
+}
+
+.content-block {
+    padding-top: $gutter-xs;
+    padding-bottom: $gutter-xs;
+
+	&-inner {
+		color: white;
+		border-radius: $border-radius;
+        height: 100%;
+        padding: $gutter-md $gutter-sm;
+        min-height: 400px;
+		position: relative;
+		box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
+		
+		h3 {
+			margin-bottom: $gutter-xs;
+        }
+        
+        h6 {
+            margin-bottom: $gutter;
+        }
+
+        .row {
+            height: 100%;
+        }
+
+		&__text {
+			display: flex;
+			justify-content: center;
+			flex-flow: column;
+		}
+
+		&__img {
+			img {
+                display: block;
+                position: relative;
+                bottom: -$gutter-md;
+                max-height: 350px;
+                margin: 0 auto;
+
+                @include up($lg) {
+                    max-width: 300px;
+                    max-height: none;
+                    margin: unset;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+			}
+		}
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+
+        @include up($lg) {
+            padding: $gutter-md $gutter-md;
+        }
+    }
+    
+    &__icon {
+        position: absolute;
+        top: $gutter-sm;
+        right: $gutter-sm;
+        font-size: 75px;
+        line-height: 75px;
+        display: block;
+
+        @include up($lg) {
+            font-size: 100px;
+            line-height: 100px;
+            top: $gutter-md;
+            right: $gutter-md;
+        }
+    }
+
+    @include up($lg) {
+        padding-top: $gutter;
+        padding-bottom: $gutter;
     }
 }

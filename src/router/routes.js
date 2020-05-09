@@ -4,21 +4,19 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 const Home = () => import('../views/Home');
-//const About = () => import('../views/About')
+const Case = () => import('../views/Case');
 
 const routes = [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
-    /*
     {
-      path: '/about',
-      name: 'About',
-      component: About
+      path: '/case',
+      name: 'case',
+      component: Case
     }
-    */
   ]
 
 export default routes;

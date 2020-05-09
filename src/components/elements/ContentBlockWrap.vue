@@ -14,6 +14,11 @@ export default {
 
 <style lang="scss">
 .content-block-wrap {
-	padding: $gutter-md 0;
+	padding-top: $gutter-md;
+	padding-bottom: $gutter-md;
+
+	@include up($lg) {
+		padding: $gutter-md 0;
+	}
 }
 </style>
