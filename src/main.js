@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import 'mutationobserver-shim';
 import './plugins/bootstrap-vue';
 import './plugins/vue-awesome-swiper';
+import 'hamburgers/_sass/hamburgers/hamburgers.scss';
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'

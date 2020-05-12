@@ -1,15 +1,15 @@
 @import 'mixins';
 
-$xs: 0;
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
+$xs:      0;
+$sm:  400px;
+$md:  768px;
+$lg: 1280px;
 $xl: 1320px;
 
-$--color-primary: #27AE60;
 $white:           #ffffff;
 $black:           #000000;
 $dark-grey:       #222222;
+$light-grey:      #2d2d2d;
 
 $gutter-xs:  10px;
 $gutter:     20px;
@@ -18,5 +18,7 @@ $gutter-md:  60px;
 $gutter-lg:  90px;
 $gutter-xl: 120px;
 
-$border-radius: 8px;
+$border-radius:      8px;
 $border-radius-lg: 100px;
+
+$transition: .2s;

@@ -2,23 +2,44 @@
 @import "variables";
 @import "fonts";
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+
+	&.locked, &.locked body {
+		overflow: hidden;
+		height: 100%;
+		position: fixed;
+		width: 100%;
+	}   
+}
+
 body {
     min-height: 100vh;
     display: flex;
     flex-flow: column;
     font-family: TT Norms;
-    font-size: 21px;
+    font-size: 16px;
     line-height: normal;
     letter-spacing: 0.42px;
     color: $black;
     cursor: default;
     overflow-x: hidden;
+    background: black;
+
+    @include up($sm) {
+        font-size: 21px;
+    }
 
     @include up($lg) {
         font-size: 25px;
         line-height: 31px;
         letter-spacing: 1px;
     }
+}
+
+main {
+    overflow: hidden;
 }
 
 img {
@@ -42,10 +63,19 @@ h3 {
     line-height: normal;
 }
 
-h1 {
-    font-size: 40px;  
+h1 {  
+    font-size: 25px;
     letter-spacing: -0.78px;
     line-height: normal;
+
+    @include up($sm) {
+        font-size: 40px;  
+    }
+
+    @include up($md) {
+        font-size: 50px;
+        letter-spacing: -2px;
+    }
 
     @include up($lg) {
         font-size: 75px;
@@ -66,9 +96,13 @@ h2 {
 }
 
 h3 {
-    font-size: 37px;
-    letter-spacing: 0.26px;
-    line-height: 38px;
+    font-size: 27px;
+
+    @include up($sm) {
+        font-size: 37px;
+        letter-spacing: 0.26px;
+        line-height: 38px; 
+    }
 }
 
 h4, ul {  
@@ -95,8 +129,12 @@ h5 {
 }
 
 h6 {
-    font-size: 20px;
-    letter-spacing: 0px;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+
+    @include up($md) {
+        font-size: 20px;
+    }
 }
 
 small {
@@ -123,6 +161,22 @@ ul {
     }
 }
 
+.container {
+
+    @include up($md) {
+        padding: 0 $gutter-md;
+    }
+
+    @include up($lg) {
+        padding: 0 $gutter-lg;
+    }
+}
+
+.router-link-exact-active {
+    pointer-events: none;
+    cursor: default;
+}
+
 .content-block {
     padding-top: $gutter-xs;
     padding-bottom: $gutter-xs;
@@ -132,7 +186,6 @@ ul {
 		border-radius: $border-radius;
         height: 100%;
         padding: $gutter-md $gutter-sm;
-        min-height: 400px;
 		position: relative;
 		box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
 		
@@ -179,6 +232,7 @@ ul {
 
         @include up($lg) {
             padding: $gutter-md $gutter-md;
+            min-height: 400px;
         }
     }
     
@@ -201,5 +255,73 @@ ul {
     @include up($lg) {
         padding-top: $gutter;
         padding-bottom: $gutter;
+    }
+}
+
+.btn {
+    
+    &-circle {
+        position: relative;
+        font-size: 19px;
+        outline: none;
+        border: none;
+        color: $white;
+        padding: 7px 14px;
+    
+        &:not(.disabled):active:focus:hover {
+            background: transparent;
+            box-shadow: none;
+            color: $white;
+        }
+
+        &::before {
+            position: absolute;
+            z-index: -1;
+            display: block;
+            content: "";
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 42px;
+            background: #0262ce;
+            border-radius: 28px;
+            transition: width $transition ease-in-out;
+
+            @include up($md) {
+                width: 55px;
+            }
+        }
+
+        &:hover {
+            &::before {
+                width: 100%;
+            }
+        }
+        
+
+		@include up($lg) {
+            font-size: 25px;
+            padding: 9px 12px;
+		}
+    }
+
+    &-round {
+        color: $white;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        border: 2px solid;
+        padding: 0;
+        transition: border, $transition;
+
+        &:hover {
+            border: 4px solid;
+        }
+    }
+
+    &:active, &:focus, &:hover {
+        background: transparent;
+        box-shadow: none;
+        color: $white;
     }
 }

@@ -8,6 +8,11 @@ export default new Vuex.Store({
 	state,
 	mutations: {
 	},
+	getters: {
+		isHeaderMenuOpened: (state) => {
+			return state.isHeaderMenuOpened;
+		}
+	},
 	actions: {
 	},
 	modules: {
