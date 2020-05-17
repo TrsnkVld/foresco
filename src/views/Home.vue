@@ -1,19 +1,39 @@
 <template>
 	<main class="home">
 		<transition name="menu">
-			<StarsParticles v-if="isWelcomeScreenShowing" intro />
+			<!--<StarsParticles v-if="isWelcomeScreenShowing" intro /> -->
 		</transition>
-
 		<CaseHeader>
-			<swiper class="case-swiper" :options="swiperOptions" ref="swiper">
-				<swiper-slide class="case-swiper__item" v-for="(item, index) in 3" :key="index">
-					<CaseCard glowColor="#3779bccc" />
+			<swiper
+				class="case-swiper"
+				:options="swiperOptions"
+				ref="casesSwiper"
+				@slideChange="setCurrentSlide"
+			>
+				<swiper-slide class="case-swiper__item" v-for="(item, index) in cases" :key="index">
+					<CaseCard
+						:title="item.title"
+						:logo="item.logo"
+						:subTitle="item.subtitle"
+						:imageSrc="item.image"
+						:glowColor="item.color"
+					/>
 				</swiper-slide>
 			</swiper>
-			<div class="case-swiper-pagination" />
+			<div class="case-swiper-pagination" :style="`color: ${cases[currentSlide].color}`" />
 			<div class="case-swiper-nav">
-				<div class="case-swiper-nav__prev" slot="button-prev" />
-				<div class="case-swiper-nav__next" slot="button-next" />
+				<svgicon
+					name="arrow"
+					class="case-swiper-nav__prev"
+					slot="button-prev"
+					:style="`stroke: ${cases[currentSlide].color}`"
+				/>
+				<svgicon
+					name="arrow"
+					class="case-swiper-nav__next svg-down"
+					slot="button-next"
+					:style="`stroke: ${cases[currentSlide].color}`"
+				/>
 			</div>
 		</CaseHeader>
 	</main>
@@ -85,10 +105,59 @@ export default {
 					return `<span class="${currentClass}"></span>—<span class="${totalClass}"></span>`;
 				}
 			}
-		}
+		},
+		currentSlide: 0,
+		cases: [
+			{
+				title: "Saldo. Долги",
+				subtitle: "Приложение для учёта и ведения долгов и расходов",
+				color: "#0262ce",
+				image: require("../assets/img/saldo_mockup.png"),
+				logo: require("../assets/img/logo.png")
+			},
+			{
+				title: "Musealbum",
+				subtitle: "Cервис для создания и печати фотоальбомов",
+				color: "#c1a476",
+				image: require("../assets/img/musealbum.png"),
+				logo: require("../assets/img/musealbum_logo.png")
+			},
+			{
+				title: "Sohobook",
+				subtitle: "Приложение для создания и заказа фотокниг",
+				color: "#0895be",
+				image: require("../assets/img/soho.png"),
+				logo: require("../assets/img/soho_logo.png")
+			},
+			{
+				title: "Power Place",
+				subtitle: "Cервис для поиска заведений с Power Bank",
+				color: "#737373",
+				image: require("../assets/img/powerplace.png"),
+				logo: require("../assets/img/powerplace_logo.png")
+			},
+			{
+				title: "Find Photo",
+				subtitle: "Сортировка и поиск фотографий по меткам",
+				color: "#f04f6c",
+				image: require("../assets/img/findphoto.png"),
+				logo: require("../assets/img/findphoto_logo.png")
+			},
+			{
+				title: "Gusli",
+				subtitle: "Поиск и заказ музыки в заведениях",
+				color: "#f04f6c",
+				image: require("../assets/img/gusli.png"),
+				logo: require("../assets/img/gusli_logo.png")
+			}
+		]
 	}),
+	methods: {
+		setCurrentSlide() {
+			this.currentSlide = this.$refs.casesSwiper.$swiper.activeIndex;
+		}
+	},
 	computed: {
-
 		isWelcomeScreenShowing: {
 			get: function() {
 				return this.$store.state.isWelcomeScreenShowing;
@@ -96,7 +165,7 @@ export default {
 			set: function(newValue) {
 				this.$store.state.isWelcomeScreenShowing = newValue;
 			}
-		},		
+		},
 
 		isMenuOpened: {
 			get: function() {
@@ -106,7 +175,6 @@ export default {
 				this.$store.state.isHeaderMenuOpened = newValue;
 			}
 		}
-
 	},
 	created() {
 		if (this.isWelcomeScreenShowing) {
@@ -116,6 +184,9 @@ export default {
 		setTimeout(() => {
 			document.documentElement.classList.remove("locked");
 		}, 500);
+	},
+	mounted() {
+		this.setCurrentSlide();
 	}
 };
 </script>
@@ -137,13 +208,15 @@ export default {
 	position: relative;
 
 	&__item {
-		opacity: 0;
-		transition: opacity 0.3s;
+		/*
+		transition: 0.4s;
+		filter: blur(3px);
+		transition-property: transform, filter;
 
 		&.swiper-slide-active {
-			opacity: 1;
-			transition-delay: 0.5s;
+			filter: none;
 		}
+		*/
 
 		& > .container {
 			height: 100%;
@@ -175,9 +248,12 @@ export default {
 		align-items: center;
 		width: auto;
 		z-index: 2;
-		transform: translateY(-50%);
+		transform: translateY(-95%);
 		color: rgba(2, 98, 206, 0.45);
-		line-height: 25px;
+		font-size: get-vw(14px, 320);
+		font-weight: 500;
+		line-height: get-vw(14px, 320);
+		transition: color, $transition;
 
 		.swiper-pagination-current {
 			color: $white;
@@ -185,6 +261,14 @@ export default {
 
 		@include up($md) {
 			left: $gutter-sm;
+			font-size: 25px;
+			line-height: 30px;
+		}
+
+		@include upLandscape($xs) {
+			font-size: get-vw(14px, 568);
+			line-height: get-vw(14px, 568);
+			transform: translateY(-50%);
 		}
 	}
 
@@ -193,12 +277,12 @@ export default {
 		top: 50%;
 		right: $gutter;
 		z-index: 2;
-		transform: translateY(-50%);
+		transform: translateY(-80%);
 
 		&__prev,
 		&__next {
-			width: 16px;
-			height: 16px;
+			width: get-vw(18px, 320);
+			height: get-vw(18px, 320);
 			background-image: url("../assets/icons/arrow-right.svg");
 			background-position: center;
 			background-repeat: no-repeat;
@@ -207,6 +291,8 @@ export default {
 			opacity: 0.5;
 			transition: opacity 0.3s;
 			outline: none;
+			fill: none;
+			transition: stroke, $transition;
 
 			&:hover {
 				opacity: 1;
@@ -217,14 +303,23 @@ export default {
 				cursor: default;
 			}
 
-			@include up($lg) {
+			@include up($md) {
 				width: 30px;
 				height: 30px;
+			}
+
+			@include upLandscape($xs) {
+				width: get-vw(18px, 568);
+				height: get-vw(18px, 568);
 			}
 		}
 
 		&__prev {
-			margin-bottom: $gutter-sm;
+			margin-bottom: get-vw(30px, 320);
+
+			@include up($md) {
+				margin-bottom: $gutter-md;
+			}
 		}
 
 		&__next {
@@ -233,6 +328,10 @@ export default {
 
 		@include up($md) {
 			right: $gutter-sm;
+		}
+
+		@include upLandscape($xs) {
+			transform: translateY(-50%);
 		}
 	}
 }

@@ -1,5 +1,12 @@
+
 @mixin adopt($value, $prop: max-width) {
     @media only screen and (#{$prop}: #{$value}) {
+        @content;
+    }
+}
+
+@mixin adoptLandscape($value, $prop: max-width) {
+    @media only screen and (#{$prop}: #{$value}) and (orientation: landscape) {
         @content;
     }
 }
@@ -8,4 +15,19 @@
     @media only screen and (#{$prop}: #{$value}) {
         @content;
     }
+}
+
+@mixin upLandscape($value, $prop: min-width) {
+    @media only screen and (#{$prop}: #{$value}) and (orientation: landscape) {
+        @content;
+    }
+}
+
+
+@function get-vw($var, $vw-viewport) {
+    @if ($vw-enable) {
+        $vw-context: $vw-viewport * 0.01 * 1px;
+        @return $var / $vw-context * 1vw;
+    }
+    @return $var;
 }

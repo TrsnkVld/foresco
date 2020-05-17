@@ -177,16 +177,35 @@ export default {
 
 <style lang="scss">
 .header {
-	padding: 0 $gutter;
+	padding: 0 get-vw($gutter, 320);
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 3;
-	height: 50px;
+	height: get-vw(75px, 320);
 
 	.row {
 		height: 100%;
+	}
+
+	&__logo {
+		display: block;
+
+		svg {
+			width: get-vw(98px, 320);
+			height: get-vw(23px, 320);
+
+			@include up($md) {
+				width: 100px;
+				height: 18px;
+			}
+
+			@include upLandscape($xs) {
+			width: get-vw(98px, 568);
+			height: get-vw(23px, 568);
+			}
+		}
 	}
 
 	&__burger {
@@ -228,9 +247,19 @@ export default {
 		}
 	}
 
+	@include up($sm) {
+		padding: 0 get-vw($gutter, 414);
+		height: get-vw(100px, 414);
+	}
+
 	@include up($md) {
 		padding: 0 $gutter-sm;
 		height: 70px;
+	}
+
+	@include upLandscape($xs) {
+		height: 50px;
+		padding: 0 20px;
 	}
 }
 

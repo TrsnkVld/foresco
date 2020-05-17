@@ -1,6 +1,8 @@
 @import "override-bootstrap";
 @import "variables";
+@import 'mixins';
 @import "fonts";
+@import 'vue-svgicon';
 
 html {
     overflow-x: hidden;
@@ -58,29 +60,35 @@ h6 {
 h1,
 h2,
 h3 {
-    font-family: Source Sans Pro;
-    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
     line-height: normal;
 }
 
 h1 {  
-    font-size: 25px;
-    letter-spacing: -0.78px;
+    font-size: get-vw(25px, 320);
+    letter-spacing: get-vw(-0.78px, 320);
     line-height: normal;
 
     @include up($sm) {
-        font-size: 40px;  
+        font-size: get-vw(40px, 414);
+        letter-spacing: get-vw(-0.78px, 414);
     }
 
     @include up($md) {
         font-size: 50px;
         letter-spacing: -2px;
+        line-height: 55px;
     }
 
     @include up($lg) {
         font-size: 75px;
         letter-spacing: -2px;
     }
+	
+	@include upLandscape($xs) {
+        font-size: get-vw(25px, 568);
+	}
 }
 
 h2 { 
@@ -93,6 +101,12 @@ h2 {
         letter-spacing: -0.3px;
         line-height: 85px;
     }
+
+	@include upLandscape($xs) {
+        font-size: get-vw(18px, 320);
+        font-weight: normal;
+        line-height: get-vw(23px, 320);
+	}
 }
 
 h3 {
@@ -129,12 +143,27 @@ h5 {
 }
 
 h6 {
-    font-size: 16px;
-    letter-spacing: 0.4px;
+    font-size: get-vw(16.5px, 320);
+    font-weight: normal;
+    line-height: get-vw(19px, 320);
+    letter-spacing: get-vw(0.4px, 320);
+
+    @include up($sm) {
+        font-size: get-vw(20px, 414);
+        letter-spacing: get-vw(0.4px, 414);
+    }
 
     @include up($md) {
         font-size: 20px;
+        line-height: 25px;
+        letter-spacing: 0.5px;
     }
+	
+	@include upLandscape($xs) {
+        font-size: get-vw(16.5px, 568);
+        line-height: get-vw(19px, 568);
+        letter-spacing: get-vw(0.4px, 568);
+	}
 }
 
 small {
@@ -169,6 +198,10 @@ ul {
 
     @include up($lg) {
         padding: 0 $gutter-lg;
+    }
+
+    @include upLandscape($xs) {
+        max-width: 100%;
     }
 }
 
@@ -262,11 +295,14 @@ ul {
     
     &-circle {
         position: relative;
-        font-size: 19px;
         outline: none;
         border: none;
         color: $white;
-        padding: 7px 14px;
+        padding: get-vw(7px, 320) get-vw(15px, 320);
+        font-size: get-vw(15px, 320);
+        font-weight: 300;
+        line-height: get-vw(26px, 320);
+        letter-spacing: get-vw(0.4px, 320);
     
         &:not(.disabled):active:focus:hover {
             background: transparent;
@@ -274,35 +310,50 @@ ul {
             color: $white;
         }
 
-        &::before {
+        &__hover {
             position: absolute;
             z-index: -1;
-            display: block;
-            content: "";
             top: 0;
             left: 0;
             height: 100%;
-            width: 42px;
+            width: get-vw(40px, 320);
             background: #0262ce;
-            border-radius: 28px;
+            border-radius: get-vw(27.5px, 320);
             transition: width $transition ease-in-out;
 
             @include up($md) {
-                width: 55px;
+                width: 54px;
+            }
+	
+            @include upLandscape($xs) {
+                width: get-vw(40px, 568);
+                border-radius: get-vw(27.5px, 568);
             }
         }
 
         &:hover {
-            &::before {
+            .btn-circle__hover {
                 width: 100%;
             }
-        }
-        
+        }  
 
-		@include up($lg) {
-            font-size: 25px;
-            padding: 9px 12px;
+
+		@include up($sm) {
+            font-size: get-vw(25px, 414);
 		}
+
+		@include up($md) {
+            font-size: 25px;
+            padding: 12px 15px;
+            line-height: 30px;
+		}
+	
+        @include upLandscape($xs) {
+            padding: get-vw(7px, 568) get-vw(15px, 568);
+            font-size: get-vw(15px, 568);
+            line-height: get-vw(26px, 568);
+            letter-spacing: get-vw(0.4px, 568);
+        }
     }
 
     &-round {

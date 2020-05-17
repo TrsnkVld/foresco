@@ -205,7 +205,7 @@ export default {
 			set: function(newValue) {
 				this.$store.state.isWelcomeScreenShowing = newValue;
 			}
-		},
+		}
 	},
 	mounted() {
 		this.height();
@@ -227,8 +227,23 @@ export default {
 
 	&__intro {
 		svg {
-			width: 600px;
-			height: 120px;
+			width: 270px;
+			height: 50px;
+
+			@include up($sm) {
+				width: 290px;
+				height: 56px;
+			}
+
+			@include up($md) {
+				width: 400px;
+				height: 80px;
+			}
+
+			@include up($lg) {
+				width: 600px;
+				height: 120px;
+			}
 		}
 
 		.logo {
@@ -244,8 +259,12 @@ export default {
 			position: absolute;
 			width: 100%;
 			left: 0;
-			bottom: $gutter-lg;
+			bottom: $gutter-md;
 			text-align: center;
+
+			@include up($md) {
+			bottom: $gutter-lg;
+			}
 		}
 	}
 

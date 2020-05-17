@@ -1,0 +1,12 @@
+
+
+$vw-viewport: 320;
+$vw-enable: true;
+
+@function get-vw($var) {
+    @if ($vw-enable) {
+        $vw-context: $vw-viewport * 0.01 * 1px;
+        @return $var / $vw-context * 1vw;
+    }
+    @return $var;
+}

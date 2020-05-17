@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "npm run svg && vue-cli-service serve",
+    "build": "npm run svg && vue-cli-service build",
+    "svg": "vsvg -s ./src/svg -t ./src/icons"
   },
   "dependencies": {
     "aos": "^2.3.4",
@@ -32,6 +33,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-bootstrap-vue": "^0.6.0",
+    "vue-svgicon": "^3.2.6",
     "vue-template-compiler": "^2.6.11"
   }
 }

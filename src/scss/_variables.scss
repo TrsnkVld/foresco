@@ -1,15 +1,23 @@
 @import 'mixins';
 
+$vw-viewport: 320;
+$vw-enable: true;
+
 $xs:      0;
-$sm:  400px;
+$sm:  375px;
 $md:  768px;
 $lg: 1280px;
 $xl: 1320px;
 
-$white:           #ffffff;
-$black:           #000000;
-$dark-grey:       #222222;
-$light-grey:      #2d2d2d;
+$xs-land:      0;
+$sm-land:  667px;
+$md-land:  1024px;
+$lg-land: 1366px;
+
+$white:      #ffffff;
+$black:      #000000;
+$dark-grey:  #222222;
+$light-grey: #2d2d2d;
 
 $gutter-xs:  10px;
 $gutter:     20px;

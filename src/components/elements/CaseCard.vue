@@ -3,19 +3,19 @@
 		<b-row class="case-card">
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
-				<img src="@/assets/img/test.png" alt="case_img" />
+				<img :src="imageSrc" alt="case_img" />
 				<div class="glow" :style="glowStyle" />
 			</b-col>
 			<b-col cols="12" lg="6" class="case-card__text">
 				<h1>
-					Saldo. Долги
-					<img src="@/assets/img/logo.png" alt="app_icon" />
+					{{ title }}
+					<img :src="logo" alt="app_icon" />
 				</h1>
-				<h6>Приложение для учёта и ведения долгов и расходов</h6>
+				<h6>{{ subTitle }}</h6>
 				<p>Приложение, которое поможет вам всегда держать под контролем процессы взятия, выдачи и возврата займов.</p>
 				<CaseTags  />
 				<b-link :to="{name: 'case'}" v-if="$route.name=='home'">
-					<b-button variant="circle">Смотреть кейс</b-button>
+					<b-button variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
 				</b-link>
 			</b-col>
 		</b-row>
@@ -33,7 +33,23 @@ export default {
 	props: {
 		glowColor: {
 			type: String,
-			default: "#ffffff"
+			default: "#0262ce"
+		},
+		imageSrc: {
+			type: String,
+			default: null
+		},
+		logo: {
+			type: String,
+			default: null
+		},
+		title: {
+			type: String,
+			default: null,
+		},
+		subTitle: {
+			type: String,
+			default: null,
 		}
 	},
 	data: () => ({
@@ -48,15 +64,18 @@ export default {
 		}
 	},
 	mounted() {
+		
 	}
 };
 </script>
 
 <style lang="scss">
+
+
 .case-card { 
 	height: 100vh;
 	color: $white;
-	padding: $gutter-md 0;
+	padding: get-vw(75px, 320) 0 get-vw(56px, 320);
 	flex-flow: column;
 
 	h1 {
@@ -65,19 +84,25 @@ export default {
 		align-items: center;
 		justify-content: center;
 		*/
-		margin-bottom: $gutter;
+		margin-bottom: get-vw(5px, 320);
+		
 
 		img {
-			width: 28px;
-			height: 28px;
-			margin-top: 4px;
-			margin-left: 10px;
+			width: get-vw(27px, 320);
+			height: get-vw(27px, 320);
+			margin-top: get-vw(-5px, 320);
+			margin-left: 0px;
 
 			@include up($sm) {
+				width: get-vw(40px, 414);
+				height: get-vw(40px, 414);
+			}
+
+			@include up($md) {
 				width: 40px;
 				height: 40px;
-				margin-top: 12px;
-				margin-left: $gutter;
+				margin-top: -5px;
+				margin-left: 5px;
 			}
 
 			@include up($lg) {
@@ -86,16 +111,33 @@ export default {
 				margin-top: 0;
 				margin-left: $gutter;
 			}
+
+			@include upLandscape($xs) {
+				width: get-vw(27px, 568);
+				height: get-vw(27px, 568);
+				margin-top: get-vw(-5px, 568);
+				margin-left: 0px;
+			}
+		}
+
+		@include up($sm) {
+			margin-bottom: 0;
+		}
+
+		@include up($md) {
 		}
 
 		@include up($lg) {
-			margin-bottom: 0;
 			justify-content: flex-start;
 		}
 	}
 
 	h6 {
-		margin-bottom: $gutter;
+		margin-bottom: get-vw($gutter, 320);
+
+		@include up($md) {
+			margin-bottom: $gutter;
+		}
 
 		@include up($lg) {
 			margin-bottom: $gutter-sm;
@@ -104,7 +146,6 @@ export default {
 
 	&__text {
 		text-align: center;
-		flex-shrink: 1;
 		flex: 0;
 
 		& > * {
@@ -121,23 +162,32 @@ export default {
 			}
 		}
 
+		@include up($md) {
+    		margin-bottom: auto;
+		}
+
 		@include up($lg) {
 			text-align: left;
 			flex: 0 0 50%;
+		}
+	
+		@include upLandscape($xs) {
+			flex: 0 0 60%;
+			max-width: 60%;
+			text-align: left;
+			margin: auto 0;
 		}
 	}
 
 	&__img {
 		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		//height: 100%;
 		z-index: 1;
-		margin-bottom: $gutter;
-		//flex-grow: 0;
+		margin-bottom: get-vw(15px, 320);
+		padding-top: get-vw(10px, 320);
+		height: auto;
 		flex-shrink: 1;
-    	min-height: 0;
+		min-height: 0;
+		max-height: get-vw(340px, 320);
 
 		.glow {
 			position: absolute;
@@ -149,22 +199,49 @@ export default {
 			z-index: -1;
 			animation: glow 5s infinite ease-in-out;
 			pointer-events: none;
+			opacity: .4;
 		}
 
 		img {
-			flex: 0;
-			max-width: 100%;
-			max-height: 100%;
 			display: block;
+			min-height: 0;
+			//max-height: get-vw(275px, 320);
+			margin: 0 auto;
+			max-height: 100%;
 		}
 
-		@include up($sm) {
+		@include up($md) {
+			padding-top: $gutter-sm;
+			max-height: 475px;
+			margin-bottom: $gutter-md;
+    		margin-top: auto;
 		}
 
 		@include up($lg) {
 			margin-bottom: 0;
     		height: 100%;
 		}
+	
+		@include upLandscape($xs) {
+			flex: 0 0 40%;
+			max-width: 40%;
+			margin-bottom: 0;
+			padding: get-vw($gutter, 568);
+			padding-left: 0;
+			margin: auto 0;
+    		height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+
+	@include up($sm) {
+		justify-content: space-evenly;
+	}
+
+	@include up($md) {
+		padding: 75px 0 56px;
 	}
 
 	@include up($lg) {
@@ -173,25 +250,29 @@ export default {
 		flex-direction: row-reverse;
 		align-items: center;
 	}
+	
+	@include upLandscape($xs) {
+		flex-flow: row-reverse;
+		padding: get-vw(50px, 568) get-vw(40px, 568) get-vw(30px, 568);
+	}
 }
 
 @keyframes glow {
 	from {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg) rotate(0);
+		transform: translate(-50%, -50%) skew(-30deg, 10deg);
 	}
 
 	50% {
-		transform: translate(-50%, -50%) skew(-14deg, 10deg) rotate(-360deg);
-		opacity: 0.6;
+		transform: translate(-50%, -50%) skew(-14deg, 10deg);
+		opacity: 0.5;
 	}
 
 	75% {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg) rotate(-540deg);
+		transform: translate(-50%, -50%) skew(-30deg, 10deg);
 	}
 
 	to {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg) rotate(0)
-			rotate(-720deg);
+		transform: translate(-50%, -50%) skew(-30deg, 10deg);
 	}
 }
 </style>
