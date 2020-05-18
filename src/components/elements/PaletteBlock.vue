@@ -70,8 +70,8 @@ export default {
 			}
 
 			@include up($lg) {
-				width: 200px;
-				height: 200px;
+				//width: 200px;
+				//height: 200px;
 			}
 		}
 
@@ -80,7 +80,7 @@ export default {
 		}
 
 		@include up($lg) {
-			padding: $gutter-lg 0;
+			//padding: $gutter-lg 0;
 		}
 	}
 
@@ -99,10 +99,10 @@ export default {
 			flex-shrink: 0;
 
 			@include up($lg) {
-				margin-right: $gutter;
+				//margin-right: $gutter;
 
 				&:last-child {
-					margin: 0;
+					//margin: 0;
 				}
 			}
 		}

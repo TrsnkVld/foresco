@@ -18,7 +18,7 @@ export default {
 	padding-bottom: $gutter-md;
 
 	@include up($lg) {
-		padding: $gutter-md 0;
+		//padding: $gutter-md 0;
 	}
 }
 </style>

@@ -56,13 +56,13 @@ export default {
 
 			&__text {
                 @include up($lg) {
-					padding-left: $gutter-xl;
-					padding-right: $gutter-sm;
+					//padding-left: $gutter-xl;
+					//padding-right: $gutter-sm;
                 }
 			}
 
 			@include up($lg) {
-				padding-top: $gutter-md;
+				//padding-top: $gutter-md;
 			}
 		}
 	}

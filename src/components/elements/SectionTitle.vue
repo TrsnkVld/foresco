@@ -17,7 +17,7 @@ export default {
 	color: $white;
 
     @include up($lg) {
-		padding: $gutter-lg 0;
+		//padding: $gutter-lg 0;
     }
 }
 </style>

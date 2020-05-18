@@ -12,7 +12,7 @@
 					<img :src="logo" alt="app_icon" />
 				</h1>
 				<h6>{{ subTitle }}</h6>
-				<p>Приложение, которое поможет вам всегда держать под контролем процессы взятия, выдачи и возврата займов.</p>
+				<p>Find Photo - это универсальный выбор для тех, кто хочет не хочет упустить ни одного ценного момента своей жизни.</p>
 				<CaseTags  />
 				<b-link :to="{name: 'case'}" v-if="$route.name=='home'">
 					<b-button variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
@@ -106,10 +106,10 @@ export default {
 			}
 
 			@include up($lg) {
-				width: 60px;
-				height: 60px;
+				width: get-vw(63px, 1024);
+				height: get-vw(63px, 1024);
 				margin-top: 0;
-				margin-left: $gutter;
+				margin-left: get-vw(5px, 1024);
 			}
 
 			@include upLandscape($xs) {
@@ -130,17 +130,25 @@ export default {
 		@include up($lg) {
 			justify-content: flex-start;
 		}
+	
+		@include upLandscape($md-land) {
+			margin-bottom: get-vw(4px, 1024);
+		}
 	}
 
 	h6 {
 		margin-bottom: get-vw($gutter, 320);
 
 		@include up($md) {
-			margin-bottom: $gutter;
+			margin-bottom: get-vw(25px, 768);
 		}
 
 		@include up($lg) {
-			margin-bottom: $gutter-sm;
+			margin-bottom: get-vw(25px, 1024);
+		}
+	
+		@include upLandscape($md-land) {
+			margin-bottom: get-vw(25px, 1024);
 		}
 	}
 
@@ -150,15 +158,28 @@ export default {
 
 		& > * {
 			@include up($lg) {
-				max-width: 520px;
+				//max-width: 520px;
 			}
 		}
 
 		p {
 			margin-bottom: $gutter-sm;
 
+			@include up($md) {
+				max-width: get-vw(360px, 768);
+				margin: 0 auto get-vw(55px, 768);
+			}
+
 			@include up($lg) {
-				min-height: 155px;
+				max-width: get-vw(550px, 1024);
+			}
+	
+			@include upLandscape($md-land) {
+				margin-bottom: get-vw(55px, 1024);
+			}
+	
+			@include upLandscape($lg-land) {
+				margin-bottom: get-vw(80px, 1366);
 			}
 		}
 
@@ -167,8 +188,8 @@ export default {
 		}
 
 		@include up($lg) {
-			text-align: left;
-			flex: 0 0 50%;
+			//text-align: left;
+			//flex: 0 0 50%;
 		}
 	
 		@include upLandscape($xs) {
@@ -176,6 +197,11 @@ export default {
 			max-width: 60%;
 			text-align: left;
 			margin: auto 0;
+		}
+
+		@include upLandscape($md-land) {
+			flex: 0 0 55%;
+			max-width: 55%;
 		}
 	}
 
@@ -211,15 +237,15 @@ export default {
 		}
 
 		@include up($md) {
-			padding-top: $gutter-sm;
-			max-height: 475px;
-			margin-bottom: $gutter-md;
-    		margin-top: auto;
+			padding-top: get-vw(65px, 768);
+			max-height: get-vw(500px, 768);
+			margin-bottom: get-vw(50px, 768);
+    		//margin-top: auto;
 		}
 
 		@include up($lg) {
-			margin-bottom: 0;
-    		height: 100%;
+			max-height: get-vw(665px, 1024);
+			margin-bottom: get-vw(50px, 1024);
 		}
 	
 		@include upLandscape($xs) {
@@ -234,10 +260,18 @@ export default {
 			justify-content: center;
 			align-items: center;
 		}
+
+		@include upLandscape($md-land) {
+    		height: get-vw(500px, 1024);
+			flex: 0 0 45%;
+			max-width: 45%;
+			padding-right: 0;
+			padding-top: 0;
+		}
 	}
 
 	@include up($sm) {
-		justify-content: space-evenly;
+		justify-content: center;
 	}
 
 	@include up($md) {
@@ -245,10 +279,14 @@ export default {
 	}
 
 	@include up($lg) {
-		padding: $gutter-xl 0;
-		flex-flow: wrap;
-		flex-direction: row-reverse;
-		align-items: center;
+		padding: get-vw(110px, 1024) 0;
+	}
+
+	@include up($lg) {
+		//padding: $gutter-xl 0;
+		//flex-flow: wrap;
+		//flex-direction: row-reverse;
+		//align-items: center;
 	}
 	
 	@include upLandscape($xs) {

@@ -231,8 +231,8 @@ export default {
 			.case-tags {
 				display: none;
 
-				@include up($lg) {
-					display: block;
+				@include up($md) {
+					display: flex;
 				}
 			}
 		}

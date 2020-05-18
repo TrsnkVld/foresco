@@ -56,8 +56,8 @@ export default {
         .content-block-inner {
 			&__text {
                 @include up($lg) {
-					padding-left: $gutter-xl;
-					padding-right: $gutter-sm;
+					//padding-left: $gutter-xl;
+					//padding-right: $gutter-sm;
                 }
 			}
 		}

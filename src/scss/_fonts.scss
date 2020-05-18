@@ -3,6 +3,89 @@
 */
 
 @font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-ExtraLight.eot');
+    src: local('Source Sans Pro'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-ExtraLight.woff') format('woff'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-ExtraLight.ttf') format('truetype'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-ExtraLight.svg') format('svg');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-Light.eot');
+    src: local('Source Sans Pro'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Light.woff') format('woff'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Light.ttf') format('truetype'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Light.svg') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-Regular.eot');
+    src: local('Source Sans Pro'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff') format('woff'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf') format('truetype'), 
+         url('../assets/fonts/SourceSansPro/SourceSansPro-Regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-SemiBold.eot');
+    src: local('Source Sans Pro'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-SemiBold.woff') format('woff'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf') format('truetype'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-SemiBold.svg') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-Bold.eot');
+    src: local('Source Sans Pro'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff') format('woff'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf') format('truetype'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Bold.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: url('../assets/fonts/SourceSansPro/SourceSansPro-Black.eot');
+    src: local('Source Sans Pro'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Black.woff') format('woff'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Black.ttf') format('truetype'), 
+        url('../assets/fonts/SourceSansPro/SourceSansPro-Black.svg') format('svg');
+	font-weight: 900;
+	font-style: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+@font-face {
     font-family: "Source Sans Pro";
     src: local("Source Sans Pro"), local("Source Sans Pro Regular"), 
         url("../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
@@ -25,6 +108,7 @@
     font-weight: 700;
     font-style: normal;
 }
+*/
 
 /*
 ** TT Norms

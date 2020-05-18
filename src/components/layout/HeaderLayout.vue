@@ -202,8 +202,23 @@ export default {
 			}
 
 			@include upLandscape($xs) {
-			width: get-vw(98px, 568);
-			height: get-vw(23px, 568);
+				width: get-vw(98px, 568);
+				height: get-vw(23px, 568);
+			}
+
+			@include up($lg) {
+				width: get-vw(135px, 1024);
+				height: get-vw(28px, 1024);
+			}
+
+			@include upLandscape($md-land) {
+				width: get-vw(103px, 1024);
+				height: get-vw(22px, 1024);
+			}
+
+			@include upLandscape($lg-land) {
+				width: get-vw(103px, 1024);
+				height: get-vw(20px, 1024);
 			}
 		}
 	}
@@ -253,13 +268,28 @@ export default {
 	}
 
 	@include up($md) {
-		padding: 0 $gutter-sm;
-		height: 70px;
+		padding: 0 get-vw($gutter-sm, 768);
+		height: get-vw(70px, 768);
+	}
+
+	@include up($lg) {
+		padding: 0 get-vw($gutter-sm, 1024);
+		height: get-vw(110px, 1024);
 	}
 
 	@include upLandscape($xs) {
 		height: 50px;
 		padding: 0 20px;
+	}
+
+	@include upLandscape($md-land) {
+		height: get-vw(70px, 1024);
+		padding: 0 get-vw(35px, 1024);
+	}
+
+	@include upLandscape($lg-land) {
+		height: get-vw(80px, 1024);
+		padding: 0 get-vw(25px, 1024);
 	}
 }
 
@@ -352,8 +382,8 @@ export default {
 		}
 
 		@include up($lg) {
-			max-width: 550px;
-			font-size: 85px;
+			//max-width: 550px;
+			//font-size: 85px;
 		}
 
 		@include up($xl) {
@@ -390,8 +420,8 @@ export default {
 		}
 
 		@include up($lg) {
-			width: 100%;
-			left: 65%;
+			//width: 100%;
+			//left: 65%;
 		}
 
 		@include up($xl) {

@@ -30,13 +30,29 @@ body {
     background: black;
 
     @include up($sm) {
-        font-size: 21px;
+        font-size: get-vw(21px, 414);
+    }
+
+    @include up($md) {
+        font-size: get-vw(16.5px, 768);
+        letter-spacing: get-vw(0.4px, 768);
     }
 
     @include up($lg) {
-        font-size: 25px;
-        line-height: 31px;
-        letter-spacing: 1px;
+        font-size: get-vw(25px, 1024);
+        line-height: get-vw(30px, 1024);
+        letter-spacing: get-vw(0.6px, 1024);
+    }
+	
+	@include upLandscape($md-land) {
+        font-size: get-vw(16.5px, 1024);
+        letter-spacing: get-vw(0.4px, 1024);
+	}
+	
+    @include upLandscape($lg-land) {
+        font-size: get-vw(25px, 1366);
+        line-height: get-vw(30px, 1366);
+        letter-spacing: get-vw(0.6px, 1366);
     }
 }
 
@@ -82,13 +98,23 @@ h1 {
     }
 
     @include up($lg) {
-        font-size: 75px;
-        letter-spacing: -2px;
+        font-size: get-vw(60px, 1024);
+        letter-spacing: get-vw(-1px, 1024);
     }
 	
 	@include upLandscape($xs) {
         font-size: get-vw(25px, 568);
 	}
+	
+	@include upLandscape($md-land) {
+        font-size: get-vw(50px, 1024);
+        letter-spacing: get-vw(-1.1px, 1024);
+	}
+	
+    @include upLandscape($lg-land) {
+        font-size: get-vw(60px, 1366);
+        letter-spacing: get-vw(-1.1px, 1366);
+    }
 }
 
 h2 { 
@@ -154,9 +180,15 @@ h6 {
     }
 
     @include up($md) {
-        font-size: 20px;
-        line-height: 25px;
-        letter-spacing: 0.5px;
+        font-size: get-vw(17px, 768);
+        line-height: get-vw(22px, 768);
+        letter-spacing: get-vw(0.4px, 768);
+    }
+
+    @include up($lg) {
+        font-size: get-vw(20px, 1024);
+        line-height: get-vw(22px, 1024);
+        letter-spacing: get-vw(0.5px, 1024);
     }
 	
 	@include upLandscape($xs) {
@@ -164,6 +196,17 @@ h6 {
         line-height: get-vw(19px, 568);
         letter-spacing: get-vw(0.4px, 568);
 	}
+	
+	@include upLandscape($md-land) {
+        font-size: get-vw(13.5px, 1024);
+        line-height: get-vw(18px, 1024);
+        letter-spacing: get-vw(0.3px, 1024);
+	}
+	
+    @include upLandscape($lg-land) {
+        font-size: get-vw(20px, 1366);
+        letter-spacing: get-vw(0.5px, 1366);
+    }
 }
 
 small {
@@ -318,16 +361,25 @@ ul {
             height: 100%;
             width: get-vw(40px, 320);
             background: #0262ce;
-            border-radius: get-vw(27.5px, 320);
+            border-radius: get-vw(20px, 320);
             transition: width $transition ease-in-out;
 
+            @include up($sm) {
+                width: get-vw(55px, 414);
+                border-radius: get-vw(27.5px, 414);
+            }
+
             @include up($md) {
-                width: 54px;
+                width: get-vw(41px, 768);
             }
 	
             @include upLandscape($xs) {
                 width: get-vw(40px, 568);
                 border-radius: get-vw(27.5px, 568);
+            }
+
+            @include upLandscape($md-land) {
+                width: get-vw(41px, 1024);
             }
         }
 
@@ -337,22 +389,33 @@ ul {
             }
         }  
 
-
 		@include up($sm) {
             font-size: get-vw(25px, 414);
+            padding: get-vw(12px, 414) get-vw(15px, 414);
 		}
 
 		@include up($md) {
-            font-size: 25px;
-            padding: 12px 15px;
-            line-height: 30px;
+            font-size: get-vw(19px, 768);
 		}
+
+        @include up($lg) {
+            font-size: get-vw(25px, 1024);
+            line-height: get-vw(31px, 1024);
+            padding: get-vw(11px, 1024) get-vw(19px, 1024) get-vw(13px, 1024);
+        }
 	
         @include upLandscape($xs) {
             padding: get-vw(7px, 568) get-vw(15px, 568);
             font-size: get-vw(15px, 568);
             line-height: get-vw(26px, 568);
             letter-spacing: get-vw(0.4px, 568);
+        }
+	
+        @include upLandscape($md-land) {
+            padding: get-vw(7px, 1024) get-vw(15px, 1024);
+            font-size: get-vw(19px, 1024);
+            line-height: get-vw(26px, 1024);
+            letter-spacing: get-vw(0.4px, 1024);
         }
     }
 

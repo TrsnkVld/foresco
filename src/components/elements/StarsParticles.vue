@@ -241,8 +241,8 @@ export default {
 			}
 
 			@include up($lg) {
-				width: 600px;
-				height: 120px;
+				//width: 600px;
+				//height: 120px;
 			}
 		}
 
