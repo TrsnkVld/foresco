@@ -23,6 +23,13 @@
     }
 }
 
+@mixin upNonRetina($value, $prop: min-width) {
+    @media only screen and (#{$prop}: #{$value}) and (-webkit-device-pixel-ratio: 1) {
+        @content;
+    }
+}
+
+
 
 @function get-vw($var, $vw-viewport) {
     @if ($vw-enable) {

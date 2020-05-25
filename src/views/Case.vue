@@ -1,7 +1,13 @@
 <template>
 	<main class="case">
 		<CaseHeader>
-			<CaseCard glowColor="#3779bccc" />
+			<CaseCard
+				title="Saldo. Долги"
+				:logo="require('../assets/img/logo.png')"
+				subTitle="Приложение для учёта и ведения долгов и расходов"
+				:imageSrc="require('../assets/img/saldo_mockup.png')"
+				glowColor="#0262ce"
+			/>
 		</CaseHeader>
 		<SingleSection>
 			<SectionTitle>🤔 Как работает приложение</SectionTitle>

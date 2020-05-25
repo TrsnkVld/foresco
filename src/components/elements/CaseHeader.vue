@@ -35,6 +35,27 @@ export default {
 
     &>.container {
         height: 100%;
-    }
+	}
+	
+	.case-swiper__item {
+		&>.container {
+
+			@include upLandscape($sm-land) {
+				max-width: get-vw(600px, 895);
+			}
+
+			@include upLandscape($md-land) {
+				max-width: get-vw(690px, 1024);
+			}
+
+			@include upLandscape($lg-land) {
+				max-width: get-vw(1000px, 1366);
+			}
+
+			@include upLandscape($xl-land) {
+				max-width: get-vw(1185px, 1920);
+			}
+		}
+	}
 }
 </style>

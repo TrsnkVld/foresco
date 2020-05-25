@@ -73,67 +73,27 @@
 				<div
 					class="header__burger"
 					:class="{'active': isMenuOpened}"
-					@click="isMenuOpened = !isMenuOpened"
+					@click="onMenuToggle"
 				/>
 			</b-col>
 		</b-row>
-		<transition name="menu">
-			<div class="menu" v-if="isMenuOpened">
-				<ul :class="{'menu-links': isMenuOpened}">
-					<div class="indicator">
-						<div
-							class="indicator__inner"
-							:style="`height: ${indicatorHeight}; background-color: ${indicatorColor}`"
-						/>
-					</div>
-
-					<li
-						v-for="(item, index) in menuLinks"
-						:key="index"
-						:class="{'active': index===indicatorActive}"
-						@mouseover="test(index, $event), indicatorColor=item.color, indicatorActive=index"
-						@click="test2(index)"
-					>{{ item.title }}</li>
-				</ul>
-
-				<div class="glow" />
-				<StarsParticles />
-			</div>
-		</transition>
+		<HeaderMenu :isIndicatorClose="isIndicatorClose" @onLinkClick="onMenuToggle" />
 	</header>
 </template>
 
 <script>
 import StarsParticles from "@/components/elements/StarsParticles";
+import HeaderMenu from "@/components/layout/HeaderMenu";
 
 export default {
 	name: "Headerlayout",
 	components: {
-		StarsParticles
+		StarsParticles,
+		HeaderMenu
 	},
 	data: () => ({
 		burgerActive: false,
-		indicatorHeight: null,
-		indicatorColor: null,
-		indicatorActive: 0,
-		menuLinks: [
-			{
-				title: "проекты",
-				color: "rgba(55, 119, 255, 0.75)"
-			},
-			{
-				title: "о нас",
-				color: "rgba(255, 167, 56)"
-			},
-			{
-				title: "команда",
-				color: "rgba(96, 224, 135)"
-			},
-			{
-				title: "контакты",
-				color: "rgba(62, 219, 237)"
-			}
-		]
+		isIndicatorClose: false,
 	}),
 	computed: {
 		isMenuOpened: {
@@ -143,20 +103,52 @@ export default {
 			set: function(newValue) {
 				this.$store.state.isHeaderMenuOpened = newValue;
 			}
-		}
-	},
-	methods: {
-		test(index, e) {
-			if (index == this.menuLinks.length - 1) {
-				this.indicatorHeight = "100%";
-			} else {
-				this.indicatorHeight = `${e.target.offsetTop +
-					e.target.offsetHeight}px`;
+		},
+		
+		isMenuContentShown: {
+			get: function() {
+				return this.$store.state.isHeaderMenuContentShown;
+			},
+			set: function(newValue) {
+				this.$store.state.isHeaderMenuContentShown = newValue;
 			}
 		},
-		test2(e) {
-			console.log(e);
-		}
+		
+		isMenuLinksShowed: {
+			get: function() {
+				return this.$store.state.isMenuLinksShowed;
+			},
+			set: function(newValue) {
+				this.$store.state.isMenuLinksShowed = newValue;
+			}
+		},
+	},
+	methods: {
+		onMenuToggle() {
+			this.isIndicatorClose = false;
+			
+			if (this.isMenuOpened) {
+
+				this.isIndicatorClose=true;
+
+				setTimeout(() => {
+					this.isMenuLinksShowed = false;
+					setTimeout(() => {
+						this.isMenuContentShown = false;
+						
+					}, 1);
+				}, 400);
+
+				/*
+				this.isMenuLinksShowed = false;
+				setTimeout(() => {
+					this.isMenuContentShown = false;
+				}, 0.5);
+				*/
+			} else {
+				this.isMenuOpened = true;
+			}
+		},
 	},
 	watch: {
 		isMenuOpened() {
@@ -220,14 +212,20 @@ export default {
 				width: get-vw(103px, 1024);
 				height: get-vw(20px, 1024);
 			}
+
+			@include upLandscape($xl-land) {
+				width: get-vw(140px, 1920);
+				height: get-vw(40px, 1920);
+			}
 		}
 	}
 
 	&__burger {
 		width: 28px;
-		height: 20px;
+		height: 21px;
 		position: relative;
 		cursor: pointer;
+		transition: .3s ease;
 
 		&::before,
 		&::after {
@@ -238,27 +236,42 @@ export default {
 			width: 100%;
 			height: 3px;
 			background: $white;
-			transform-origin: left;
+			transform-origin: center;
+			transition: top .4s ease, transform .4s ease;
+			transition-delay: .3s;
+
+			@include upLandscape($xl-land) {
+				height: get-vw(3px, 1920);
+			}
 		}
 
 		&::before {
 			top: 0;
+			transition: top .4s ease, transform .4s ease;
 		}
 
 		&::after {
-			bottom: 0;
+			top: 100%;
+			transition: top .4s ease, transform .4s ease;
 		}
 
 		&.active {
+			height: 30px;
+			
 			&::before {
-				transform: rotate(45deg);
-				top: -1px;
+				transform: rotate(-45deg);
+        		top: calc(50% - 1px);
 			}
 
 			&::after {
-				transform: rotate(-45deg);
-				bottom: -1px;
+				transform: rotate(45deg);
+				top: calc(50% - 1px);
 			}
+		}
+
+		@include upLandscape($xl-land) {
+			width: get-vw(40px, 1920);
+			height: get-vw(21px, 1920);
 		}
 	}
 
@@ -282,215 +295,24 @@ export default {
 		padding: 0 20px;
 	}
 
+	@include upLandscape($sm-land) {
+		padding: 0 get-vw($gutter, 895);
+		height: get-vw(100px, 895);
+	}
+
 	@include upLandscape($md-land) {
+		padding: 0 get-vw($gutter-sm, 1024);
 		height: get-vw(70px, 1024);
-		padding: 0 get-vw(35px, 1024);
 	}
 
 	@include upLandscape($lg-land) {
-		height: get-vw(80px, 1024);
-		padding: 0 get-vw(25px, 1024);
-	}
-}
-
-.menu {
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100vh;
-	z-index: -1;
-	background: $black;
-	padding: 50px $gutter;
-
-	.indicator {
-		width: 1px;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		background: rgba(255, 255, 255, 0.3);
-
-		&__inner {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100px;
-			background-color: rgba(55, 119, 255, 0.75);
-			transition: height background 0.3s ease-in-out;
-			transition: height, background-color, 0.4s ease;
-		}
+		height: get-vw(80px, 1366);
+		padding: 0 get-vw(40px, 1366);
 	}
 
-	ul {
-		position: relative;
-		z-index: 1;
-		transform: translateX(20%);
-		opacity: 0;
-		padding: 0;
-		margin: 0;
-		max-width: 730px;
-		height: calc(100% - 110px);
-		padding-left: $gutter-sm;
-		margin-top: $gutter-md;
-		margin-left: auto;
-		position: relative;
-		display: flex;
-		flex-flow: column;
-		justify-content: center;
-		font-family: TT Norms;
-		font-size: 37px;
-		line-height: normal;
-		transition: max-width, font-size, margin, height, padding-left, $transition;
-
-		li {
-			padding: $gutter 0;
-			cursor: pointer;
-			color: rgba(255, 255, 255, 0.28);
-			transition: color $transition;
-			margin-bottom: 0;
-
-			&.active,
-			&:hover {
-				color: $white;
-			}
-
-			&::before {
-				display: none;
-			}
-
-			&:last-child {
-			}
-		}
-
-		&.menu-links {
-			animation: menu-links 0.8s forwards ease;
-			animation-delay: 0.4s;
-		}
-
-		@include up($sm) {
-			font-size: 55px;
-			padding-left: $gutter-md;
-			margin-top: $gutter-lg;
-			height: calc(100% - 140px);
-		}
-
-		@include up($md) {
-			max-width: 450px;
-			padding-left: $gutter-lg;
-		}
-
-		@include up($lg) {
-			//max-width: 550px;
-			//font-size: 85px;
-		}
-
-		@include up($xl) {
-			max-width: 700px;
-		}
-	}
-
-	.glow {
-		position: absolute;
-		top: 50%;
-		left: 35%;
-		opacity: 0.2;
-		transform: translate(-50%, -50%);
-		background: radial-gradient(circle closest-side, #3779bccc, #0067de00 73%);
-		width: 400%;
-		z-index: -1;
-		animation: test 5s infinite ease-in-out;
-		pointer-events: none;
-
-		&::after {
-			content: "";
-			display: block;
-			width: 100%;
-			padding-top: 100%;
-		}
-
-		@include up($sm) {
-			width: 200%;
-		}
-
-		@include up($md) {
-			width: 150%;
-			left: 85%;
-		}
-
-		@include up($lg) {
-			//width: 100%;
-			//left: 65%;
-		}
-
-		@include up($xl) {
-			width: 90%;
-			left: 35%;
-		}
-	}
-
-	.stars-particles {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	&-enter-active,
-	&-leave-active {
-		transition: 0.3s ease-in-out;
-		opacity: 1;
-
-		ul {
-		}
-	}
-
-	&-enter,
-	&-leave-to {
-		transition: 0.3s ease-in-out;
-		opacity: 0;
-
-		ul {
-			//animation: menu-links 1s forwards ease;
-		}
-	}
-
-	@include up($md) {
-		padding: 70px $gutter-sm;
-		height: 100%;
-	}
-}
-
-@keyframes test {
-	from {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-
-	50% {
-		transform: translate(-50%, -50%) skew(-14deg, 10deg);
-		opacity: 0.4;
-	}
-
-	75% {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-
-	to {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-}
-
-@keyframes menu-links {
-	from {
-		transform: translateX(100px);
-		opacity: 0;
-	}
-
-	to {
-		transform: translateX(0);
-		opacity: 1;
+	@include upLandscape($xl-land) {
+		height: get-vw(120px, 1920);
+		padding: 0 get-vw(50px, 1920);
 	}
 }
 </style>

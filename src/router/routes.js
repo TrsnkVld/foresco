@@ -5,6 +5,7 @@ Vue.use(Router);
 
 const Home = () => import('../views/Home');
 const Case = () => import('../views/Case');
+const Contacts = () => import('../views/Contacts');
 
 const routes = [
     {
@@ -16,6 +17,11 @@ const routes = [
       path: '/case',
       name: 'case',
       component: Case
+    },
+    {
+      path: '/contacts',
+      name: 'contacts',
+      component: Contacts
     }
   ]
 

@@ -1,5 +1,6 @@
 @import "override-bootstrap";
 @import "variables";
+@import "animations";
 @import 'mixins';
 @import "fonts";
 @import 'vue-svgicon';
@@ -23,6 +24,7 @@ body {
     font-family: TT Norms;
     font-size: 16px;
     line-height: normal;
+    font-weight: 400;
     letter-spacing: 0.42px;
     color: $black;
     cursor: default;
@@ -54,6 +56,12 @@ body {
         line-height: get-vw(30px, 1366);
         letter-spacing: get-vw(0.6px, 1366);
     }
+	
+    @include upLandscape($xl-land) {
+        font-size: get-vw(22px, 1920);
+        line-height: get-vw(30px, 1920);
+        letter-spacing: get-vw(0.6px, 1920);
+    }
 }
 
 main {
@@ -81,7 +89,7 @@ h3 {
     line-height: normal;
 }
 
-h1 {  
+h1 {
     font-size: get-vw(25px, 320);
     letter-spacing: get-vw(-0.78px, 320);
     line-height: normal;
@@ -92,47 +100,101 @@ h1 {
     }
 
     @include up($md) {
-        font-size: 50px;
-        letter-spacing: -2px;
-        line-height: 55px;
+        font-size: get-vw(50px, 768);
+        letter-spacing: get-vw(-2px, 768);
+        line-height: get-vw(55px, 768);
     }
 
     @include up($lg) {
         font-size: get-vw(60px, 1024);
+        line-height: get-vw(65px, 1024);
         letter-spacing: get-vw(-1px, 1024);
+    }
+
+    @include up($xl) {
+        //font-size: get-vw(60px, 2560);
+        //line-height: get-vw(65px, 2560);
+        //letter-spacing: get-vw(-1px, 2560);
     }
 	
 	@include upLandscape($xs) {
         font-size: get-vw(25px, 568);
+        line-height: get-vw(30px, 568);
 	}
 	
 	@include upLandscape($md-land) {
         font-size: get-vw(50px, 1024);
+        line-height: get-vw(55px, 1024);
         letter-spacing: get-vw(-1.1px, 1024);
 	}
 	
     @include upLandscape($lg-land) {
         font-size: get-vw(60px, 1366);
+        line-height: get-vw(65px, 1366);
         letter-spacing: get-vw(-1.1px, 1366);
     }
+	
+    @include upLandscape($xl-land) {
+        font-size: get-vw(60px, 1920);
+        line-height: get-vw(65px, 1920);
+        letter-spacing: get-vw(-1px, 1920);
+    }
+    
+	@include upNonRetina($md) {
+        /*
+        font-size: 50px;
+        letter-spacing: -0.78px;
+        line-height: normal;
+        */
+	}
 }
 
 h2 { 
-    font-size: 35px;
-    letter-spacing: -0.42px;
-    line-height: normal;
-
-    @include up($lg) {
-        font-size: 65px;
-        letter-spacing: -0.3px;
-        line-height: 85px;
+    font-size: get-vw(35px, 320);
+    letter-spacing: get-vw(-0.42px, 320);
+    line-height: get-vw(40px, 320);
+    
+    @include up($sm) {
+        font-size: get-vw(45px, 414);
+        letter-spacing: get-vw(-0.54px, 414);
+        line-height: get-vw(50px, 414);
     }
 
+    @include up($md) {
+        font-size: get-vw(45px, 768);
+        letter-spacing: get-vw(-0.54px, 768);
+        line-height: get-vw(50px, 768);
+    }
+
+    @include up($lg) {
+        font-size: get-vw(45px, 1024);
+        letter-spacing: get-vw(-0.54px, 1024);
+        line-height: get-vw(50px, 1024);
+    }
+	
 	@include upLandscape($xs) {
-        font-size: get-vw(18px, 320);
-        font-weight: normal;
-        line-height: get-vw(23px, 320);
+        font-size: get-vw(35px, 568);
+        letter-spacing: get-vw(-0.42px, 568);
+        line-height: get-vw(40px, 568);
 	}
+	
+	@include upLandscape($md-land) {
+        font-size: get-vw(45px, 1024);
+        letter-spacing: get-vw(-0.54px, 1024);
+        line-height: get-vw(50px, 1024);
+	}
+	
+    @include upLandscape($lg-land) {
+        font-size: get-vw(45px, 1366);
+        line-height: get-vw(50px, 1366);
+        letter-spacing: get-vw(-0.54px, 1366);
+    }
+	
+    @include upLandscape($xl-land) {
+        font-size: get-vw(45px, 1920);
+        line-height: get-vw(50px, 1920);
+        letter-spacing: get-vw(-0.54px, 1920);
+    }
 }
 
 h3 {
@@ -176,6 +238,7 @@ h6 {
 
     @include up($sm) {
         font-size: get-vw(20px, 414);
+        line-height: get-vw(27px, 414);
         letter-spacing: get-vw(0.4px, 414);
     }
 
@@ -205,8 +268,24 @@ h6 {
 	
     @include upLandscape($lg-land) {
         font-size: get-vw(20px, 1366);
+        line-height: get-vw(25px, 1366);
         letter-spacing: get-vw(0.5px, 1366);
     }
+	
+    @include upLandscape($xl-land) {
+        font-size: get-vw(20px, 1920);
+        line-height: get-vw(25px, 1920);
+        letter-spacing: get-vw(0.5px, 1920);
+    }
+    
+	@include upNonRetina($md) {
+        /*
+        font-size: 13px;
+        letter-spacing: 0.27px;
+        line-height: normal;
+        color: burlywood;
+        */
+	}
 }
 
 small {
@@ -233,18 +312,61 @@ ul {
     }
 }
 
+.form-control {
+    border-radius: $border-radius;
+    border: none;
+    background-color: $grey;
+}
+
 .container {
 
+    @include up($xs) {
+        padding-right: get-vw(20px, 320);
+        padding-left: get-vw(20px, 320);
+    }
+
+    @include up($sm) {
+        padding-right: get-vw(20px, 414);
+        padding-left: get-vw(20px, 414);
+        max-width: get-vw(470px, 414);
+    }
+
     @include up($md) {
-        padding: 0 $gutter-md;
+        padding-right: get-vw(20px, 768);
+        padding-left: get-vw(20px, 768);
+        max-width: get-vw(640px, 768);
     }
 
     @include up($lg) {
-        padding: 0 $gutter-lg;
+        padding-right: get-vw(20px, 1024);
+        padding-left: get-vw(20px, 1024);
+        max-width: get-vw(890px, 1024);
     }
 
-    @include upLandscape($xs) {
-        max-width: 100%;
+    @include up($xl) {
+        padding-right: get-vw(20px, 1366);
+        padding-left: get-vw(20px, 1366);
+        max-width: get-vw(890px, 1366);
+    }
+
+    @include upLandscape($xs-land) {    
+        max-width: get-vw(480px, 568);
+    }
+
+    @include upLandscape($sm-land) {    
+        max-width: get-vw(700px, 895);
+    }
+
+    @include upLandscape($md-land) {    
+        max-width: get-vw(788px, 1024);
+    }
+
+    @include upLandscape($lg-land) {    
+        max-width: get-vw(1024px, 1366);
+    }
+	
+    @include upLandscape($xl-land) {
+        max-width: get-vw(1300px, 1920);
     }
 }
 
@@ -371,15 +493,22 @@ ul {
 
             @include up($md) {
                 width: get-vw(41px, 768);
+                border-radius: get-vw(20.5px, 768);
             }
 	
             @include upLandscape($xs) {
                 width: get-vw(40px, 568);
-                border-radius: get-vw(27.5px, 568);
+                border-radius: get-vw(20px, 568);
             }
 
             @include upLandscape($md-land) {
                 width: get-vw(41px, 1024);
+                border-radius: get-vw(20.5px, 1024);
+            }
+	
+            @include upLandscape($xl-land) {
+                width: get-vw(55px, 1920);
+                border-radius: get-vw(27.5px, 1920);
             }
         }
 
@@ -392,30 +521,42 @@ ul {
 		@include up($sm) {
             font-size: get-vw(25px, 414);
             padding: get-vw(12px, 414) get-vw(15px, 414);
+            letter-spacing: get-vw(0.4px, 414);
 		}
 
 		@include up($md) {
             font-size: get-vw(19px, 768);
+            line-height: get-vw(25px, 768);
+            padding: get-vw(8px, 768) get-vw(14px, 768);
+            letter-spacing: get-vw(0.4px, 768);
 		}
 
         @include up($lg) {
             font-size: get-vw(25px, 1024);
             line-height: get-vw(31px, 1024);
+            letter-spacing: get-vw(0.4px, 1024);
             padding: get-vw(11px, 1024) get-vw(19px, 1024) get-vw(13px, 1024);
         }
 	
         @include upLandscape($xs) {
-            padding: get-vw(7px, 568) get-vw(15px, 568);
+            padding: get-vw(6px, 568) get-vw(15px, 568) get-vw(8px, 568);
             font-size: get-vw(15px, 568);
             line-height: get-vw(26px, 568);
             letter-spacing: get-vw(0.4px, 568);
         }
 	
         @include upLandscape($md-land) {
-            padding: get-vw(7px, 1024) get-vw(15px, 1024);
             font-size: get-vw(19px, 1024);
-            line-height: get-vw(26px, 1024);
+            line-height: get-vw(25px, 1024);
             letter-spacing: get-vw(0.4px, 1024);
+            padding: get-vw(8px, 1024) get-vw(14px, 1024);
+        }
+	
+        @include upLandscape($xl-land) {
+            font-size: get-vw(25px, 1920);
+            line-height: get-vw(31px, 1920);
+            letter-spacing: get-vw(0.4px, 1920);
+            padding: get-vw(12px, 1920) get-vw(18px, 1920);
         }
     }
 

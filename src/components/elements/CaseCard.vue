@@ -3,7 +3,7 @@
 		<b-row class="case-card">
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
-				<img :src="imageSrc" alt="case_img" />
+				<div class="image-bg" :style="`background-image: url('${imageSrc}')`" />
 				<div class="glow" :style="glowStyle" />
 			</b-col>
 			<b-col cols="12" lg="6" class="case-card__text">
@@ -86,7 +86,6 @@ export default {
 		*/
 		margin-bottom: get-vw(5px, 320);
 		
-
 		img {
 			width: get-vw(27px, 320);
 			height: get-vw(27px, 320);
@@ -106,8 +105,8 @@ export default {
 			}
 
 			@include up($lg) {
-				width: get-vw(63px, 1024);
-				height: get-vw(63px, 1024);
+				width: get-vw(50px, 1024);
+				height: get-vw(50px, 1024);
 				margin-top: 0;
 				margin-left: get-vw(5px, 1024);
 			}
@@ -117,6 +116,13 @@ export default {
 				height: get-vw(27px, 568);
 				margin-top: get-vw(-5px, 568);
 				margin-left: 0px;
+			}
+	
+			@include upLandscape($xl-land) {
+				width: get-vw(50px, 1920);
+				height: get-vw(50px, 1920);
+				margin-left: get-vw(10px, 1920);
+				margin-top: get-vw(-10px, 1920);
 			}
 		}
 
@@ -129,26 +135,45 @@ export default {
 
 		@include up($lg) {
 			justify-content: flex-start;
+			margin-bottom: get-vw(10px, 1024);
 		}
 	
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(4px, 1024);
+		}
+	
+		@include upLandscape($xl-land) {
+			margin-bottom: get-vw(3px, 1920);
 		}
 	}
 
 	h6 {
 		margin-bottom: get-vw($gutter, 320);
 
+		@include adopt($sm) {
+			max-width: get-vw(250px, 320);
+			margin-left: auto;
+			margin-right: auto;
+		}
+
 		@include up($md) {
 			margin-bottom: get-vw(25px, 768);
 		}
 
 		@include up($lg) {
-			margin-bottom: get-vw(25px, 1024);
+			margin-bottom: get-vw(60px, 1024);
 		}
 	
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(25px, 1024);
+		}
+	
+		@include upLandscape($lg-land) {
+			margin-bottom: get-vw(50px, 1366);
+		}
+	
+		@include upLandscape($xl-land) {
+			margin-bottom: get-vw(25px, 1920);
 		}
 	}
 
@@ -176,10 +201,16 @@ export default {
 	
 			@include upLandscape($md-land) {
 				margin-bottom: get-vw(55px, 1024);
+				margin-left: 0;
 			}
 	
 			@include upLandscape($lg-land) {
 				margin-bottom: get-vw(80px, 1366);
+			}
+
+			@include upLandscape($xl-land) {
+				margin-bottom: get-vw(45px, 1920);
+				max-width: get-vw(490px, 1920);
 			}
 		}
 
@@ -228,12 +259,25 @@ export default {
 			opacity: .4;
 		}
 
-		img {
+		.image-bg {
+			width: 100%;
+			height: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			/*
 			display: block;
 			min-height: 0;
-			//max-height: get-vw(275px, 320);
 			margin: 0 auto;
 			max-height: 100%;
+			height: 100%;
+			*/
+		}
+
+		@include up($sm) {
+			padding-top: get-vw(35px, 414);
+			margin-bottom: get-vw(45px, 414);
+    		//margin-top: auto;
 		}
 
 		@include up($md) {
@@ -259,7 +303,7 @@ export default {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-		}
+		}    
 
 		@include upLandscape($md-land) {
     		height: get-vw(500px, 1024);
@@ -267,6 +311,18 @@ export default {
 			max-width: 45%;
 			padding-right: 0;
 			padding-top: 0;
+    		max-height: 100%;
+		}
+
+		@include upLandscape($xl-land) {
+			height: get-vw(570px, 1920);
+			padding-left: 0;
+		}
+
+		@include upLandscape($xxl-land) {
+			height: get-vw(730px, 2560);
+			padding-bottom: get-vw(55px, 2560);
+			padding-left: 0;
 		}
 	}
 
@@ -291,7 +347,17 @@ export default {
 	
 	@include upLandscape($xs) {
 		flex-flow: row-reverse;
-		padding: get-vw(50px, 568) get-vw(40px, 568) get-vw(30px, 568);
+		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
+	}
+	
+	@include upLandscape($md-land) {
+		flex-flow: row-reverse;
+		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
+	}
+	
+	@include upLandscape($lg-land) {
+		flex-flow: row-reverse;
+		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
 	}
 }
 

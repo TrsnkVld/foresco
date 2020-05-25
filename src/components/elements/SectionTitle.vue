@@ -1,13 +1,19 @@
 <template>
 	<b-container>
-		<h2 class="section-title" data-aos="fade-up" >
+		<component :is="tag" class="section-title" data-aos="fade-up" >
 			<slot></slot>
-		</h2>
+		</component >
 	</b-container>
 </template>
 <script>
 export default {
 	name: "SectionTitle",
+	props: {
+		tag: {
+			type: String,
+			default: 'h2',
+		}
+	}
 };
 </script>
 

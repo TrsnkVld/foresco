@@ -20,7 +20,6 @@
 					/>
 				</swiper-slide>
 			</swiper>
-			<div class="case-swiper-pagination" :style="`color: ${cases[currentSlide].color}`" />
 			<div class="case-swiper-nav">
 				<svgicon
 					name="arrow"
@@ -28,6 +27,9 @@
 					slot="button-prev"
 					:style="`stroke: ${cases[currentSlide].color}`"
 				/>
+				<div class="case-swiper-pagination">
+					<div class="case-swiper-pagination__inner" /> <!--:style="`color: ${cases[currentSlide].color}`"-->
+				</div>
 				<svgicon
 					name="arrow"
 					class="case-swiper-nav__next svg-down"
@@ -91,18 +93,18 @@ export default {
 			mousewheel: true,
 			slidesPerView: 1,
 			slidesPerGroup: 1,
-			speed: 900,
+			speed: 1200,
 			//spaceBetween: 15,
 			navigation: {
 				nextEl: ".case-swiper-nav__next",
 				prevEl: ".case-swiper-nav__prev"
 			},
 			pagination: {
-				el: ".case-swiper-pagination",
+				el: ".case-swiper-pagination__inner",
 				type: "fraction",
 
 				renderFraction: function(currentClass, totalClass) {
-					return `<span class="${currentClass}"></span>—<span class="${totalClass}"></span>`;
+					return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
 				}
 			}
 		},
@@ -208,18 +210,26 @@ export default {
 	position: relative;
 
 	&__item {
-		/*
-		transition: 0.4s;
-		filter: blur(3px);
-		transition-property: transform, filter;
-
-		&.swiper-slide-active {
-			filter: none;
-		}
-		*/
-
 		& > .container {
 			height: 100%;
+
+			.case-card {
+				opacity: 0;
+				transition: 0.3s;
+				transition-delay: 0s;
+				transition-property: opacity;
+			}
+		}
+
+		&.swiper-slide-active {
+			& > .container {
+				.case-card {
+					opacity: 1;
+					transition: 0.8s;
+					transition-delay: 0.5s;
+					transition-property: opacity;
+				}
+			}
 		}
 	}
 
@@ -227,11 +237,30 @@ export default {
 		height: 100%;
 
 		&__text {
-			p,
+			p {
+				display: none;
+
+				@include upLandscape($sm-land) {
+					display: none;
+				}
+
+				@include upLandscape($md-land) {
+					display: flex;
+				}
+			}
+
 			.case-tags {
 				display: none;
 
 				@include up($md) {
+					display: flex;
+				}
+
+				@include upLandscape($sm-land) {
+					display: none;
+				}
+
+				@include upLandscape($md-land) {
 					display: flex;
 				}
 			}
@@ -239,43 +268,82 @@ export default {
 	}
 
 	&-pagination {
+		/*
 		position: absolute;
 		top: 50%;
 		bottom: auto;
-		left: $gutter;
-		display: flex;
-		flex-flow: column;
-		align-items: center;
+		left: get-vw($gutter, 320);
+		transform: translateY(-95%);
+		*/    
+		position: absolute;
+		top: 50%;
+		left: 57%;
+		transform: translate(-50%,-50%);
+
 		width: auto;
 		z-index: 2;
-		transform: translateY(-95%);
-		color: rgba(2, 98, 206, 0.45);
+		//color: rgba(2, 98, 206, 0.45);
 		font-size: get-vw(14px, 320);
-		font-weight: 500;
+		font-weight: 400;
 		line-height: get-vw(14px, 320);
 		transition: color, $transition;
 
-		.swiper-pagination-current {
+		&__inner {	
 			color: $white;
 		}
 
+		@include up($sm) {
+			//left: get-vw($gutter, 414);
+			font-size: get-vw(16px, 414);
+			line-height: get-vw(16px, 414);
+		}
+
 		@include up($md) {
-			left: $gutter-sm;
-			font-size: 25px;
-			line-height: 30px;
+			//left: get-vw($gutter-sm, 768);
+			font-size: get-vw(18px, 768);
+			line-height: get-vw(18px, 768);
+		}
+
+		@include up($lg) {
+			//left: get-vw($gutter-sm, 1024);
+			font-size: get-vw(18px, 1024);
+			line-height: get-vw(18px, 1024);
 		}
 
 		@include upLandscape($xs) {
 			font-size: get-vw(14px, 568);
 			line-height: get-vw(14px, 568);
-			transform: translateY(-50%);
+			//transform: translateY(-50%);
+		}
+
+		@include upLandscape($sm-land) {
+			//left: get-vw($gutter, 895);
+			font-size: get-vw(16px, 895);
+		}
+
+		@include upLandscape($md-land) {
+			//left: get-vw($gutter-sm, 1024);
+			font-size: get-vw(18px, 1024);
+			line-height: get-vw(18px, 1024);
+		}
+
+		@include upLandscape($lg-land) {
+			//left: get-vw($gutter-sm, 1366);
+			font-size: get-vw(18px, 1366);
+			line-height: get-vw(18px, 1366);
+		}
+
+		@include upLandscape($xl-land) {
+			//left: get-vw($gutter-sm, 1920);
+			font-size: get-vw(18px, 1920);
+			line-height: get-vw(18px, 1920);
 		}
 	}
 
 	&-nav {
 		position: absolute;
 		top: 50%;
-		right: $gutter;
+		right: get-vw($gutter, 320);
 		z-index: 2;
 		transform: translateY(-80%);
 
@@ -293,6 +361,7 @@ export default {
 			outline: none;
 			fill: none;
 			transition: stroke, $transition;
+			user-select: none;
 
 			&:hover {
 				opacity: 1;
@@ -303,22 +372,80 @@ export default {
 				cursor: default;
 			}
 
+			@include up($sm) {
+				width: get-vw(20px, 414);
+				height: get-vw(20px, 414);
+			}
+
 			@include up($md) {
-				width: 30px;
-				height: 30px;
+				width: get-vw(20px, 768);
+				height: get-vw(20px, 768);
+			}
+
+			@include up($lg) {
+				width: get-vw(28px, 1024);
+				height: get-vw(28px, 1024);
 			}
 
 			@include upLandscape($xs) {
 				width: get-vw(18px, 568);
 				height: get-vw(18px, 568);
 			}
+
+			@include upLandscape($sm-land) {
+				width: get-vw(20px, 895);
+				height: get-vw(20px, 895);
+			}
+
+			@include upLandscape($md-land) {
+				width: get-vw(18px, 1024);
+				height: get-vw(18px, 1024);
+			}
+
+			@include upLandscape($lg-land) {
+				width: get-vw(28px, 1366);
+				height: get-vw(28px, 1366);
+			}
+
+			@include upLandscape($xl-land) {
+				width: get-vw(28px, 1920);
+				height: get-vw(28px, 1920);
+			}
 		}
 
 		&__prev {
-			margin-bottom: get-vw(30px, 320);
+			margin-bottom: get-vw(60px, 320);
+
+			@include up($sm) {
+				margin-bottom: get-vw(60px, 414);
+			}
 
 			@include up($md) {
-				margin-bottom: $gutter-md;
+				margin-bottom: get-vw(100px, 768);
+			}
+
+			@include up($lg) {
+				margin-bottom: get-vw(100px, 1024);
+			}
+
+			@include upLandscape($xs) {
+				margin-bottom: get-vw(80px, 568);
+			}
+
+			@include upLandscape($sm-land) {
+				margin-bottom: get-vw(80px, 895);
+			}
+
+			@include upLandscape($md-land) {
+				margin-bottom: get-vw(100px, 1024);
+			}
+
+			@include upLandscape($lg-land) {
+				margin-bottom: get-vw(100px, 1366);
+			}
+
+			@include upLandscape($xl-land) {
+				margin-bottom: get-vw(100px, 1920);
 			}
 		}
 
@@ -326,12 +453,37 @@ export default {
 			transform: rotate(180deg);
 		}
 
+		@include up($sm) {
+			right: get-vw($gutter, 414);
+		}
+
 		@include up($md) {
-			right: $gutter-sm;
+			right: get-vw($gutter-sm, 768);
+		}
+
+		@include up($lg) {
+			right: get-vw($gutter-sm, 1024);
 		}
 
 		@include upLandscape($xs) {
 			transform: translateY(-50%);
+			right: get-vw($gutter, 568);
+		}
+
+		@include upLandscape($sm-land) {
+			right: get-vw(24px, 895);
+		}
+
+		@include upLandscape($md-land) {
+			right: get-vw(40px, 1024);
+		}
+
+		@include upLandscape($lg-land) {
+			right: get-vw(40px, 1366);
+		}
+
+		@include upLandscape($xl-land) {
+			right: get-vw(50px, 1920);
 		}
 	}
 }
