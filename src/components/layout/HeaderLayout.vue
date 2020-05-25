@@ -214,8 +214,8 @@ export default {
 			}
 
 			@include upLandscape($xl-land) {
-				width: get-vw(140px, 1920);
-				height: get-vw(40px, 1920);
+				width: get-vw(119px, 1920);
+				height: get-vw(23px, 1920);
 			}
 		}
 	}
@@ -272,6 +272,11 @@ export default {
 		@include upLandscape($xl-land) {
 			width: get-vw(40px, 1920);
 			height: get-vw(21px, 1920);
+		}
+
+		@include upLandscape($xxl-land) {
+			width: get-vw(38px, 1920);
+			height: get-vw(15px, 1920);
 		}
 	}
 

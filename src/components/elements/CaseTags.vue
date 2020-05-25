@@ -29,7 +29,7 @@ export default {
 		line-height: get-vw(13px, 320);
 		font-weight: bold;
 		font-family: Source Sans Pro;
-		background: $light-grey;
+		background: rgba(45, 45, 45, 0.4);
 		border-radius: get-vw($border-radius, 320);
 		padding: get-vw(14px, 320) get-vw(20px, 320);
 		margin: 0px get-vw(4px, 320) get-vw(8px, 320);
@@ -106,7 +106,7 @@ export default {
 	}
 
 	@include upLandscape($xl-land) {
-		margin-bottom: get-vw(60px, 1920);
+		margin-bottom: get-vw(65px, 1920);
 		//min-height: get-vw(116px, 1366);
 	}
 }

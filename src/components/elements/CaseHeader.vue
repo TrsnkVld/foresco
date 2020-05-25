@@ -53,7 +53,7 @@ export default {
 			}
 
 			@include upLandscape($xl-land) {
-				max-width: get-vw(1185px, 1920);
+				max-width: get-vw(940px, 1920);
 			}
 		}
 	}

@@ -139,11 +139,11 @@ export default {
 		}
 	
 		@include upLandscape($md-land) {
-			margin-bottom: get-vw(4px, 1024);
+			margin-bottom: get-vw(31px, 1024);
 		}
 	
 		@include upLandscape($xl-land) {
-			margin-bottom: get-vw(3px, 1920);
+			margin-bottom: get-vw(31px, 1920);
 		}
 	}
 
@@ -166,6 +166,7 @@ export default {
 	
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(25px, 1024);
+			display: none;
 		}
 	
 		@include upLandscape($lg-land) {
@@ -180,6 +181,8 @@ export default {
 	&__text {
 		text-align: center;
 		flex: 0;
+		position: relative;
+		z-index: 1;
 
 		& > * {
 			@include up($lg) {
@@ -209,7 +212,7 @@ export default {
 			}
 
 			@include upLandscape($xl-land) {
-				margin-bottom: get-vw(45px, 1920);
+				margin-bottom: get-vw(43px, 1920);
 				max-width: get-vw(490px, 1920);
 			}
 		}
@@ -257,6 +260,8 @@ export default {
 			animation: glow 5s infinite ease-in-out;
 			pointer-events: none;
 			opacity: .4;
+
+
 		}
 
 		.image-bg {
@@ -357,7 +362,7 @@ export default {
 	
 	@include upLandscape($lg-land) {
 		flex-flow: row-reverse;
-		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
+		padding: get-vw(62px, 568) 0 get-vw(30px, 568);
 	}
 }
 
