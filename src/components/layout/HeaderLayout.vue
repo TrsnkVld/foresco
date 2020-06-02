@@ -70,11 +70,10 @@
 				</b-link>
 			</b-col>
 			<b-col cols="auto">
-				<div
-					class="header__burger"
-					:class="{'active': isMenuOpened}"
-					@click="onMenuToggle"
-				/>
+				<svg class="header__burger" :class="{'active': isMenuOpened && burgerActive}" @click="onMenuToggle(); burgerActive = !burgerActive" width="38" height="19" viewBox="0 0 38 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 8H38V11.1667H0V8Z" fill="white" />
+					<path d="M0 8H38V11.1667H0V8Z" fill="white" />
+				</svg>
 			</b-col>
 		</b-row>
 		<HeaderMenu :isIndicatorClose="isIndicatorClose" @onLinkClick="onMenuToggle" />
@@ -104,7 +103,7 @@ export default {
 				this.$store.state.isHeaderMenuOpened = newValue;
 			}
 		},
-		
+
 		isMenuContentShown: {
 			get: function() {
 				return this.$store.state.isHeaderMenuContentShown;
@@ -113,7 +112,7 @@ export default {
 				this.$store.state.isHeaderMenuContentShown = newValue;
 			}
 		},
-		
+
 		isMenuLinksShowed: {
 			get: function() {
 				return this.$store.state.isMenuLinksShowed;
@@ -121,21 +120,18 @@ export default {
 			set: function(newValue) {
 				this.$store.state.isMenuLinksShowed = newValue;
 			}
-		},
+		}
 	},
 	methods: {
 		onMenuToggle() {
-			this.isIndicatorClose = false;
-			
-			if (this.isMenuOpened) {
 
-				this.isIndicatorClose=true;
+			if (this.isMenuOpened) {
+				this.isIndicatorClose = true;
 
 				setTimeout(() => {
 					this.isMenuLinksShowed = false;
 					setTimeout(() => {
 						this.isMenuContentShown = false;
-						
 					}, 1);
 				}, 400);
 
@@ -148,7 +144,7 @@ export default {
 			} else {
 				this.isMenuOpened = true;
 			}
-		},
+		}
 	},
 	watch: {
 		isMenuOpened() {
@@ -157,12 +153,13 @@ export default {
 				return;
 			}
 			//document.documentElement.classList.remove('locked');
-			setTimeout(
-				() => document.documentElement.classList.remove("locked"),
-				500
-			);
+			setTimeout(() => {
+				document.documentElement.classList.remove("locked")
+				this.isIndicatorClose = false;
+			},500);
 			//document.documentElement.classList.remove('locked');
-		}
+		},
+		
 	}
 };
 </script>
@@ -225,42 +222,36 @@ export default {
 		height: 21px;
 		position: relative;
 		cursor: pointer;
-		transition: .3s ease;
+		transition: 0.3s ease;
+		overflow: visible;
 
-		&::before,
-		&::after {
-			position: absolute;
-			left: 0;
-			content: "";
-			display: block;
-			width: 100%;
-			height: 3px;
-			background: $white;
+		path {
+			transition: transform .4s ease;
 			transform-origin: center;
-			transition: top .4s ease, transform .4s ease;
-			transition-delay: .3s;
-
-			@include upLandscape($xl-land) {
-				height: get-vw(3px, 1920);
+			&:first-child {
+				animation: burger-start1 .4s ease forwards;
 			}
-		}
-
-		&::before {
-			top: 0;
-			transition: top .4s ease, transform .4s ease;
-		}
-
-		&::after {
-			top: 100%;
-			transition: top .4s ease, transform .4s ease;
+			&:last-child {
+				animation: burger-start2 .4s ease forwards;
+			}
 		}
 
 		&.active {
 			height: 30px;
-			
+
+			path {
+			transition: transform .4s ease;
+				&:first-child {
+					animation: burger1 .8s ease forwards;
+				}
+				&:last-child {
+					animation: burger2 .8s ease forwards;
+				}
+			}
+
 			&::before {
 				transform: rotate(-45deg);
-        		top: calc(50% - 1px);
+				top: calc(50% - 1px);
 			}
 
 			&::after {
@@ -271,12 +262,10 @@ export default {
 
 		@include upLandscape($xl-land) {
 			width: get-vw(40px, 1920);
-			height: get-vw(21px, 1920);
 		}
 
 		@include upLandscape($xxl-land) {
 			width: get-vw(38px, 1920);
-			height: get-vw(15px, 1920);
 		}
 	}
 

@@ -12,10 +12,14 @@ export default {
 
 <style lang="scss">
 .text-block {
-    padding: $gutter-sm 0;
+    padding-top: $gutter-sm;
+    padding-bottom: $gutter-sm;
 
     h4 {
-        max-width: 950px;
+
+        @include up($lg) {
+            max-width: get-vw(950px, 1920);
+        }
     }
 
     @include up($lg) {

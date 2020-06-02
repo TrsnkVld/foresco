@@ -1,13 +1,13 @@
 <template>
 	<b-col cols="12" class="content-block content-block--lg" data-aos="fade-up" >
 		<div class="content-block-inner" :style="`${bgStyle} ${textStyle}`">
-			<b-row>
-				<b-col cols="12" lg="6" class="content-block-inner__text" :order-lg="(image=='left') ? 2 : 1">
+			<b-row :class="(image=='left') ? 'reversed' : null">
+				<b-col cols="12" md="7" class="content-block-inner__text">
 					<h3>{{ title }}</h3>
 					<h6 v-if="subTitle">{{ subTitle }}</h6>
 					<p>{{ text }}</p>
 				</b-col>
-				<b-col cols="12" lg="6" class="content-block-inner__img" :order-lg="(image=='left') ? 1 : 2">
+				<b-col cols="12" md="5" class="content-block-inner__img">
 					<img :src="img" alt="block_img" />
 				</b-col>
 			</b-row>
@@ -56,9 +56,15 @@ export default {
         .content-block-inner {
 			&__text {
                 @include up($lg) {
-					//padding-left: $gutter-xl;
-					//padding-right: $gutter-sm;
+                	padding-left: get-vw($gutter-md, 1024);
                 }
+			}
+
+			.col-12 {
+                @include up($lg) {
+					flex: 0 0 50%;
+					max-width: 50%;
+				}
 			}
 		}
 	}

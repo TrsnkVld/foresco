@@ -14,9 +14,11 @@
 				<h6>{{ subTitle }}</h6>
 				<p>Find Photo - это универсальный выбор для тех, кто хочет не хочет упустить ни одного ценного момента своей жизни.</p>
 				<CaseTags  />
-				<b-link :to="{name: 'case'}" v-if="$route.name=='home'">
-					<b-button variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
-				</b-link>
+				<transition name="route">
+					<b-link :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
+						<b-button @click="$emit('onCaseBtnClick')" variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
+					</b-link>
+				</transition>
 			</b-col>
 		</b-row>
 	</b-container>
@@ -50,6 +52,10 @@ export default {
 		subTitle: {
 			type: String,
 			default: null,
+		},
+		alias: {
+			type: String,
+			default: null,
 		}
 	},
 	data: () => ({
@@ -59,6 +65,11 @@ export default {
 	methods: {
 	},
 	computed: {
+		isRouteNameHome() {
+			if (this.$route.name==='home') return true;
+			return false;
+		},
+
 		glowStyle() {
 			return `background: radial-gradient(circle closest-side, ${this.glowColor}, #0067de00 73%);`;
 		}
@@ -77,6 +88,8 @@ export default {
 	color: $white;
 	padding: get-vw(75px, 320) 0 get-vw(56px, 320);
 	flex-flow: column;
+	user-select: none;
+	position: relative;
 
 	h1 {
 		/*
@@ -193,27 +206,51 @@ export default {
 		p {
 			margin-bottom: $gutter-sm;
 
+			@include up($sm) {
+				font-size: get-vw(21px, 414);
+				line-height: get-vw(26px, 414);
+				letter-spacing: get-vw(0.4px, 414);
+			}
+
 			@include up($md) {
 				max-width: get-vw(360px, 768);
 				margin: 0 auto get-vw(55px, 768);
+				font-size: get-vw(16.5px, 768);
+				line-height: get-vw(21px, 768);
+				letter-spacing: get-vw(0.4px, 768);
 			}
-
 			@include up($lg) {
 				max-width: get-vw(550px, 1024);
+				font-size: get-vw(25px, 1024);
+				line-height: get-vw(30px, 1024);
+				letter-spacing: get-vw(0.6px, 1024);
+			}
+
+			@include upLandscape($xs-land) {
+				font-size: get-vw(16px, 568);
+				line-height: get-vw(21px, 568);
+				letter-spacing:get-vw(0.42px, 568);
 			}
 	
 			@include upLandscape($md-land) {
 				margin-bottom: get-vw(55px, 1024);
 				margin-left: 0;
+				font-size: get-vw(16.5px, 1024);
+				line-height: get-vw(21px, 1024);
+				letter-spacing: get-vw(0.4px, 1024);
 			}
 	
 			@include upLandscape($lg-land) {
 				margin-bottom: get-vw(80px, 1366);
+				font-size: get-vw(25px, 1366);
+				line-height: get-vw(30px, 1366);
+				letter-spacing: get-vw(0.6px, 1366);
 			}
 
 			@include upLandscape($xl-land) {
-				margin-bottom: get-vw(43px, 1920);
-				max-width: get-vw(490px, 1920);
+				font-size: get-vw(22px, 1920);
+				line-height: get-vw(30px, 1920);
+				letter-spacing: get-vw(0.6px, 1920);
 			}
 		}
 
@@ -240,7 +277,7 @@ export default {
 	}
 
 	&__img {
-		position: relative;
+		position: unset;
 		z-index: 1;
 		margin-bottom: get-vw(15px, 320);
 		padding-top: get-vw(10px, 320);
@@ -252,16 +289,14 @@ export default {
 		.glow {
 			position: absolute;
 			top: 50%;
-			left: 50%;
+			left: 60%;
 			transform: translate(-50%, -50%);
-			width: 200%;
-			height: 200%;
+			width: 150%;
+			height: 130%;
 			z-index: -1;
 			animation: glow 5s infinite ease-in-out;
 			pointer-events: none;
 			opacity: .4;
-
-
 		}
 
 		.image-bg {
@@ -330,6 +365,18 @@ export default {
 			padding-left: 0;
 		}
 	}
+
+	.case-route-to {
+		display: block;
+		transition: .4s;
+
+		&.hidden {
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20%);
+		}
+	}
+
 
 	@include up($sm) {
 		justify-content: center;

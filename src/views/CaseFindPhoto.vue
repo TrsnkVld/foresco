@@ -1,14 +1,5 @@
 <template>
 	<main class="case">
-		<CaseHeader>
-			<CaseCard
-				title="Saldo. Долги"
-				:logo="require('../assets/img/logo.png')"
-				subTitle="Приложение для учёта и ведения долгов и расходов"
-				:imageSrc="require('../assets/img/saldo_mockup.png')"
-				glowColor="#0262ce"
-			/>
-		</CaseHeader>
 		<SingleSection>
 			<SectionTitle>🤔 Как работает приложение</SectionTitle>
 			<ContentBlockWrap>
@@ -110,7 +101,7 @@ import SliderFaq from "@/components/elements/SliderFaq";
 import PaletteBlock from "@/components/elements/PaletteBlock";
 
 export default {
-	name: "Case",
+	name: "CaseFindPhoto",
 	components: {
 		CaseHeader,
 		SingleSection,
@@ -156,7 +147,11 @@ export default {
 				}
 			}
 		}
-	})
+	}),
+	mounted() {
+		console.log(this.$route.name);
+		this.$emit('onCaseLoad', 4)
+	}
 };
 </script>
 
@@ -165,10 +160,24 @@ export default {
 	background: $black;
 	height: 100%;
 	flex-grow: 1;
+
+	.case-header {
+		.swiper-container {
+			//pointer-events: none;
+		}
+
+		.case-card {
+
+			&__text,
+			&__img {
+				//pointer-events: all;
+			}
+		}
+	}
 }
 
 .case-swiper {
-	height: 100vh;
+	height: 100%;
 	position: relative;
 
 	&__item {

@@ -13,12 +13,20 @@ import './scss/main.scss';
 
 import Vue from 'vue';
 import App from './App.vue';
+import Mapbox from 'mapbox-gl-vue';
+import VueScrollTo from 'vue-scrollto';
 import router from './router';
 import store from './store';
+
+
+Vue.use(VueScrollTo);
 
 Vue.config.productionTip = false;
 
 new Vue({
+    components: {
+		'mapbox': Mapbox,
+    },
 	created() {
 		AOS.init({
 			offset: 90,

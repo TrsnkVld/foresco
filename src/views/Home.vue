@@ -1,14 +1,15 @@
 <template>
-	<main class="home">
+	<main :class="routeName">
 		<transition name="menu">
 			<!--<StarsParticles v-if="isWelcomeScreenShowing" intro /> -->
 		</transition>
-		<CaseHeader>
+		<CaseHeader :class="{'no-swipe': !isRouteNameHome}" > <!--  -->
 			<swiper
 				class="case-swiper"
 				:options="swiperOptions"
 				ref="casesSwiper"
 				@slideChange="setCurrentSlide"
+				:key="componentKey"
 			>
 				<swiper-slide class="case-swiper__item" v-for="(item, index) in cases" :key="index">
 					<CaseCard
@@ -17,10 +18,11 @@
 						:subTitle="item.subtitle"
 						:imageSrc="item.image"
 						:glowColor="item.color"
+						:alias='item.alias'
 					/>
 				</swiper-slide>
 			</swiper>
-			<div class="case-swiper-nav">
+			<div class="case-swiper-nav" :class="{'hidden': !isRouteNameHome}">
 				<svgicon
 					name="arrow"
 					class="case-swiper-nav__prev"
@@ -28,7 +30,8 @@
 					:style="`stroke: ${cases[currentSlide].color}`"
 				/>
 				<div class="case-swiper-pagination">
-					<div class="case-swiper-pagination__inner" /> <!--:style="`color: ${cases[currentSlide].color}`"-->
+					<div class="case-swiper-pagination__inner" />
+					<!--:style="`color: ${cases[currentSlide].color}`"-->
 				</div>
 				<svgicon
 					name="arrow"
@@ -38,6 +41,10 @@
 				/>
 			</div>
 		</CaseHeader>
+
+		<transition name="route">
+			<router-view @onCaseLoad="setCaseIndex" />
+		</transition>
 	</main>
 </template>
 
@@ -82,84 +89,63 @@ export default {
 		PaletteBlock
 	},
 	data: () => ({
+		componentKey: 0,
+		sliderMouseWheel: true,
 		colors: [
 			"background-color: #f04f6c;",
 			"background-color: #141516;",
 			"background-color: #2d2d32;",
 			"background-color: #ffffff;"
 		],
-		swiperOptions: {
-			direction: "vertical",
-			mousewheel: true,
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			speed: 1200,
-			//spaceBetween: 15,
-			navigation: {
-				nextEl: ".case-swiper-nav__next",
-				prevEl: ".case-swiper-nav__prev"
-			},
-			pagination: {
-				el: ".case-swiper-pagination__inner",
-				type: "fraction",
-
-				renderFraction: function(currentClass, totalClass) {
-					return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
-				}
-			}
-		},
-		currentSlide: 0,
-		cases: [
-			{
-				title: "Saldo. Долги",
-				subtitle: "Приложение для учёта и ведения долгов и расходов",
-				color: "#0262ce",
-				image: require("../assets/img/saldo_mockup.png"),
-				logo: require("../assets/img/logo.png")
-			},
-			{
-				title: "Musealbum",
-				subtitle: "Cервис для создания и печати фотоальбомов",
-				color: "#c1a476",
-				image: require("../assets/img/musealbum.png"),
-				logo: require("../assets/img/musealbum_logo.png")
-			},
-			{
-				title: "Sohobook",
-				subtitle: "Приложение для создания и заказа фотокниг",
-				color: "#0895be",
-				image: require("../assets/img/soho.png"),
-				logo: require("../assets/img/soho_logo.png")
-			},
-			{
-				title: "Power Place",
-				subtitle: "Cервис для поиска заведений с Power Bank",
-				color: "#737373",
-				image: require("../assets/img/powerplace.png"),
-				logo: require("../assets/img/powerplace_logo.png")
-			},
-			{
-				title: "Find Photo",
-				subtitle: "Сортировка и поиск фотографий по меткам",
-				color: "#f04f6c",
-				image: require("../assets/img/findphoto.png"),
-				logo: require("../assets/img/findphoto_logo.png")
-			},
-			{
-				title: "Gusli",
-				subtitle: "Поиск и заказ музыки в заведениях",
-				color: "#f04f6c",
-				image: require("../assets/img/gusli.png"),
-				logo: require("../assets/img/gusli_logo.png")
-			}
-		]
+		currentSlide: 1,
 	}),
 	methods: {
+		setCaseIndex(caseIndex) {
+			this.currentSlide = caseIndex;
+			this.$refs.casesSwiper.$swiper.slideTo(caseIndex, 0);
+		},
+
 		setCurrentSlide() {
 			this.currentSlide = this.$refs.casesSwiper.$swiper.activeIndex;
-		}
+		},
 	},
 	computed: {
+		isRouteNameHome() {
+			if (this.$route.name==='home') return true;
+			return false;
+		},
+
+		cases() {
+			return this.$store.state.cases;
+		},
+
+		swiperOptions() {
+			return {
+				direction: "vertical",
+				mousewheel: this.sliderMouseWheel,
+				slidesPerView: 1,
+				slidesPerGroup: 1,
+				speed: 1200,
+				//spaceBetween: 15,
+				navigation: {
+					nextEl: ".case-swiper-nav__next",
+					prevEl: ".case-swiper-nav__prev"
+				},
+				pagination: {
+					el: ".case-swiper-pagination__inner",
+					type: "fraction",
+
+					renderFraction: function(currentClass, totalClass) {
+						return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
+					}
+				}
+			};
+		},
+
+		routeName() {
+			return this.$route.name;
+		},
+
 		isWelcomeScreenShowing: {
 			get: function() {
 				return this.$store.state.isWelcomeScreenShowing;
@@ -180,11 +166,11 @@ export default {
 	},
 	created() {
 		if (this.isWelcomeScreenShowing) {
-			document.documentElement.classList.add("locked");
+			//document.documentElement.classList.add("locked");
 			return;
 		}
 		setTimeout(() => {
-			document.documentElement.classList.remove("locked");
+			//document.documentElement.classList.remove("locked");
 		}, 500);
 	},
 	mounted() {
@@ -210,6 +196,8 @@ export default {
 	position: relative;
 
 	&__item {
+		height: 100% !important;
+		
 		& > .container {
 			height: 100%;
 
@@ -274,11 +262,11 @@ export default {
 		bottom: auto;
 		left: get-vw($gutter, 320);
 		transform: translateY(-95%);
-		*/    
+		*/
 		position: absolute;
 		top: 50%;
 		left: 57%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 
 		width: auto;
 		z-index: 2;
@@ -288,7 +276,7 @@ export default {
 		line-height: get-vw(14px, 320);
 		transition: color, $transition;
 
-		&__inner {	
+		&__inner {
 			color: $white;
 		}
 
@@ -342,19 +330,22 @@ export default {
 
 	&-nav {
 		position: absolute;
+		transition: .4s;
 		top: 50%;
 		right: get-vw($gutter, 320);
 		z-index: 2;
 		transform: translateY(-80%);
 
+		svg {
+			path {
+				stroke: inherit;
+			}
+		}
+
 		&__prev,
 		&__next {
 			width: get-vw(18px, 320);
 			height: get-vw(18px, 320);
-			background-image: url("../assets/icons/arrow-right.svg");
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
 			cursor: pointer;
 			opacity: 0.5;
 			transition: opacity 0.3s;
@@ -451,6 +442,26 @@ export default {
 
 		&__next {
 			transform: rotate(180deg);
+		}
+
+		&.hidden {
+			
+			.case-swiper-nav__prev {
+				margin-bottom: 100%;
+				transition: margin-bottom .4s ease .4s, opacity .4s ease .8s, visibility .4s ease .8s;
+			}
+
+			.case-swiper-pagination {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			svg {
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity .4s ease .8s, visibility .4s ease .8s;
+			}
+
 		}
 
 		@include up($sm) {

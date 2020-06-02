@@ -1,61 +1,87 @@
 <template>
-    <section class="case-header" ref="test" :style="`height: ${heightPx}px`">
-        <slot></slot>
-    </section>   
+	<section class="case-header" ref="test">
+		<slot></slot>
+		<transition name="case-header__scroll">
+			<svgicon v-if="!isRouteNameHome" v-scroll-to="{el: 'h2', duration: 1200, }" class="case-header__scroll" name="arrow_scroll" />
+		</transition>
+	</section>
 </template>
 
 <script>
 export default {
-    name: 'CaseHeader',
+	name: "CaseHeader",
 	data: () => ({
-		heightPx: null,
+		heightPx: null
 	}),
 	created() {
-		window.addEventListener("resize", this.height);
+		//window.addEventListener("resize", this.height);
 	},
 	destroyed() {
-		window.removeEventListener("resize", this.height);
+		//window.removeEventListener("resize", this.height);
 	},
-	methods: {
+	methods: {},
+	computed: {
+		isRouteNameHome() {
+			if (this.$route.name==='home') return true;
+			return false;
+		},
 		height() {
-            return this.heightPx = window.innerHeight;
-        }
+			//alert(window.innerHeight);
+			return (this.heightPx = window.innerHeight);
+		}
+	},
+	watch: {
+		heightPx(newHeight, oldHeight) {
+			console.log(`it changed to ${newHeight} from ${oldHeight}`);
+		}
 	},
 	mounted() {
-        this.height();
+		//this.height();
 	}
-
-}
+};
 </script>
 
 <style lang="scss">
 .case-header {
-    height: 100vh;
-    padding: 0;
+	height: 100vh;
+	padding: 0;
 
-    &>.container {
-        height: 100%;
+	& > .container {
+		height: 100%;
 	}
-	
-	.case-swiper__item {
-		&>.container {
 
-			@include upLandscape($sm-land) {
-				max-width: get-vw(600px, 895);
-			}
-
-			@include upLandscape($md-land) {
-				max-width: get-vw(690px, 1024);
-			}
-
-			@include upLandscape($lg-land) {
-				max-width: get-vw(1000px, 1366);
-			}
-
-			@include upLandscape($xl-land) {
-				max-width: get-vw(940px, 1920);
-			}
+	.container {
+		@include upLandscape($sm-land) {
+			max-width: get-vw(600px, 895);
 		}
+
+		@include upLandscape($md-land) {
+			max-width: get-vw(690px, 1024);
+		}
+
+		@include upLandscape($lg-land) {
+			max-width: get-vw(1000px, 1366);
+		}
+
+		@include upLandscape($xl-land) {
+			max-width: get-vw(940px, 1920);
+		}
+	}
+
+	&.no-swipe {
+		pointer-events: none;
+	}
+
+	&__scroll {
+		position: absolute;
+		bottom: 80px;
+		left: 50%;
+		transform: translate(-50%, 0);
+		width: 32px;
+		height: 19px;
+		pointer-events: all;
+		cursor: pointer;
+		transition: 1s;
 	}
 }
 </style>

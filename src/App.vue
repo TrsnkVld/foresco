@@ -1,7 +1,9 @@
 <template>
 	<div id="foresco">
 		<HeaderLayout />
-		<router-view />
+		<transition name="route">
+			<router-view />
+		</transition>
 	</div>
 </template>
 
@@ -12,6 +14,9 @@ export default {
 	name: 'foresco',
 	components: {
 		HeaderLayout
+	},
+	mounted() {
+		console.warn(this.$route.params);
 	}
 }
 </script>

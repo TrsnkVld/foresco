@@ -2,6 +2,49 @@
 *** MENU
 */
 
+.route-enter-active,
+.route-leave-active {
+    transition: opacity 0.3s;
+}
+.route-enter,
+.route-leave-to {
+    opacity: 0;
+}
+
+.fade-right-enter-active,
+.fade-right-leave-active {
+    transition: 0.3s ease;
+}
+.fade-right-enter,
+.fade-right-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.case-btn {
+    &-enter-active,
+    &-leave-active {
+    }
+
+    &-enter,
+    &-leave-to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.case-header__scroll {
+    &-enter-active,
+    &-leave-active {
+    }
+
+    &-enter,
+    &-leave-to {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+}
+
 .menu {
     &-enter-active,
     &-leave-active {
@@ -19,14 +62,15 @@
         &-enter-active,
         &-leave-active {
             //transform: translateX(0%);
+            max-width: 0px !important;
         }
-    
+
         &-enter,
         &-leave-to {
-            transform: translateX(100%);
-            opacity: 0;
+            //transform: translateX(100%);
+            max-width: 0px !important;
         }
-        
+
         &-leave-to {
             transition-delay: 0s;
         }
@@ -66,3 +110,74 @@
         opacity: 1;
     }
 }
+
+@keyframes burger-start1 {
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+@keyframes burger-start2 {
+
+    to {
+        transform: translateY(50%);
+    }
+}
+
+
+@keyframes burger1 {
+    from {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(0%);
+    }
+
+    55% {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: rotate(-45deg);
+    }
+}
+
+@keyframes burger2 {
+    from {
+        transform: translateY(50%);
+    }
+
+    50% {
+        transform: translateY(0%);
+    }
+
+    55% {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+/*
+
+@keyframes burger1 {
+    from {
+        transform: translateY(-50%);
+    }
+    to {
+        transform: rotate(-45%);
+    }
+}
+
+@keyframes burger2 {
+    from {
+        transform: translateY(50%);
+    }
+    to {
+        transform: rotate(45%);
+    }
+}
+*/

@@ -15,7 +15,15 @@ module.exports = {
 				prependData: `@import "@/scss/_variables.scss";`
 			}
 		}
-	}
+	},
+	configureWebpack: {
+		plugins: [
+			//new BundleAnalyzerPlugin(),
+			new webpack.ProvidePlugin({
+				mapboxgl: 'mapbox-gl',
+			}),
+		],
+	},
 	/*
 	configureWebpack: {
 		plugins: [

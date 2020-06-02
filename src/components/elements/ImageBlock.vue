@@ -28,10 +28,16 @@ export default {
     }
 
     &-wrap {
-        padding: $gutter-sm 0;
+        padding-top: get-vw($gutter-sm, 320);
+        padding-bottom: get-vw($gutter-sm, 320);
 
         @include up($lg) {
             //padding: $gutter-lg 0;
+        }
+
+        @include upLandscape($xl-land) {
+        padding-top: get-vw($gutter-sm, 1920);
+        padding-bottom: get-vw($gutter-sm, 1920);
         }
     }
 }
