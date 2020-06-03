@@ -124,14 +124,17 @@ export default {
 	},
 	methods: {
 		onMenuToggle() {
+			this.isIndicatorClose = false;
 
 			if (this.isMenuOpened) {
-				this.isIndicatorClose = true;
 
-				setTimeout(() => {
+				this.isIndicatorClose=true;
 					this.isMenuLinksShowed = false;
-					setTimeout(() => {
+
 						this.isMenuContentShown = false;
+				setTimeout(() => {
+					setTimeout(() => {
+
 					}, 1);
 				}, 400);
 
@@ -154,12 +157,12 @@ export default {
 			}
 			//document.documentElement.classList.remove('locked');
 			setTimeout(() => {
-				document.documentElement.classList.remove("locked")
+				document.documentElement.classList.remove("locked");
 				this.isIndicatorClose = false;
 			},500);
 			//document.documentElement.classList.remove('locked');
 		},
-		
+
 	}
 };
 </script>
@@ -222,8 +225,7 @@ export default {
 		height: 21px;
 		position: relative;
 		cursor: pointer;
-		transition: 0.3s ease;
-		overflow: visible;
+		transition: .3s ease;
 
 		path {
 			transition: transform .4s ease;

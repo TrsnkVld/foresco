@@ -1,15 +1,20 @@
 <template>
 	<transition name="menu" @enter="isMenuContentShown = true">
 		<div class="menu" v-if="isMenuOpened">
+	<transition name="menu" @after-enter="isMenuContentShown = true">
+		<div class="menu" v-show="isMenuOpened">
 			<transition
 				name="menu-links"
 				@enter="timer"
 				@after-leave="isMenuOpened = false, isMenuLinksShowed = false"
 			>
 				<HeaderMenuInner v-if="isMenuContentShown" @onLinkClick="$emit('onLinkClick')" :isIndicatorClose="isIndicatorClose" />
+				<HeaderMenuInner  v-if="isMenuContentShown" @onLinkClick="test"  />
 			</transition>
 
+<!--
 			<div class="glow" />
+	-->
 			<!--<StarsParticles /> -->
 		</div>
 	</transition>
@@ -26,34 +31,15 @@ export default {
 	data: () => ({
 		test: false,
 		indicatorHeight: null,
-		indicatorColor: null,
-		indicatorActive: 0,
-		menuLinks: [
-			{
-				title: "проекты",
-				color: "rgba(55, 119, 255, 0.75)",
-				link: "home"
-			},
-			{
-				title: "о нас",
-				color: "rgba(255, 167, 56)",
-				link: "home"
-			},
-			{
-				title: "команда",
-				color: "rgba(96, 224, 135)",
-				link: "home"
-			},
-			{
-				title: "контакты",
-				color: "rgba(62, 219, 237)",
-				link: "contacts"
-			}
-		]
 	}),
-	props: ['isIndicatorClose'],
+	props: {
+		isIndicatorClose:{
+			type: Boolean,
+			default: false,
+		}
+	},
 	computed: {
-		
+
 		isMenuOpened: {
 			get: function() {
 				return this.$store.state.isHeaderMenuOpened;
@@ -81,22 +67,19 @@ export default {
 			}
 		},
 	},
-	watch: {
-		isIndicatorClose() {
-			if (this.isIndicatorClose) {
-				console.log(true);
-			} else {
-				console.log(false);
-			}
-		}
-	},
 	methods: {
+		test() {
+			alert('asd')
+		},
+
 		timer() {
 			setTimeout(() => {
 				this.isMenuLinksShowed = true;
-			}, 100);
+			}, 1);
 		},
 	},
+	mounted() {
+	}
 };
 </script>
 
@@ -110,6 +93,159 @@ export default {
 	z-index: -1;
 	background: $black;
 	padding: 50px $gutter;
+
+	.indicator {
+		width: 1px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		background: #4d5051;
+
+		&__inner {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0px;
+			background-color: rgba(55, 119, 255, 0.75);
+			transition: height background 0.3s ease-in-out;
+			transition: height, background-color, transform, 0.7s ease;
+			transform-origin: bottom;
+		}
+
+		&-close {
+			.indicator__inner {
+				transform: scaleY(0);
+				transition:  transform, 0.5s ease;
+			}
+		}
+	}
+
+	&-links {
+		position: relative;
+		z-index: 1;
+		//transform: translateX(20%);
+		//opacity: 0;
+		padding: 0;
+		margin: 0;
+		//max-width: 730px;
+		height: calc(100% - 110px);
+		padding-left: $gutter-sm;
+		margin-top: $gutter-md;
+		margin-left: auto;
+		position: relative;
+		font-family: TT Norms;
+		font-size: 37px;
+		line-height: normal;
+		overflow: hidden;
+		width: 600px;
+		right: 300px;
+		transition: transform $transition-menu ease;
+
+		&__inner {
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+			height: 100%;
+    		width: 100%;
+			transition: transform $transition-menu ease;
+			//transform: translateX(-500px);
+			padding-left: $gutter-lg;
+			padding-right: $gutter-sm;
+			position: relative;
+			//transition-delay: .0301s;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			width: 600px;
+			height: 100%;
+
+			&.anim {
+				//transition-delay: 0s;
+				//transform: translateX(0px);
+
+				.menu-links__item {
+					//left: 0;
+					//transform: translateX(0px);
+				}
+			}
+
+			&.closing {
+				.active {
+					a {
+						transform: translateX(25px);
+						transition-delay: 0s;
+						transition: transform, color, .6s ease;
+						color: inherit !important;
+					}
+				}
+			}
+		}
+
+		&__item {
+			cursor: pointer !important;
+			margin-bottom: 0;
+			position: relative;
+			left: 0;
+			//transform: translateX(50px);
+			transition: transform $transition-menu ease-out, opacity .3s linear;
+			pointer-events: none;
+
+			a {
+				padding: $gutter 0;
+			cursor: pointer !important;
+				display: block;
+				text-decoration: none;
+				color: rgba(255, 255, 255, 0.28);
+				//transition: color 0.4s ease-out, transform 0.4s ease;
+				pointer-events: all;
+				transition: color 0.4s ease-out, transform 0.4s ease, opacity .3s linear 0s;
+			}
+
+			&.active,
+			&:hover {
+				a {
+					color: $white;
+				}
+			}
+
+			&::before {
+				display: none;
+			}
+		}
+
+		@include up($sm) {
+			font-size: 55px;
+			padding-left: $gutter-md;
+			margin-top: $gutter-lg;
+			height: calc(100% - 140px);
+		}
+
+		@include up($md) {
+			//max-width: 450px;
+			padding-left: $gutter-lg;
+			padding-right: $gutter-sm;
+		}
+
+		@include up($lg) {
+			//max-width: 550px;
+			//font-size: 85px;
+		}
+
+		@include up($xl) {
+			//max-width: 680px;
+		}
+
+		@include upLandscape($xl-land) {
+			padding-left: 0;
+			padding-right: 0;
+			font-size: get-vw(85px, 1920);
+			//max-width: get-vw(680px, 1920);
+		}
+	}
+
 
 	.glow {
 		position: absolute;
