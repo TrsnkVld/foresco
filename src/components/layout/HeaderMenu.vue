@@ -1,75 +1,32 @@
 <template>
 	<transition name="menu" @after-enter="isMenuContentShown = true">
-		<div class="menu" v-if="isMenuOpened">
+		<div class="menu" v-show="isMenuOpened">
 			<transition
 				name="menu-links"
 				@enter="timer"
 				@after-leave="isMenuOpened = false, isMenuLinksShowed = false"
 			>
-				<ul v-if="isMenuContentShown" ref="menu" class="menu-links">
-					<div class="indicator" :class="{'indicator-close': isIndicatorClose}">
-						<div
-							class="indicator__inner"
-							:style="`height: ${indicatorHeight}; background-color: ${indicatorColor}`"
-						/>
-					</div>
-
-					<div class="menu-links__inner" :class="{anim: isMenuLinksShowed, 'closing': isIndicatorClose}">
-						<li
-							v-for="(item, index) in menuLinks"
-							:key="index"
-							class="menu-links__item"
-							:class="{'active': index===indicatorActive}"
-							:style="`transition-delay: ${(menuLinks.length-index+1)/20+0.2}s; color: ${indicatorColor}`"
-							@click="test2(index)"
-							:ref="`link-${index}`"
-						>
-							<router-link
-								:to="{name: item.link}"
-								@mouseover="indicatorMovement(index, $event), indicatorColor=item.color, indicatorActive=index"
-								@click.native="$emit('onLinkClick')"
-							>{{ item.title }}</router-link>
-						</li>
-					</div>
-				</ul>
+				<HeaderMenuInner  v-if="isMenuContentShown" @onLinkClick="test"  />
 			</transition>
 
+<!--
 			<div class="glow" />
+	-->
 			<!--<StarsParticles /> -->
 		</div>
 	</transition>
 </template>
 
 <script>
+import HeaderMenuInner from '@/components/layout/HeaderMenuInner';
+
 export default {
 	name: "HeaderMenu",
+	components: {
+		HeaderMenuInner,
+	},
 	data: () => ({
-		test: false,
 		indicatorHeight: null,
-		indicatorColor: null,
-		indicatorActive: 0,
-		menuLinks: [
-			{
-				title: "проекты",
-				color: "rgba(55, 119, 255, 0.75)",
-				link: "home"
-			},
-			{
-				title: "о нас",
-				color: "rgba(255, 167, 56)",
-				link: "home"
-			},
-			{
-				title: "команда",
-				color: "rgba(96, 224, 135)",
-				link: "home"
-			},
-			{
-				title: "контакты",
-				color: "rgba(62, 219, 237)",
-				link: "contacts"
-			}
-		]
     }),
     props: {
 		isIndicatorClose:{
@@ -105,39 +62,18 @@ export default {
 				this.$store.state.isMenuLinksShowed = newValue;
 			}
 		},
-
-		linksStyle() {
-			if (this.isMenuContentShown) {
-				//return `transform: translateX(-${this.$refs.menu.clientWidth}px)`;
-			} else {
-				//return "transform: translateX(0px)";
-			}
-		}
 	},
 	methods: {
+		test() {
+			alert('asd')
+		},
+
 		timer() {
 			setTimeout(() => {
 				this.isMenuLinksShowed = true;
 			}, 1);
 		},
-
-		timer2() {
-			setTimeout(() => {
-				this.isMenuContentShown = false;
-			}, 1);
-		},
-
-		indicatorMovement(index, e) {
-			if (index == this.menuLinks.length - 1) {
-				this.indicatorHeight = "100%";
-			} else {
-				this.indicatorHeight = `${e.target.parentElement.offsetTop + e.target.offsetHeight}px`;
-				console.log(e);
-			}
-		},
 	},
-	mounted() {
-	}
 };
 </script>
 
@@ -157,15 +93,15 @@ export default {
 		height: 100%;
 		position: absolute;
 		top: 0;
-		left: 0;
-		background: rgba(255, 255, 255, 0.3);
+		z-index: 1;
+		background: #4d5051;
 
 		&__inner {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 100px;
+			height: 0px;
 			background-color: rgba(55, 119, 255, 0.75);
 			transition: height background 0.3s ease-in-out;
 			transition: height, background-color, transform, 0.7s ease;
@@ -181,28 +117,52 @@ export default {
 	}
 
 	&-links {
+		position: relative;
+		z-index: 1;
+		//transform: translateX(20%);
+		//opacity: 0;
+		padding: 0;
+		margin: 0;
+		//max-width: 730px;
+		height: calc(100% - 110px);
+		padding-left: $gutter-sm;
+		margin-top: $gutter-md;
+		margin-left: auto;
+		position: relative;
+		font-family: TT Norms;
+		font-size: 37px;
+		line-height: normal;
+		overflow: hidden;
+		width: 600px;
+		right: 300px;
+		transition: transform $transition-menu ease;
+
 		&__inner {
 			display: flex;
 			flex-flow: column;
 			justify-content: center;
 			height: 100%;
     		width: 100%;
-			transition: left 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+			transition: transform $transition-menu ease;
 			//transform: translateX(-500px);
 			padding-left: $gutter-lg;
 			padding-right: $gutter-sm;
 			position: relative;
-			left: -100%;
-			transition-delay: .0301s;
+			//transition-delay: .0301s;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			width: 600px;
+			height: 100%;
 
 			&.anim {
-				transition-delay: 0s;
-				transform: translateX(0px);
-				left: 0;
+				//transition-delay: 0s;
+				//transform: translateX(0px);
 
 				.menu-links__item {
-					left: 0;
-					transform: translateX(0px);
+					//left: 0;
+					//transform: translateX(0px);
 				}
 			}
 
@@ -217,41 +177,25 @@ export default {
 				}
 			}
 		}
-	}
 
-	ul {
-		position: relative;
-		z-index: 1;
-		//transform: translateX(20%);
-		//opacity: 0;
-		padding: 0;
-		margin: 0;
-		max-width: 730px;
-		height: calc(100% - 110px);
-		padding-left: $gutter-sm;
-		margin-top: $gutter-md;
-		margin-left: auto;
-		position: relative;
-		font-family: TT Norms;
-		font-size: 37px;
-		line-height: normal;
-		transition: max-width, font-size, margin, height, padding-left, 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity .9s ease;
-		overflow: hidden;
-
-		.menu-links__item {
-			cursor: pointer;
+		&__item {
+			cursor: pointer !important;
 			margin-bottom: 0;
 			position: relative;
 			left: 0;
-			transform: translateX(50px);
-			transition: .4s;
+			//transform: translateX(50px);
+			transition: transform $transition-menu ease-out, opacity .3s linear;
+			pointer-events: none;
 
 			a {
 				padding: $gutter 0;
+			cursor: pointer !important;
 				display: block;
 				text-decoration: none;
 				color: rgba(255, 255, 255, 0.28);
-				transition: color 0.4s ease-out, transform 0.4s ease;
+				//transition: color 0.4s ease-out, transform 0.4s ease;
+				pointer-events: all;
+				transition: color 0.4s ease-out, transform 0.4s ease, opacity .3s linear 0s;
 			}
 
 			&.active,
@@ -266,11 +210,6 @@ export default {
 			}
 		}
 
-		&.menu-links {
-			//animation: menu-links 0.8s forwards ease;
-			//animation-delay: 0.4s;
-		}
-
 		@include up($sm) {
 			font-size: 55px;
 			padding-left: $gutter-md;
@@ -279,7 +218,7 @@ export default {
 		}
 
 		@include up($md) {
-			max-width: 450px;
+			//max-width: 450px;
 			padding-left: $gutter-lg;
 			padding-right: $gutter-sm;
 		}
@@ -290,16 +229,17 @@ export default {
 		}
 
 		@include up($xl) {
-			max-width: 680px;
+			//max-width: 680px;
 		}
 
 		@include upLandscape($xl-land) {
 			padding-left: 0;
 			padding-right: 0;
 			font-size: get-vw(85px, 1920);
-			max-width: get-vw(680px, 1920);
+			//max-width: get-vw(680px, 1920);
 		}
 	}
+
 
 	.glow {
 		position: absolute;

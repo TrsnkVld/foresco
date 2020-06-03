@@ -130,11 +130,11 @@ export default {
 			if (this.isMenuOpened) {
 
 				this.isIndicatorClose=true;
-
-				setTimeout(() => {
 					this.isMenuLinksShowed = false;
-					setTimeout(() => {
+
 						this.isMenuContentShown = false;
+				setTimeout(() => {
+					setTimeout(() => {
 						
 					}, 1);
 				}, 400);
