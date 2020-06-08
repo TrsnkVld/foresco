@@ -57,6 +57,10 @@ export default {
 			&__text {
                 @include up($lg) {
                 	padding-left: get-vw($gutter-md, 1024);
+				}
+				
+                @include upLandscape($xl-land) {
+                	padding-left: 20px;
                 }
 			}
 

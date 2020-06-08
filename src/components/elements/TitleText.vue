@@ -1,5 +1,5 @@
 <template>
-	<b-container>
+	<b-container class="small">
 		<div class="title-text">
 			<h2 data-aos="fade-up">Задача</h2>
 			<h4 data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".title-text h2">
@@ -19,7 +19,6 @@ export default {
 .title-text {
 	color: $white;
 	text-align: center;
-	max-width: 1000px;
 	margin: 0 auto;
 	padding: $gutter-sm 0;
 

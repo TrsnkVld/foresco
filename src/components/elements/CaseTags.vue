@@ -73,12 +73,12 @@ export default {
 		}
 
 		@include upLandscape($xl-land) {
-			font-size: get-vw(15px, 1920);
-			line-height: get-vw(15px, 1920);
-			margin: 0px get-vw(4px, 1920) get-vw(8px, 1920);
-			border-radius: get-vw($border-radius, 1920);
+			font-size: 15px;
+			line-height: 15px;
+			margin: 0px 4px 8px;
+			border-radius: $border-radius;
 			font-weight: 500;
-			padding: get-vw(14px, 1920) get-vw(21px, 1920);
+			padding: 14px 21px;
 		}
 	}
 
@@ -106,8 +106,8 @@ export default {
 		}
 
 		@include upLandscape($xl-land) {
-			height: get-vw(43px, 1920);
-			margin: 0px get-vw(4px, 1920) get-vw(8px, 1920);
+			height: 43px;
+			margin: 0px 4px 8px;
 		}
 	}
 
@@ -139,7 +139,7 @@ export default {
 	}
 
 	@include upLandscape($xl-land) {
-		margin-bottom: get-vw(65px, 1920);
+		margin-bottom: 65px;
 		//min-height: get-vw(116px, 1366);
 	}
 }

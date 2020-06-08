@@ -2,7 +2,7 @@
 	<section class="case-header" ref="test">
 		<slot></slot>
 		<transition name="case-header__scroll">
-			<svgicon v-if="!isRouteNameHome" v-scroll-to="{el: 'h2', duration: 1200, }" class="case-header__scroll" name="arrow_scroll" />
+			<svgicon v-if="!isRouteNameHome" v-scroll-to="{el: '.case section:first-child', duration: 1200, }" class="case-header__scroll" name="arrow_scroll" />
 		</transition>
 	</section>
 </template>

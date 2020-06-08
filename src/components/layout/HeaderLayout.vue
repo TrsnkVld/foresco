@@ -176,6 +176,7 @@ export default {
 	width: 100%;
 	z-index: 3;
 	height: get-vw(75px, 320);
+	position: fixed;
 
 	.row {
 		height: 100%;
@@ -225,6 +226,7 @@ export default {
 		height: 21px;
 		position: relative;
 		cursor: pointer;
+		overflow: visible;
 		transition: .3s ease;
 
 		path {

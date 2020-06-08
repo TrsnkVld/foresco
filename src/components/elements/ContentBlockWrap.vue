@@ -15,9 +15,17 @@ export default {
 <style lang="scss">
 .content-block-wrap {
 
+	&>.row {
+
+		@include upLandscape($xl-land) {
+			margin: 0 -25px;
+		}
+	}
+
 	@include up($md) {
 		padding-top: $gutter-md;
 		padding-bottom: $gutter-md;
 	}
+	
 }
 </style>

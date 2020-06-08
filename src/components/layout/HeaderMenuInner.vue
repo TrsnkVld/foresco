@@ -80,14 +80,6 @@ export default {
 				this.$store.state.isHeaderMenuOpened = newValue;
 			}
 		},
-    }),
-    props: {
-		isIndicatorClose:{
-			type: Boolean,
-			default: false,
-		}
-	},
-	computed: {
 
 		isMenuContentShown: {
 			get: function() {

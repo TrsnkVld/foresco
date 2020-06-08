@@ -83,6 +83,9 @@
                 }
             }
 
+            @include upLandscape($xl-land) {
+                color: red;
+            }
         }
 
         &-enter {
@@ -106,6 +109,10 @@
                     transform: translate3d(10%, 0px, 0px) !important;
                     transition-delay: 0s !important;
                     transition: .4s ease;
+
+                    .menu-links-overflow {
+                        width: 100%;
+                    }
                 }
 
                 a {

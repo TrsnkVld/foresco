@@ -4,6 +4,7 @@
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
 				<div class="image-bg" :style="`background-image: url('${imageSrc}')`" />
+				
 				<div class="glow" :style="glowStyle" />
 			</b-col>
 			<b-col cols="12" lg="6" class="case-card__text">
@@ -132,10 +133,10 @@ export default {
 			}
 	
 			@include upLandscape($xl-land) {
-				width: get-vw(50px, 1920);
-				height: get-vw(50px, 1920);
-				margin-left: get-vw(10px, 1920);
-				margin-top: get-vw(-10px, 1920);
+				width: 50px;
+				height: 50px;
+				margin-left: 10px;
+				margin-top: -10px;
 			}
 		}
 
@@ -156,7 +157,7 @@ export default {
 		}
 	
 		@include upLandscape($xl-land) {
-			margin-bottom: get-vw(31px, 1920);
+			margin-bottom: 31px;
 		}
 	}
 
@@ -187,7 +188,7 @@ export default {
 		}
 	
 		@include upLandscape($xl-land) {
-			margin-bottom: get-vw(25px, 1920);
+			margin-bottom: 25px;
 		}
 	}
 
@@ -248,9 +249,10 @@ export default {
 			}
 
 			@include upLandscape($xl-land) {
-				font-size: get-vw(22px, 1920);
-				line-height: get-vw(30px, 1920);
-				letter-spacing: get-vw(0.6px, 1920);
+				font-size: 22px;
+				line-height: 30px;
+				letter-spacing: 0.6px;
+				margin-bottom: 110px;
 			}
 		}
 
@@ -355,7 +357,7 @@ export default {
 		}
 
 		@include upLandscape($xl-land) {
-			height: get-vw(570px, 1920);
+			height: 570px;
 			padding-left: 0;
 		}
 

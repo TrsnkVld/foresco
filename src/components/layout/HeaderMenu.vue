@@ -1,6 +1,4 @@
 <template>
-	<transition name="menu" @enter="isMenuContentShown = true">
-		<div class="menu" v-if="isMenuOpened">
 	<transition name="menu" @after-enter="isMenuContentShown = true">
 		<div class="menu" v-show="isMenuOpened">
 			<transition
@@ -9,7 +7,6 @@
 				@after-leave="isMenuOpened = false, isMenuLinksShowed = false"
 			>
 				<HeaderMenuInner v-if="isMenuContentShown" @onLinkClick="$emit('onLinkClick')" :isIndicatorClose="isIndicatorClose" />
-				<HeaderMenuInner  v-if="isMenuContentShown" @onLinkClick="test"  />
 			</transition>
 
 <!--
@@ -86,6 +83,7 @@ export default {
 <style lang="scss">
 .menu {
 	position: fixed;
+	display: flex;
 	top: 0;
 	right: 0;
 	width: 100%;
@@ -99,6 +97,7 @@ export default {
 		height: 100%;
 		position: absolute;
 		top: 0;
+		left: 0;
 		z-index: 1;
 		background: #4d5051;
 
@@ -132,6 +131,7 @@ export default {
 		//max-width: 730px;
 		height: calc(100% - 110px);
 		padding-left: $gutter-sm;
+		padding-left: 0;
 		margin-top: $gutter-md;
 		margin-left: auto;
 		position: relative;
@@ -140,7 +140,8 @@ export default {
 		line-height: normal;
 		overflow: hidden;
 		width: 600px;
-		right: 300px;
+		width: get-vw(280px, 320);
+		right: 0;
 		transition: transform $transition-menu ease;
 
 		&__inner {
@@ -153,13 +154,14 @@ export default {
 			//transform: translateX(-500px);
 			padding-left: $gutter-lg;
 			padding-right: $gutter-sm;
+			padding-left: get-vw($gutter-sm, 320);
 			position: relative;
 			//transition-delay: .0301s;
 			position: absolute;
 			top: 0;
 			right: 0;
 			width: 100%;
-			width: 600px;
+			width: get-vw(280px, 320);
 			height: 100%;
 
 			&.anim {
@@ -182,6 +184,20 @@ export default {
 					}
 				}
 			}
+
+            @include up($md) {
+				width: get-vw(480px, 768);
+			}
+			
+			@include up($lg) {
+				//max-width: 450px;
+				width: get-vw(500px, 1024);
+			}
+
+            @include upLandscape($xl-land) {
+				width: 700px;
+				padding-left: $gutter-lg;
+            }
 		}
 
 		&__item {
@@ -195,13 +211,18 @@ export default {
 
 			a {
 				padding: $gutter 0;
-			cursor: pointer !important;
+				cursor: pointer !important;
 				display: block;
 				text-decoration: none;
 				color: rgba(255, 255, 255, 0.28);
 				//transition: color 0.4s ease-out, transform 0.4s ease;
 				pointer-events: all;
 				transition: color 0.4s ease-out, transform 0.4s ease, opacity .3s linear 0s;
+
+				&>span {
+					position: relative;
+					pointer-events: none;
+				}
 			}
 
 			&.active,
@@ -216,17 +237,35 @@ export default {
 			}
 		}
 
+		&-overflow {
+			position: absolute;
+			top: 0;
+			left: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			width: 0;
+    		transition: width .6s ease;
+		}
+
 		@include up($sm) {
 			font-size: 55px;
-			padding-left: $gutter-md;
-			margin-top: $gutter-lg;
-			height: calc(100% - 140px);
+			margin-top: 0;
+			height: 100%;
 		}
 
 		@include up($md) {
 			//max-width: 450px;
+			width: get-vw(480px, 768);
 			padding-left: $gutter-lg;
 			padding-right: $gutter-sm;
+			height: 70%;
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+		@include up($lg) {
+			//max-width: 450px;
+			width: get-vw(500px, 1024);
 		}
 
 		@include up($lg) {
@@ -241,7 +280,11 @@ export default {
 		@include upLandscape($xl-land) {
 			padding-left: 0;
 			padding-right: 0;
-			font-size: get-vw(85px, 1920);
+			font-size: 85px;
+			width: 700px;
+			height: 100%;
+    		max-height: 830px;
+
 			//max-width: get-vw(680px, 1920);
 		}
 	}
