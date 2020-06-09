@@ -4,19 +4,25 @@
 		<transition name="route">
 			<router-view />
 		</transition>
+		<FooterLayout v-if="!isRouteNameHome" />
 	</div>
 </template>
 
 <script>
 import HeaderLayout from './components/layout/HeaderLayout';
+import FooterLayout from './components/layout/FooterLayout';
 
 export default {
 	name: 'foresco',
 	components: {
-		HeaderLayout
+		HeaderLayout,
+		FooterLayout
 	},
-	mounted() {
-		console.warn(this.$route.params);
+	computed: {
+		isRouteNameHome() {
+			if (this.$route.name==='home') return true;
+			return false;
+		},
 	}
 }
 </script>

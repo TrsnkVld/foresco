@@ -121,9 +121,9 @@ export default {
 				this.indicatorHeight = `${e.target.parentElement.offsetTop +
 					e.target.offsetHeight}px`;
 					if (e.target.parentElement.nextSibling===null) {
-						console.log('X')
+						//console.log('X')
 					} else {
-						console.log(e.target.parentElement.nextSibling);
+						//console.log(e.target.parentElement.nextSibling);
 					}
 			}
 		}

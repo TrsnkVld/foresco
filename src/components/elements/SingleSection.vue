@@ -51,7 +51,7 @@ section {
     }
 
     @include upLandscape($xl-land) {
-        padding: get-vw($gutter-lg, 1920) 0;
+        padding: 90px 0;
     }
 }
 </style>

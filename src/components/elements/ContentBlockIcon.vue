@@ -13,7 +13,7 @@
 				</b-col>
 			</b-row>
 		</div>
-  <button @click="showed += test.length">Подробнее</button>
+		<b-button @click="showed += test.length" variant="more">Подробнее<svgicon name="btn-arrow" /></b-button>
 	</b-col>
 </template>
 
@@ -67,8 +67,12 @@ export default {
 			}
 
 			h4 {
-				max-width: 620px;
 				margin-top: 60px;
+				width: 100%;
+
+				p {
+					max-width: 620px;
+				}
 			}
 
 			h6 {

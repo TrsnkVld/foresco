@@ -26,6 +26,7 @@ export default {
 
 <style lang="scss">
 .image-block {
+    user-select: none;
     img {
         display: block;
         margin: 0 auto;

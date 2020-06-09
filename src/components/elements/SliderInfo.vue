@@ -11,7 +11,9 @@
 		</div>
 		<swiper data-aos="fade-up" class="slider-info" ref="mySwiper" :options="swiperOptions">
 			<swiper-slide class="slider-info__item" v-for="(item, index) in items" :key="index">
-				<div class="icon" :style="`background-image: url('${require('../../assets/icons/'+ item.icon)}')`" />
+				<div class="icon">
+					<svgicon :name="item.icon" />
+				</div>
 				<h5>{{item.title}}</h5>
 				<p>{{item.text}}</p>
 			</swiper-slide>
@@ -57,17 +59,22 @@ export default {
 				{
 					title: 'Backend - разработка',
 					text: 'Программно-аппаратная часть нашего сервиса. Набор средств, с помощью которых происходит реализация логики приложения.',
-					icon: 'arrow-right.svg',
+					icon: 'settings',
 				},
 				{
 					title: 'Frontend - разработка',
 					text: 'Разработка функциональности и пользовательского интерфейса. Сюда относится всё, что пользователь видит, открывая приложение.',
-					icon: 'arrow-right.svg',
+					icon: 'instruments',
 				},
 				{
 					title: 'iOS',
-					text: 'Платформа iOS – флагман мобильных приложений с самыми высокими показателями прибыли. Объединяет наиболее платежеспособную аудиторию. ',
-					icon: 'arrow-right.svg',
+					text: 'Платформа iOS – флагман мобильных приложений с самыми высокими показателями прибыли. Объединяет наиболее платежеспособную аудиторию.',
+					icon: 'apple-logo',
+				},
+				{
+					title: 'Android',
+					text: 'Создавая приложение, мы стараемся реализовать потенциал платформы для максимального охвата аудитории и устройств.',
+					icon: 'android',
 				},
 			]
 		}
@@ -106,6 +113,13 @@ export default {
 			box-sizing: content-box;
 			border-radius: 50%;
 			margin-bottom: 25px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			svg {
+				flex: 1;
+			}
 		}
 
 		h5 {
@@ -154,6 +168,7 @@ export default {
 
 	&-nav {
 		position: relative;
+		user-select: none;
 
 		&__prev,
 		&__next {

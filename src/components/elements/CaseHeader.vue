@@ -14,21 +14,21 @@ export default {
 		heightPx: null
 	}),
 	created() {
-		//window.addEventListener("resize", this.height);
+		window.addEventListener("resize", this.height);
 	},
 	destroyed() {
-		//window.removeEventListener("resize", this.height);
+		window.removeEventListener("resize", this.height);
 	},
-	methods: {},
+	methods: {
+		height() {
+			//alert(window.innerHeight);
+			return (this.heightPx = window.innerHeight);
+		}},
 	computed: {
 		isRouteNameHome() {
 			if (this.$route.name==='home') return true;
 			return false;
 		},
-		height() {
-			//alert(window.innerHeight);
-			return (this.heightPx = window.innerHeight);
-		}
 	},
 	watch: {
 		heightPx(newHeight, oldHeight) {
@@ -36,7 +36,7 @@ export default {
 		}
 	},
 	mounted() {
-		//this.height();
+		this.height();
 	}
 };
 </script>
@@ -64,7 +64,7 @@ export default {
 		}
 
 		@include upLandscape($xl-land) {
-			max-width: get-vw(940px, 1920);
+			max-width: 950px;
 		}
 	}
 
@@ -82,6 +82,8 @@ export default {
 		pointer-events: all;
 		cursor: pointer;
 		transition: 1s;
+		animation: scroll-down 1.5s infinite;
+
 	}
 }
 </style>

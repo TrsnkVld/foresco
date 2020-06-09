@@ -1,11 +1,15 @@
 <template>
-	<b-container class="d-flex flex-wrap" style="position: relative">
-		<h2 data-aos="fade-up" class="section-title flex-grow-1" v-if="title">{{ title }}</h2>
+	<b-container class="d-flex flex-wrap">
+		<h2 data-aos="fade-up" class="section-title slider-faq-title flex-grow-1" v-if="title">{{ title }}</h2>
+		<div data-aos="fade-up" class="slider-faq-nav d-flex align-self-center">
+			<div class="slider-faq-nav__prev" slot="button-prev">
+				<svgicon name="arrow" />
+			</div>
+			<div class="slider-faq-nav__next" slot="button-next">
+				<svgicon name="arrow" />
+			</div>
+		</div>
 		<div data-aos="fade-up" class="slider-faq-nav d-flex align-self-center flex-grow-1">
-			<!--
-			<div class="slider-faq-nav__prev" slot="button-prev"></div>
-			<div class="slider-faq-nav__next" slot="button-next"></div>
-			-->
 			<swiper class="slider-faq-people" :options="swiperOptionPeople" ref="swiperPeople">
 				<swiper-slide class="slider-faq-people__item" v-for="(item, index) in faqs" :key="index">
 					<div class="slider-faq-people__item-photo" />
@@ -49,7 +53,6 @@ export default {
 			keyboard: {
 				enabled: true
 			},
-			loop: true,
 			grabCursor: true,
 			slidesPerView: 1,
 			speed: 900,
@@ -71,21 +74,20 @@ export default {
 			{
 				date: "20.12.2020 11:35",
 				name: "Алексей",
-				question: "Сможете ли вы закончить уже начатый проект? 🔥",
+				question: "Сможете ли вы закончить уже начатый проект?",
 				answer:
 					"Да, мы берём и такие заказы. Но они требуют более тщательного обсуждения. Иногда сделать этот же проект с нуля получится проще и быстрее, чем доделавыть за другими разработчиками. Если у вас готов только дизайн, мы можем предоставить услугу только для разработки."
 			},
 			{
 				date: "20.12.2020 11:35",
 				name: "Алексей",
-				question: "Сможете ли вы закончить уже начатый проект? 🔥",
-				answer:
-					"Да, мы берём и такие заказы. Но они требуют более тщательного обсуждения. Иногда сделать этот же проект с нуля получится проще и быстрее, чем доделавыть за другими разработчиками. Если у вас готов только дизайн, мы можем предоставить услугу только для разработки."
+				question: "Нужна ли регистрация для работы в приложении?",
+				answer: "Нет, регистрация не требуется."
 			},
 			{
 				date: "20.12.2020 11:35",
 				name: "Алексей",
-				question: "Сможете ли вы закончить уже начатый проект? 🔥",
+				question: "Сможете ли вы закончить уже начатый проект?",
 				answer:
 					"Да, мы берём и такие заказы. Но они требуют более тщательного обсуждения. Иногда сделать этот же проект с нуля получится проще и быстрее, чем доделавыть за другими разработчиками. Если у вас готов только дизайн, мы можем предоставить услугу только для разработки."
 			}
@@ -105,14 +107,11 @@ export default {
 <style lang="scss">
 .slider-faq {
 	margin: $gutter-sm 0 $gutter-lg;
-
-	&__item {
-		opacity: 0.1;
-		transition: opacity 0.3s;
-
-		&.swiper-slide-active {
-			opacity: 1;
-		}
+	overflow: visible;
+	width: 100%;
+	
+	&-title {
+		text-align: left;
 	}
 
 	.faq-item {
@@ -123,6 +122,10 @@ export default {
 		margin-bottom: $gutter-sm;
 		max-width: 900px;
 		display: flex;
+		transform: scale(0.3);
+    	transform-origin: left top;
+		opacity: 0;
+		transition: transform .5s ease .5s, opacity .5s ease;
 
 		&__photo {
 			border-radius: 50%;
@@ -150,6 +153,7 @@ export default {
 			background: $white;
 			color: $black;
 			margin-left: auto;
+			transform-origin: right top;
 		}
 
 		&:last-child {
@@ -157,23 +161,71 @@ export default {
 		}
 	}
 
+	&__item {
+		transition: opacity 0.3s;
+
+		&.swiper-slide-active {
+
+			.faq-item {
+				opacity: 1;
+				transform: scale(1);
+				transition-delay: .4s;
+				
+				&--answer {
+					transition-delay: 1s;
+				}
+			}
+		}
+	}
+
 	&-nav {
 		position: relative;
-		width: 20%;
+		user-select: none;
 
 		&__prev,
 		&__next {
 			width: 63px;
 			height: 63px;
 			border-radius: 50%;
-			background: grey;
+			background: #ef4a4a;
 			z-index: 1;
 			outline: none;
 			cursor: pointer;
+			position: relative;
+			user-select: none;
+			transition: background $transition;
+			
+			svg {
+				height: 30px;
+				width: 30px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-43%,-50%) rotate(90deg);
+
+				path {
+					fill: transparent;
+					stroke: $white;
+					transition: stroke $transition;
+				}
+			}
+
+			&.swiper-button-disabled {
+				background: #191919;
+				pointer-events: none;
+
+				path {
+					stroke: #979797;
+				}
+			}
 		}
 
 		&__prev {
 			margin-right: $gutter;
+
+			svg {
+				transform: translate(-57%,-50%) rotate(270deg);
+			}
 		}
 	}
 

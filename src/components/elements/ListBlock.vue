@@ -42,7 +42,9 @@ export default {
 <style lang="scss">
 .list-block {
 	//padding-top: $gutter-sm;
-	//padding-bottom: $gutter-sm;
+    //padding-bottom: $gutter-sm;
+    padding-top: 80px;
+    padding-bottom: 80px;
 
 	h2 {
         margin-bottom: $gutter-sm;

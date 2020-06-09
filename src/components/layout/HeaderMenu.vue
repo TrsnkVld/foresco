@@ -65,9 +65,6 @@ export default {
 		},
 	},
 	methods: {
-		test() {
-			alert('asd')
-		},
 
 		timer() {
 			setTimeout(() => {

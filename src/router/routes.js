@@ -20,8 +20,28 @@ const routes = [
 				component: CaseSaldoDebts
 			},
 			{
+				path: '/musealbum',
+				name: 'musealbum',
+				component: CaseFindPhoto
+			},
+			{
+				path: '/sohobook',
+				name: 'sohobook',
+				component: CaseFindPhoto
+			},
+			{
+				path: '/power-place',
+				name: 'power-place',
+				component: CaseFindPhoto
+			},
+			{
 				path: '/find-photo',
 				name: 'find-photo',
+				component: CaseFindPhoto
+			},
+			{
+				path: '/gusli',
+				name: 'gusli',
 				component: CaseFindPhoto
 			},
 		]

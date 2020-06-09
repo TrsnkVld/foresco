@@ -22,6 +22,7 @@ export default {
 	padding: get-vw($gutter-sm, 320) 0;
 	color: $white;
 	text-align: center;
+	user-select: none;
 	
 	@include up($sm) {
 		padding: get-vw($gutter-sm, 414) 0;

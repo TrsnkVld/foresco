@@ -46,15 +46,17 @@
 					text="<p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе. </p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p>"
 				/>
 			</ContentBlockWrap>
-			<ImageBlock :imageSrc="require('../assets/img/big-img-2.png')" />
+			<ImageBlock :imageSrc="require('../assets/img/mockup_1.png')" />
 			<ContentBlockWrap>
 				<ContentBlockIcon
-					title="Исследование и проектирование"
+					title="Дизайн"
 					subTitle="24 часа"
-					text="<p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе. </p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p>"
+					text="<p>В приложении используются три основных цвета: красный – для долгов, зеленый – для займов и синий – нейтральный цвет интерфейса. В качестве фонового цвета взята светлая тема, которая оптимальна для работы с текстовой информацией.</p>
+					<p>При разработке логотипа нам было важно отобразить суть приложения.</p><p>В приложении используются три основных цвета: красный – для долгов, зеленый – для займов и синий – нейтральный цвет интерфейса. В качестве фонового цвета взята светлая тема, которая оптимальна для работы с текстовой информацией.</p>
+					<p>При разработке логотипа нам было важно отобразить суть приложения.</p>"
 				/>
 			</ContentBlockWrap>
-			<ImageBlock :imageSrc="require('../assets/img/big-img-2.png')" />
+			<ImageBlock :imageSrc="require('../assets/img/mockup_2.png')" />
 		</SingleSection>
 		<SingleSection>
 			<SliderInfo title="Технологии" />
@@ -64,6 +66,12 @@
 		</SingleSection>
 		<SingleSection>
 			<SliderFaq title="Вопрос-Ответ" />
+		</SingleSection>
+		<SingleSection>
+			<BannerLink :imageSrc="require('../assets/img/mockup_2.png')" />
+		</SingleSection>
+		<SingleSection>
+			<FeedbackBlock />
 		</SingleSection>
 	</main>
 </template>
@@ -84,7 +92,8 @@ import TextBlock from "@/components/elements/TextBlock";
 import ListBlock from "@/components/elements/ListBlock";
 import SliderInfo from "@/components/elements/SliderInfo";
 import SliderFaq from "@/components/elements/SliderFaq";
-import PaletteBlock from "@/components/elements/PaletteBlock";
+import BannerLink from "@/components/elements/BannerLink";
+import FeedbackBlock from "@/components/elements/FeedbackBlock";
 
 export default {
 	name: "CaseSaldoDebts",
@@ -104,7 +113,8 @@ export default {
 		ListBlock,
 		SliderInfo,
 		SliderFaq,
-		PaletteBlock
+		BannerLink,
+		FeedbackBlock
 	},
 	data: () => ({
 		colors: [
@@ -135,7 +145,7 @@ export default {
 		}
 	}),
 	mounted() {
-		console.log(this.$route.name);
+		//console.log(this.$route.name);
 		this.$emit('onCaseLoad', 0)
 	}
 };
