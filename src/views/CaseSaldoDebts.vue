@@ -1,5 +1,6 @@
 <template>
 	<main class="case">
+		
 		<SingleSection>
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
@@ -33,11 +34,13 @@
 				/>
 			</ContentBlockWrap>
 		</SingleSection>
+
 		<SingleSection bgStyle="background-color: #ffffff;">
 			<ListBlock :imageSrc="require('../assets/img/saldo_list.png')" />
 		</SingleSection>
+
 		<SingleSection>
-			<TitleText />
+			<TitleText title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
 			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" small />
 			<ContentBlockWrap>
 				<ContentBlockIcon
@@ -58,20 +61,25 @@
 			</ContentBlockWrap>
 			<ImageBlock :imageSrc="require('../assets/img/mockup_2.png')" />
 		</SingleSection>
+
 		<SingleSection>
-			<SliderInfo title="Технологии" />
+			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" />
 		</SingleSection>
+
 		<SingleSection>
 			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" small />
 		</SingleSection>
+
 		<SingleSection>
-			<SliderFaq title="Вопрос-Ответ" />
+			<SliderFaq title="Вопрос-Ответ" btnColor="rgb(2, 98, 206)" />
 		</SingleSection>
+
 		<SingleSection>
 			<BannerLink :imageSrc="require('../assets/img/mockup_2.png')" />
 		</SingleSection>
+
 		<SingleSection>
-			<FeedbackBlock />
+			<FeedbackBlock btnColor="rgb(2, 98, 206)" />
 		</SingleSection>
 	</main>
 </template>

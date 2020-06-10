@@ -13,13 +13,13 @@
 				</b-col>
 			</b-row>
 		</div>
-		<b-button @click="showed += test.length" variant="more">Подробнее<svgicon name="btn-arrow" /></b-button>
+		<b-button v-if="isBtnShowed" @click="showed += test.length; isBtnShowed=false" variant="more">Подробнее<svgicon name="btn-arrow" /></b-button>
 	</b-col>
 </template>
 
 <script>
 export default {
-	name: "ContentBlockLG",
+	name: "ContentBlockIcon",
 	props: {
 		image: {
 			type: String,
@@ -44,6 +44,7 @@ export default {
 	},
 	data: () => ({
 		showed: 1,
+		isBtnShowed: true,
 	}),
 	computed: {
 		test() {

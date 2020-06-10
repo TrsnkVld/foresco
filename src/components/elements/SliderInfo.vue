@@ -1,23 +1,38 @@
 <template>
-	<b-container class="d-flex flex-wrap ">
-		<h2 data-aos="fade-up" class="section-title slider-info-title flex-grow-1" v-if="title">{{ title }}</h2>
-		<div data-aos="fade-up" class="slider-info-nav d-flex align-self-center">
-			<div class="slider-info-nav__prev" slot="button-prev">
-				<svgicon name="arrow" />
-			</div>
-			<div class="slider-info-nav__next" slot="button-next">
-				<svgicon name="arrow" />
-			</div>
-		</div>
-		<swiper data-aos="fade-up" class="slider-info" ref="mySwiper" :options="swiperOptions">
-			<swiper-slide class="slider-info__item" v-for="(item, index) in items" :key="index">
-				<div class="icon">
-					<svgicon :name="item.icon" />
+	<b-container :class="(slider) ? 'd-flex flex-wrap' : null">
+
+		<template v-if="slider">
+			<h2 data-aos="fade-up" class="section-title slider-info-title flex-grow-1" v-if="title">{{ title }}</h2>
+			<div data-aos="fade-up" class="slider-info-nav d-flex align-self-center">
+				<div class="slider-nav__prev" slot="button-prev" :style="(btnColor) ? `background: ${btnColor}` : null">
+					<svgicon name="arrow" />
 				</div>
-				<h5>{{item.title}}</h5>
-				<p>{{item.text}}</p>
-			</swiper-slide>
-		</swiper>
+				<div class="slider-nav__next" slot="button-next" :style="(btnColor) ? `background: ${btnColor}` : null">
+					<svgicon name="arrow" />
+				</div>
+			</div>
+			<swiper data-aos="fade-up" class="slider-info" ref="mySwiper" :options="swiperOptions">
+				<swiper-slide class="slider-info__item" v-for="(item, index) in items" :key="index">
+					<div class="icon" :style="(btnColor) ? `background: ${btnColor};border-color: ${btnColor}` : null">
+						<svgicon :name="item.icon" />
+					</div>
+					<h5>{{item.title}}</h5>
+					<p>{{item.text}}</p>
+				</swiper-slide>
+			</swiper>
+		</template>
+		<template v-else>
+			<h2 data-aos="fade-up" class="section-title slider-info-title flex-grow-1 text-center" v-if="title">{{ title }}</h2>
+			<b-row  data-aos="fade-up" class="slider-info slider-info--not-slider">
+				<b-col cols="12" sm="4"  v-for="(item, index) in showed" :key="index">
+					<div class="slider-info__item swiper-slide-active">
+						<h5>{{itemsTest[index].title}}</h5>
+						<p>{{itemsTest[index].text}}</p>
+					</div>
+				</b-col>
+			</b-row>
+		<b-button data-aos="fade-up" @click="showed += 6" variant="more" class="slider-info-more">Смотреть еще<svgicon name="btn-arrow" /></b-button>
+		</template>
 	</b-container>
 </template>
 
@@ -28,9 +43,22 @@ export default {
 		title: {
 			type: String,
 			default: null
+		},
+		btnColor: {
+			type: String,
+			default: null
+		},
+		slider: {
+			type: Boolean,
+			default: false
+		},
+		items: {
+			type: Object,
+    		default: () => ({}),
 		}
 	},
 	data: () => ({
+		showed: 6,
 		swiperOptions: {
 			grabCursor: true,
 			slidesPerView: 1,
@@ -38,8 +66,8 @@ export default {
 			speed: 900,
 			spaceBetween: 30,
 			navigation: {
-				nextEl: ".slider-info-nav__next",
-				prevEl: ".slider-info-nav__prev"
+				nextEl: ".slider-nav__next",
+				prevEl: ".slider-nav__prev"
 			},
 			breakpoints: {
 				768: {
@@ -54,8 +82,77 @@ export default {
 		}
 	}),
 	computed: {
-		items() {
+		itemsTest() {
 			return [
+
+				{
+					title: '🔥 Push/Local Notification',
+					text: 'Локальные и удаленные уведомления',
+				},
+				{
+					title: '🔥 StoreKit',
+					text: 'Встроенные покупки',
+				},
+				{
+					title: '🔥 CloudKit',
+					text: 'Синхронизация данных с облачным хранилищем iCloud',
+				},
+				{
+					title: '🔥 Rest api, JSON',
+					text: 'Клиент-серверное приложение',
+				},
+				{
+					title: '🔥 Realm Database',
+					text: 'База данных Realm',
+				},
+				{
+					title: '🔥 CoreAnimation, CoreGraphics',
+					text: 'Синхронизация данных с облачным хранилищем iCloud',
+				},
+				{
+					title: '🔥 Associated Domains',
+					text: 'Соедините приложение и веб-сайта',
+				},
+				{
+					title: '🔥 Firebase',
+					text: 'Получение полной статистики приложения, отслеживание активности пользователей',
+				},
+
+				{
+					title: '🔥 Push/Local Notification',
+					text: 'Локальные и удаленные уведомления',
+				},
+				{
+					title: '🔥 StoreKit',
+					text: 'Встроенные покупки',
+				},
+				{
+					title: '🔥 CloudKit',
+					text: 'Синхронизация данных с облачным хранилищем iCloud',
+				},
+				{
+					title: '🔥 Rest api, JSON',
+					text: 'Клиент-серверное приложение',
+				},
+				{
+					title: '🔥 Realm Database',
+					text: 'База данных Realm',
+				},
+				{
+					title: '🔥 CoreAnimation, CoreGraphics',
+					text: 'Синхронизация данных с облачным хранилищем iCloud',
+				},
+				{
+					title: '🔥 Associated Domains',
+					text: 'Соедините приложение и веб-сайта',
+				},
+				{
+					title: '🔥 Firebase',
+					text: 'Получение полной статистики приложения, отслеживание активности пользователей',
+				},
+				
+				/*
+
 				{
 					title: 'Backend - разработка',
 					text: 'Программно-аппаратная часть нашего сервиса. Набор средств, с помощью которых происходит реализация логики приложения.',
@@ -76,6 +173,7 @@ export default {
 					text: 'Создавая приложение, мы стараемся реализовать потенциал платформы для максимального охвата аудитории и устройств.',
 					icon: 'android',
 				},
+				*/
 			]
 		}
 	}
@@ -214,6 +312,25 @@ export default {
 			svg {
 				transform: translate(-57%,-50%) rotate(270deg);
 			}
+		}
+	}
+
+	&-more {
+		margin: 70px auto 0;
+	}
+
+	&--not-slider {
+		width: auto;
+
+		margin: 0 -5px;
+
+		.col-12 {
+			padding: 0 5px 10px;
+		}
+
+		.slider-info__item {
+			height: 100%;
+			background: #1a1a1a;
 		}
 	}
 }

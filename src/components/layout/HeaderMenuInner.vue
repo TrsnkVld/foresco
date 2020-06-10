@@ -47,7 +47,7 @@ export default {
 			{
 				title: "о нас",
 				color: "rgba(255, 167, 56)",
-				link: "home"
+				link: "about"
 			},
 			{
 				title: "команда",

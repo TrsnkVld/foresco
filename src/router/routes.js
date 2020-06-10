@@ -7,6 +7,7 @@ const Home = () => import('../views/Home');
 const CaseSaldoDebts = () => import('../views/CaseSaldoDebts');
 const CaseFindPhoto = () => import('../views/CaseFindPhoto');
 const Contacts = () => import('../views/Contacts');
+const About = () => import('../views/About');
 
 const routes = [
 	{
@@ -50,6 +51,11 @@ const routes = [
 		path: '/contacts',
 		name: 'contacts',
 		component: Contacts
+	},
+	{
+		path: '/about',
+		name: 'about',
+		component: About
 	}
 ]
 

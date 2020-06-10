@@ -3,6 +3,8 @@ let state = {
     isHeaderMenuContentShown: false,
     isMenuLinksShowed: false,
     isWelcomeScreenShowing: true,
+    isModalShowed: false,
+    isModalInnerShowed: false,
 
     casePreviewImageHeight: 674.2,
 

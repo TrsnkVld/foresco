@@ -126,6 +126,54 @@
     }
 }
 
+.modal-wrap {
+    &-enter-active,
+    &-leave-active {
+        transition: transform .4s ease, opacity .2s ease;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &-enter,
+    &-leave-to {
+        transition: transform .4s ease, opacity .2s ease;
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+.modal-inner {
+    &-enter-active,
+    &-leave-active {
+        transform: scale(1);
+        opacity: 1;
+        transition: .4s;
+        transition-delay: .2s;
+    }
+
+    &-enter,
+    &-leave-to {
+        transform: scale(1.2);
+        opacity: 0;
+        transition: .4s;
+        transition-delay: .2s;
+    }
+}
+
+.slide-down {
+    &-enter-active,
+    &-leave-active {
+        opacity: 1;
+        transition: .4s;
+    }
+
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+        transition: .4s;
+    }
+}
+
 /*
 *** ------ KEYFRAMES ------
 */

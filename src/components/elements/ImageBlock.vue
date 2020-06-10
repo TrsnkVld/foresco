@@ -1,5 +1,5 @@
 <template>
-    <b-container class="image-block-wrap" :class="{'small': small}" data-aos="fade-up" >
+    <b-container class="image-block-wrap" :class="{'small': small, 'big': big}" data-aos="fade-up" >
         <div class="image-block">
             <img :src="imageSrc" alt="case_preview" />
         </div>
@@ -15,6 +15,10 @@ export default {
             default: null,
         },
         small: {
+            type: Boolean,
+            default: false,
+        },
+        big: {
             type: Boolean,
             default: false,
         }

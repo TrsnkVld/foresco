@@ -1,17 +1,25 @@
 <template>
 	<b-container class="small">
 		<div class="title-text">
-			<h2 data-aos="fade-up">Задача</h2>
-			<h4 data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".title-text h2">
-				Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни.
-			</h4>
+			<h2 v-if="title" data-aos="fade-up">{{title}}</h2>
+			<h4 data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".title-text h2">{{text}}</h4>
 		</div>
 	</b-container>
 </template>
 
 <script>
 export default {
-	name: "TitleText"
+	name: "TitleText",
+	props: {
+		title: {
+			type: String,
+			default: null
+		},
+		text: {
+			type: String,
+			default: null
+		}
+	}
 };
 </script>
 

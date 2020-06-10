@@ -1,5 +1,9 @@
 <template>
 	<b-form @submit="onSubmit" @reset="onReset" v-if="show" class="feedback-form">
+		<template>
+			<b-button variant="text" @click="$emit('onFormClose')">вернуться</b-button>
+			<h2>Напишите нам</h2>
+		</template>
 		<b-form-group id="input-group-3" label-for="input-3">
 			<b-dropdown id="input-3" v-model="form.type" :text="form.type">
 				<b-dropdown-item @click="form.type=item" v-for="(item, index) in type" :key="index">{{item}}</b-dropdown-item>
@@ -75,6 +79,10 @@ export default {
 <style lang="scss">
 .feedback-form {
 	width: 100%;
+
+	h2 {
+		color: $white;
+	}
 
 	.form {
 		&-group {

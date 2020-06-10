@@ -2,19 +2,12 @@
 	<b-container class="d-flex flex-wrap">
 		<h2 data-aos="fade-up" class="section-title slider-faq-title flex-grow-1" v-if="title">{{ title }}</h2>
 		<div data-aos="fade-up" class="slider-faq-nav d-flex align-self-center">
-			<div class="slider-faq-nav__prev" slot="button-prev">
+			<div class="slider-nav__prev" slot="button-prev" :style="(btnColor) ? `background: ${btnColor}` : null">
 				<svgicon name="arrow" />
 			</div>
-			<div class="slider-faq-nav__next" slot="button-next">
+			<div class="slider-nav__next" slot="button-next" :style="(btnColor) ? `background: ${btnColor}` : null">
 				<svgicon name="arrow" />
 			</div>
-		</div>
-		<div data-aos="fade-up" class="slider-faq-nav d-flex align-self-center flex-grow-1">
-			<swiper class="slider-faq-people" :options="swiperOptionPeople" ref="swiperPeople">
-				<swiper-slide class="slider-faq-people__item" v-for="(item, index) in faqs" :key="index">
-					<div class="slider-faq-people__item-photo" />
-				</swiper-slide>
-			</swiper>
 		</div>
 		<swiper data-aos="fade-up" class="slider-faq" :options="swiperOptions" ref="swiper">
 			<swiper-slide class="slider-faq__item" v-for="(item, index) in faqs" :key="index">
@@ -46,6 +39,10 @@ export default {
 		title: {
 			type: String,
 			default: null
+		},
+		btnColor: {
+			type: String,
+			default: null
 		}
 	},
 	data: () => ({
@@ -57,18 +54,9 @@ export default {
 			slidesPerView: 1,
 			speed: 900,
 			navigation: {
-				nextEl: ".slider-faq-nav__next",
-				prevEl: ".slider-faq-nav__prev"
+				nextEl: ".slider-nav__next",
+				prevEl: ".slider-nav__prev"
 			},
-		},
-		swiperOptionPeople: {
-			loop: true,
-			slidesPerView: 6,
-			//centeredSlides: true,
-			//slidesPerView: 6,
-			//spaceBetween: -20,
-			//touchRatio: 0.2,
-			slideToClickedSlide: true,
 		},
 		faqs: [
 			{
@@ -120,10 +108,9 @@ export default {
 		color: $white;
 		border-radius: 0 $border-radius-lg $border-radius-lg $border-radius-lg;
 		margin-bottom: $gutter-sm;
-		max-width: 900px;
+		width: 80%;
 		display: flex;
-		transform: scale(0.3);
-    	transform-origin: left top;
+		transform: translateY(50%);
 		opacity: 0;
 		transition: transform .5s ease .5s, opacity .5s ease;
 
@@ -153,7 +140,6 @@ export default {
 			background: $white;
 			color: $black;
 			margin-left: auto;
-			transform-origin: right top;
 		}
 
 		&:last-child {
@@ -168,63 +154,12 @@ export default {
 
 			.faq-item {
 				opacity: 1;
-				transform: scale(1);
-				transition-delay: .4s;
+				transform: translateY(0%);
+				transition-delay: .9s;
 				
 				&--answer {
-					transition-delay: 1s;
+					transition-delay: 1.1s;
 				}
-			}
-		}
-	}
-
-	&-nav {
-		position: relative;
-		user-select: none;
-
-		&__prev,
-		&__next {
-			width: 63px;
-			height: 63px;
-			border-radius: 50%;
-			background: #ef4a4a;
-			z-index: 1;
-			outline: none;
-			cursor: pointer;
-			position: relative;
-			user-select: none;
-			transition: background $transition;
-			
-			svg {
-				height: 30px;
-				width: 30px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-43%,-50%) rotate(90deg);
-
-				path {
-					fill: transparent;
-					stroke: $white;
-					transition: stroke $transition;
-				}
-			}
-
-			&.swiper-button-disabled {
-				background: #191919;
-				pointer-events: none;
-
-				path {
-					stroke: #979797;
-				}
-			}
-		}
-
-		&__prev {
-			margin-right: $gutter;
-
-			svg {
-				transform: translate(-57%,-50%) rotate(270deg);
 			}
 		}
 	}

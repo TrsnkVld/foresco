@@ -10,13 +10,12 @@
 			<b-col cols="12" lg="6" class="case-card__text">
 				<h1>
 					{{ title }}
-					<img :src="logo" alt="app_icon" />
+					<img v-if="logo" :src="logo" alt="app_icon" />
 				</h1>
-				<h6>{{ subTitle }}</h6>
-				<p>Find Photo - это универсальный выбор для тех, кто хочет не хочет упустить ни одного ценного момента своей жизни.</p>
+				<h6>{{subTitle}}</h6>
 				<CaseTags  />
 				<transition name="route">
-					<b-link :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
+					<b-link v-if="alias" :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
 						<b-button @click="$emit('onCaseBtnClick')" variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
 					</b-link>
 				</transition>
@@ -180,7 +179,6 @@ export default {
 	
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(25px, 1024);
-			display: none;
 		}
 	
 		@include upLandscape($lg-land) {

@@ -33,14 +33,14 @@ export default {
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: color;
-	background-size: cover;
+	background-size: 100%;
     background-position: center;
     padding: 55px 40px 70px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     flex-flow: column;
-    transition: background-color $transition ease;
+    transition: background-color .6s ease, background-size .8s ease;
 
     svg {
         width: 29px;
@@ -60,6 +60,7 @@ export default {
     &:hover {
         background-color: rgba(0, 0, 0, 0.65);
         text-decoration: none;
+	    background-size: 105%;
     }
 }
 </style>

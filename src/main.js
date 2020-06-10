@@ -31,6 +31,7 @@ new Vue({
 		AOS.init({
 			offset: 90,
 			duration: 1200,
+			once: true,
 			//easing: 'ease-out-in',
 			//delay: 100,
 		})
