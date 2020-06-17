@@ -40,7 +40,7 @@ body {
     font-family: TT Norms;
     font-size: get-vw(16px, 320);
     line-height: get-vw(21px, 320);
-    letter-spacing:get-vw(0.42px, 320);
+    letter-spacing: get-vw(0.42px, 320);
     font-weight: 400;
     color: $black;
     cursor: default;
@@ -68,7 +68,7 @@ body {
     @include upLandscape($xs-land) {
         font-size: get-vw(16px, 568);
         line-height: get-vw(21px, 568);
-        letter-spacing:get-vw(0.42px, 568);
+        letter-spacing: get-vw(0.42px, 568);
     }
 
     @include upLandscape($md-land) {
@@ -92,6 +92,7 @@ body {
 
 main {
     overflow: hidden;
+    z-index: 1;
 }
 
 img {
@@ -176,14 +177,14 @@ h1 {
 }
 
 h2 {
-    font-size: get-vw(35px, 320);
+    font-size: get-vw(32px, 320);
     letter-spacing: get-vw(-0.42px, 320);
-    line-height: get-vw(40px, 320);
+    line-height: get-vw(37px, 320);
 
     @include up($sm) {
-        font-size: get-vw(42px, 414);
+        font-size: get-vw(38px, 414);
         letter-spacing: get-vw(-0.54px, 414);
-        line-height: get-vw(47px, 414);
+        line-height: get-vw(43px, 414);
     }
 
     @include up($md) {
@@ -284,21 +285,45 @@ h3 {
 }
 
 h4 {
-    font-size: get-vw(21px, 320);
-    line-height: get-vw(26px, 320);
+    font-size: get-vw(22px, 320);
+    line-height: get-vw(32px, 320);
     letter-spacing: get-vw(-0.02px, 320);
     font-weight: 400;
 
     @include up($sm) {
-        font-size: get-vw(24px, 414);
-        line-height: get-vw(29px, 414);
+        font-size: get-vw(22px, 414);
+        line-height: get-vw(32px, 414);
         letter-spacing: get-vw(-0.02px, 414);
     }
 
+    @include up($md) {
+        font-size: get-vw(22px, 768);
+        line-height: get-vw(32px, 768);
+        letter-spacing: get-vw(-0.02px, 768);
+    }
+
     @include up($lg) {
-        font-size: 33px;
-        letter-spacing: 0.5px;
-        line-height: 49px;
+        font-size: get-vw(22px, 1024);
+        line-height: get-vw(32px, 1024);
+        letter-spacing: get-vw(-0.02px, 1024);
+    }
+
+    @include upLandscape($sm-land) {
+        font-size: get-vw(22px, 895);
+        line-height: get-vw(32px, 895);
+        letter-spacing: get-vw(-0.02px, 895);
+    }
+
+    @include upLandscape($md-land) {
+        font-size: get-vw(22px, 1024);
+        line-height: get-vw(32px, 1024);
+        letter-spacing: get-vw(-0.02px, 1024);
+    }
+
+    @include upLandscape($lg-land) {
+        font-size: get-vw(22px, 1366);
+        line-height: get-vw(32px, 1366);
+        letter-spacing: get-vw(-0.02px, 1366);
     }
 
     @include upLandscape($xl-land) {
@@ -490,11 +515,11 @@ ul {
 
 .container {
     &.small {
-    	max-width: 700px;
+        max-width: 700px;
     }
 
     &.big {
-    	max-width: 1350px;
+        max-width: 1350px;
     }
 
     @include up($xs) {
@@ -527,11 +552,11 @@ ul {
     }
 
     @include upLandscape($xs-land) {
-        max-width: get-vw(480px, 568);
+        max-width: 100%;
     }
 
     @include upLandscape($sm-land) {
-        max-width: get-vw(700px, 895);
+        //max-width: get-vw(700px, 895);
     }
 
     @include upLandscape($md-land) {
@@ -570,6 +595,7 @@ ul {
 
         h3 {
             margin-bottom: $gutter-xs;
+            word-break: break-word;
 
             @include upLandscape($xl-land) {
                 margin-bottom: 20px;
@@ -599,12 +625,11 @@ ul {
             flex-flow: column;
         }
 
-        &__img {    
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            
+        &__img {
+
             img {
+                padding-top: $gutter-sm;
+                /*
                 display: block;
                 position: relative;
                 bottom: get-vw(-$gutter-sm, 320);
@@ -615,13 +640,13 @@ ul {
                     bottom: get-vw(-$gutter-sm, 414);
                     max-height: get-vw(320px, 414);
                 }
-            
+
                 @include up($md) {
                     //bottom: get-vw(-$gutter-md, 768);
                     max-height: 100%;
                     bottom: 0;
                 }
-            
+
                 @include up($lg) {
                     //bottom: get-vw(-$gutter-md, 1024);
                     max-width: 300px;
@@ -630,37 +655,92 @@ ul {
                     left: 50%;
                     transform: translateX(-50%);
                 }
-            
+
                 @include upLandscape($xs) {
                     bottom: get-vw(-$gutter-sm, 568);
                     //bottom: get-vw(-$gutter-sm, 568);
                 }
-            
+
                 @include upLandscape($sm-land) {
                     bottom: 0;
                 }
-            
+
                 @include upLandscape($md-land) {
                     //bottom: get-vw(-$gutter-md, 1024);
                     max-height: 100%;
                 }
-            
+
                 @include upLandscape($lg-land) {
                     //bottom: get-vw(-$gutter-md, 1366);
                 }
-            
+
                 @include upLandscape($xl-land) {
                     height: 350px;
                     //bottom: get-vw(-$gutter-md, 1920);
                     //padding: get-vw($gutter-md, 1920) get-vw($gutter-md, 1920);
                 }
+                */
+
+                max-height: 100%;
+                max-width: 100%;
+                position: unset;
+                transform: unset;
+                height: auto;
+                margin: 0 auto;
+                display: block;
+                max-height: 220px;
             }
-            
+
             @include up($md) {
                 position: absolute;
                 top: 0;
                 right: 0;
                 height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &.top-right {
+            img {
+                @include up($md) {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    left: auto;
+                    transform: unset;
+                    height: 90%;
+                    max-width: 100%;
+                }
+            }
+        }
+
+        &.bottom-left {
+            img {
+
+                @include up($md) {
+                    height: auto;
+                    width: 100%;
+                    max-width: initial;
+                    transform: unset;
+                    left: 0;
+                    position: absolute;
+                }
+            }
+
+            &--overflow {
+                img {
+
+                    @include up($md) {
+                        height: auto;
+                        width: 100%;
+                        max-width: initial;
+                        position: absolute;
+                        left: 0;
+                        transform: translateX(-5%);
+                    }
+                }
             }
         }
 
@@ -671,28 +751,28 @@ ul {
         @include up($sm) {
             padding: get-vw($gutter-sm, 414) get-vw($gutter, 414);
         }
-    
+
         @include up($md) {
             padding: get-vw($gutter-md, 768) get-vw($gutter-sm, 768);
             min-height: get-vw(270px, 768);
         }
-    
+
         @include up($lg) {
             padding: get-vw($gutter-md, 1024) get-vw($gutter-sm, 1024);
         }
-    
+
         @include upLandscape($xs) {
             padding: get-vw($gutter-sm, 568) get-vw($gutter, 568);
         }
-    
+
         @include upLandscape($md-land) {
             padding: get-vw($gutter-md, 1024) get-vw($gutter-sm, 1024);
         }
-    
+
         @include upLandscape($lg-land) {
             padding: get-vw($gutter-md, 1366) get-vw($gutter-sm, 1366);
         }
-    
+
         @include upLandscape($xl-land) {
             padding: $gutter-md 70px;
             min-height: 400px;
@@ -827,7 +907,7 @@ ul {
             padding: 7px 15px 9px;
         }
     }
-    
+
     &-border {
         position: relative;
         outline: none;
@@ -840,7 +920,7 @@ ul {
         letter-spacing: get-vw(0.4px, 320);
         border-radius: 100px;
         border: 2px solid $white;
-        font-family: 'TT Norms';
+        font-family: "TT Norms";
 
         &:not(.disabled):active:focus:hover {
             background: transparent;
@@ -956,7 +1036,6 @@ ul {
             line-height: 23px;
             letter-spacing: 0px;
         }
-
     }
 
     &:active,
@@ -975,10 +1054,15 @@ ul {
     }
 
     &-menu {
-        
         li {
+            margin-bottom: 15px;
+
             &::before {
                 display: none;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }
@@ -989,6 +1073,9 @@ input,
 .dropdown-toggle {
     @extend .h5;
     padding: get-vw(16px, 320) get-vw(25px, 320) get-vw(18px, 320);
+    padding-right: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background: $grey;
     height: auto;
     margin-bottom: 0;
@@ -997,11 +1084,26 @@ input,
     border-radius: $border-radius;
     color: $white;
 
-    &:focus {
+    &::after {
+        border: none;
+        background-image: url("../assets/icons/arrow-down.svg");
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        transform: translateY(-60%);
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
         outline: none;
         box-shadow: none;
         background: $grey;
         color: $white;
+        background: $grey;
     }
 
     &::placeholder {
@@ -1039,8 +1141,6 @@ input,
     margin-right: 0;
 
     .custom-control {
-
-
         &-label {
             color: #737373;
             @extend .checkbox-label;
@@ -1127,54 +1227,54 @@ input,
 }
 
 .slider {
-	&-nav {
-		position: relative;
-		user-select: none;
+    &-nav {
+        position: relative;
+        user-select: none;
 
-		&__prev,
-		&__next {
-			width: 42px;
-			height: 42px;
-			border-radius: 50%;
-			background: #ef4a4a;
-			z-index: 1;
-			outline: none;
-			cursor: pointer;
-			position: relative;
-			user-select: none;
-			transition: background $transition;
-			
-			svg {
-				height: 20px;
-				width: 20px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-43%,-50%) rotate(90deg);
+        &__prev,
+        &__next {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #ef4a4a;
+            z-index: 1;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            transition: background $transition;
 
-				path {
-					fill: transparent;
-					stroke: $white;
-					transition: stroke $transition;
-				}
-			}
+            svg {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-43%, -50%) rotate(90deg);
 
-			&.swiper-button-disabled {
-				background: #191919 !important;
-				pointer-events: none;
+                path {
+                    fill: transparent;
+                    stroke: $white;
+                    transition: stroke $transition;
+                }
+            }
 
-				path {
-					stroke: #979797;
-				}
-			}
-		}
+            &.swiper-button-disabled {
+                background: #191919 !important;
+                pointer-events: none;
 
-		&__prev {
-			margin-right: $gutter;
+                path {
+                    stroke: #979797;
+                }
+            }
+        }
 
-			svg {
-				transform: translate(-57%,-50%) rotate(270deg);
-			}
-		}
-	}
+        &__prev {
+            margin-right: $gutter;
+
+            svg {
+                transform: translate(-57%, -50%) rotate(270deg);
+            }
+        }
+    }
 }

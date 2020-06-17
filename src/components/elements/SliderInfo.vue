@@ -53,7 +53,7 @@ export default {
 			default: false
 		},
 		items: {
-			type: Object,
+			type: Array,
     		default: () => ({}),
 		}
 	},
@@ -64,7 +64,7 @@ export default {
 			slidesPerView: 1,
 			slidesPerGroup: 1,
 			speed: 900,
-			spaceBetween: 30,
+			spaceBetween: 10,
 			navigation: {
 				nextEl: ".slider-nav__next",
 				prevEl: ".slider-nav__prev"
@@ -73,6 +73,7 @@ export default {
 				768: {
                     slidesPerView: 2,
                     slidesPerGroup: 2,
+					spaceBetween: 30,
 				},
 				1320: {
                     slidesPerView: 2,
@@ -186,6 +187,7 @@ export default {
 	overflow: visible;
 	cursor: grab;
 	width: 85%;
+    width: 100%;
 
 	&-title {
 		text-align: left;
@@ -196,7 +198,6 @@ export default {
 		background: $grey;
 		color: $white;
 		border-radius: $border-radius;
-		opacity: 0;
 		transition: opacity .6s ease;
 		user-select: none;
 
@@ -262,6 +263,10 @@ export default {
 				}
 			}
 		}
+
+		@include up($md) {
+			opacity: 0;
+		}
 	}
 
 	&-nav {
@@ -326,6 +331,32 @@ export default {
 
 		.col-12 {
 			padding: 0 5px 10px;
+			
+			flex: 0 0 100%;
+			max-width: 100%;
+
+			@include up($md) {
+			
+				flex: 0 0 50%;
+				max-width: 50%;
+			}
+
+			@include up($lg) {
+			
+				flex: 0 0 33.33333333%;
+				max-width: 33.33333333%;
+			}
+
+			@include upLandscape($sm-land) {
+				flex: 0 0 50%;
+				max-width: 50%;
+			}
+
+			@include upLandscape($lg-land) {
+			
+				flex: 0 0 33.33333333%;
+				max-width: 33.33333333%;
+			}
 		}
 
 		.slider-info__item {

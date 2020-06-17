@@ -2,8 +2,11 @@
 <div class="case-tags">
 	<svgicon name="appstore" />
 	<svgicon name="googleplay" />
+	
+	<template v-if="!isRouteNameAbout">
+		<div class="case-tags__item" v-for="(item, index) in tags" :key="index">{{ item }}</div>
+	</template>
 
-	<div class="case-tags__item" v-for="(item, index) in tags" :key="index">{{ item }}</div>
 </div>
 </template>
 
@@ -12,7 +15,13 @@ export default {
 	name: "CaseTags",
 	data: () => ({
 		tags: ["development", "development", "design"]
-	})
+	}),
+	computed: {
+		isRouteNameAbout() {
+			if (this.$route.name === 'about') return true;
+			return false;
+		}
+	}
 };
 </script>
 
@@ -55,6 +64,14 @@ export default {
 			padding: get-vw(16px, 1024) get-vw(19px, 1024);
 		}
 
+		@include upLandscape($xs-land) {
+			font-size: get-vw(12px, 568);
+			line-height: get-vw(12px, 568);
+			padding: get-vw(10px, 568) get-vw(15px, 568);
+			margin: 0px get-vw(3px, 568) get-vw(6px, 568);
+			border-radius: get-vw($border-radius, 568);
+		}
+
 		@include upLandscape($md-land) {
 			font-size: get-vw(12px, 1024);
 			line-height: get-vw(12px, 1024);
@@ -83,7 +100,7 @@ export default {
 	}
 
 	svg {
-		height: 40px;
+		height: get-vw(41px, 320);
 
 		@include up($md) {
 			height: get-vw(32px, 768);
@@ -93,6 +110,11 @@ export default {
 		@include up($lg) {
 			height: get-vw(50px, 1024);
 			margin: 0px get-vw(4px, 1024) get-vw(8px, 1024);
+		}
+		
+		@include upLandscape($xs-land) {
+			height: get-vw(32px, 568);
+			margin: 0px get-vw(4px, 568) get-vw(8px, 568);
 		}
 
 		@include upLandscape($md-land) {

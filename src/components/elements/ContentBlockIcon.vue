@@ -57,11 +57,17 @@ export default {
 <style lang="scss">
 .content-block {
 	&--icon {
+		align-items: flex-start;
+		justify-content: flex-start;
+		display: flex;
+		flex-flow: column;
+
         .content-block-inner {
 			padding-top: $gutter-xl;
 			color: $white;
 			padding-left: 0;
 			padding-right: 0;
+			width: 100%;
 
 			* {
 				color: inherit;

@@ -1,5 +1,5 @@
 <template>
-	<section class="case-header" ref="test">
+	<section class="case-header" ref="test" :style="`height: ${heightPx}px`">
 		<slot></slot>
 		<transition name="case-header__scroll">
 			<svgicon v-if="!isRouteNameHome" v-scroll-to="{el: '.case section:first-child', duration: 1200, }" class="case-header__scroll" name="arrow_scroll" />
@@ -23,7 +23,8 @@ export default {
 		height() {
 			//alert(window.innerHeight);
 			return (this.heightPx = window.innerHeight);
-		}},
+		}
+	},
 	computed: {
 		isRouteNameHome() {
 			if (this.$route.name==='home') return true;

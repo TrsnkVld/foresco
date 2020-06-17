@@ -82,12 +82,14 @@ export default {
 		]
 	}),
 	mounted() {
+		/*
 		this.$nextTick(() => {
 			const swiper = this.$refs.swiper.$swiper;
 			const swiperPeople = this.$refs.swiperPeople.$swiper;
 			swiper.controller.control = swiperPeople;
 			swiperPeople.controller.control = swiper;
 		});
+		*/
 	}
 };
 </script>
@@ -103,24 +105,30 @@ export default {
 	}
 
 	.faq-item {
-		padding: $gutter-sm;
 		background: $dark-grey;
+		padding: 30px;
 		color: $white;
-		border-radius: 0 $border-radius-lg $border-radius-lg $border-radius-lg;
+		border-radius: 0 $border-radius-md $border-radius-md $border-radius-md;
 		margin-bottom: $gutter-sm;
-		width: 80%;
+		width: 100%;
 		display: flex;
 		transform: translateY(50%);
 		opacity: 0;
-		transition: transform .5s ease .5s, opacity .5s ease;
+		transition: transform .4s ease .4s, opacity .5s ease;
 
 		&__photo {
 			border-radius: 50%;
 			background: grey;
-			width: 100px;
-			height: 100px;
+			width: 70px;
+			height: 70px;
 			flex-shrink: 0;
-			margin-right: $gutter-sm;
+			margin-right: 25px;
+
+			@include up($lg) {
+				width: 100px;
+				height: 100px;
+				margin-right: $gutter-sm;
+			}
 		}
 
 		&__content {
@@ -136,14 +144,24 @@ export default {
 		}
 
 		&--answer {
-			border-radius: $border-radius-lg 0 $border-radius-lg $border-radius-lg;
+			border-radius: $border-radius-md 0 $border-radius-md $border-radius-md;
 			background: $white;
 			color: $black;
 			margin-left: auto;
+
+			@include up($md) {
+				border-radius: $border-radius-lg 0 $border-radius-lg $border-radius-lg;
+			}
 		}
 
 		&:last-child {
 			margin-bottom: 0;
+		}
+
+		@include up($md) {
+			width: 80%;
+			padding: $gutter-sm;
+			border-radius: 0 $border-radius-lg $border-radius-lg $border-radius-lg;
 		}
 	}
 
@@ -155,10 +173,10 @@ export default {
 			.faq-item {
 				opacity: 1;
 				transform: translateY(0%);
-				transition-delay: .9s;
+				transition-delay: .6s;
 				
 				&--answer {
-					transition-delay: 1.1s;
+					transition-delay: .8s;
 				}
 			}
 		}
@@ -207,6 +225,29 @@ export default {
 					border: 3px solid $white;
 				}
 			}
+		}
+	}
+
+	@include adopt($md) {
+		.faq-item__photo {
+			position: absolute;
+			top: 30px;
+			left: 30px;
+			width: get-vw(60px, 414);
+			height: get-vw(60px, 414);
+		}
+
+		.faq-item__content {
+			small, h5  {
+				padding-left: 90px;
+			}
+		}
+	}
+	
+	@include adopt($sm) {
+		.faq-item__photo {
+			width: get-vw(50px, 320);
+			height: get-vw(50px, 320);
 		}
 	}
 }

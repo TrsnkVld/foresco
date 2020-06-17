@@ -1,6 +1,6 @@
 <template>
-	<b-form @submit="onSubmit" @reset="onReset" v-if="show" class="feedback-form">
-		<template>
+	<b-form @submit="onSubmit" @reset="onReset" v-if="show" class="feedback-form" autocomplete="off">
+		<template v-if="isPageNameNotAbout">
 			<b-button variant="text" @click="$emit('onFormClose')">вернуться</b-button>
 			<h2>Напишите нам</h2>
 		</template>
@@ -15,14 +15,14 @@
 		</b-form-group>
 
 		<b-form-group id="input-group-1" label-for="input-1">
-			<b-form-input id="input-1" v-model="form.email" required placeholder="Телефон"></b-form-input>
+			<b-form-input id="input-1" v-mask="'+7 (###) ###-##-##'" v-model="form.phone" required placeholder="Телефон"></b-form-input>
 		</b-form-group>
 
 		<b-form-group id="input-group-4">
 			<b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
 				<b-form-textarea
 					id="textarea"
-					v-model="text"
+					v-model="form.text"
 					placeholder="Несколько слов о проекте"
 					rows="3"
 					max-rows="6"
@@ -41,14 +41,18 @@
 </template>
 
 <script>
+import {mask} from 'vue-the-mask'
+
 export default {
 	name: "FeedbackForm",
+	directives: {mask},
 	data: () => ({
 		pickedSelectOption: 'Мобильное приложение',
 		form: {
-			email: "",
 			name: "",
+			phone: "",
 			type: 'Тип проекта',
+			text: "",
 			checked: []
 		},
 		type: ["Мобильное приложение", "Сайт", "Другой проект"],
@@ -71,6 +75,12 @@ export default {
 			this.$nextTick(() => {
 				this.show = true;
 			});
+		}
+	},
+	computed: {
+		isPageNameNotAbout() {
+			if (this.$route.name === 'about') return true;
+			return false;
 		}
 	}
 };

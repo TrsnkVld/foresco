@@ -2,17 +2,17 @@
 	<main class="contacts">
 		<SingleSection>
 			<SectionTitle tag="h1">
-				🚀 Свяжитесь с нами
+				Свяжитесь с нами
 				<span class="h5" v-if="isMapOpened" @click="isMapOpened = false">Скрыть карту</span>
 				<span class="h5" v-else>Мы на связи 24/7</span>
 			</SectionTitle>
 			<b-container>
 				<b-row class="contacts-row">
 					<b-col cols="12">
-						<FeedbackForm />
+						<FeedbackForm data-aos="fade-up" />
 					</b-col>
 					<b-col cols="12">
-						<div class="mapboxgl-wrap">
+						<div class="mapboxgl-wrap" data-aos="fade-up">
 							<mapbox
 								access-token="pk.eyJ1IjoidnRhcmFzZW5rbyIsImEiOiJja2F0cXgwZ3kwamRvMnhwdGtlZjd0cmEwIn0.dud_DOB_FuEn6Cbg8086eQ"
 								:map-options="{
@@ -48,11 +48,56 @@ export default {
 		Mapbox
 	},
 	data: () => ({
-		isMapOpened: false
+		isMapOpened: false,
+		geojson: {
+			type: "FeatureCollection",
+			features: [
+				{
+					type: "Feature",
+					properties: {},
+					geometry: {
+						coordinates: [30.378189, 59.829244],
+						type: "Point"
+					}
+				}
+			]
+		}
 	}),
 	methods: {
 		onMapLoad(map) {
 			map.resize();
+			map.addSource("dataset", {
+				type: "geojson",
+				data: this.geojson
+			});
+
+			map.addLayer({
+				id: "points",
+				type: "symbol",
+				source: "dataset",
+				layout: {
+					"icon-image": "{icon}-15",
+					"text-field": "{title}",
+					"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+					"text-offset": [0, 0.6],
+					"text-anchor": "top"
+				}
+			});
+
+			this.geojson.features.forEach(function(marker) {
+				// create a HTML element for each feature
+				var el = document.createElement("div");
+				el.className = "marker";
+				el.innerHTML =
+					"<div class='marker__inner'>г. Санкт-Петербург,<br> м. Купчино,<br> ТЦ «Балканский 3», офис 18</div>";
+
+				// make a marker for each feature and add to the map
+				new mapboxgl.Marker(el)
+					.setLngLat(marker.geometry.coordinates)
+					.addTo(map);
+			});
+
+			//new mapboxgl.Marker(el).setLngLat([30.378189, 59.829244]).addTo(map);
 		}
 	}
 };
@@ -142,7 +187,7 @@ export default {
 			letter-spacing: get-vw(-0.4px, 1024);
 			text-align: left;
 			align-items: flex-start;
-    		flex-flow: row;
+			flex-flow: row;
 		}
 
 		@include upLandscape($lg-land) {
@@ -165,18 +210,18 @@ export default {
 	.feedback-form {
 		margin-left: auto;
 		margin-right: auto;
-    	margin-bottom: get-vw(80px, 320);
+		margin-bottom: get-vw(80px, 320);
 
 		@include up($sm) {
-    		margin-bottom: get-vw(80px, 414);
+			margin-bottom: get-vw(80px, 414);
 		}
 
 		@include up($md) {
-    		margin-bottom: get-vw(80px, 768);
+			margin-bottom: get-vw(80px, 768);
 		}
 
 		@include upLandscape($md-land) {
-    		margin-bottom: get-vw(0px, 768);
+			margin-bottom: get-vw(0px, 768);
 		}
 	}
 
@@ -214,10 +259,42 @@ export default {
 }
 
 .mapboxgl {
-
 	&-wrap {
 		width: 100%;
 		position: relative;
+		margin-bottom: $gutter-md;
+
+		.marker {
+			&__inner {
+				background: linear-gradient(180deg, #8569ff, #0048ff);
+				position: absolute;
+				top: 10px;
+				left: 50%;
+				transform: translateX(-40%);
+				padding: 18px 30px;
+				border-radius: 50px;
+				color: $white;
+				box-shadow: 0px 2px 87px rgba(0, 0, 0, 0.19);
+				width: 250px;
+				font-size: 14px;
+				line-height: 19px;
+
+				@include up($md) {
+					width: 310px;
+					font-size: 16px;
+					line-height: 21px;
+				}
+			}
+
+			&::before {
+				content: "";
+				display: block;
+				width: 20px;
+				height: 20px;
+				transform: rotate(45deg);
+				background: #8f76ff;
+			}
+		}
 
 		&::after {
 			content: "";
@@ -225,7 +302,6 @@ export default {
 			width: 100%;
 			padding-top: 100%;
 		}
-			
 
 		@include upLandscape($md-land) {
 			height: 100%;
@@ -243,6 +319,7 @@ export default {
 		width: 100%;
 		height: 100%;
 		border-radius: $border-radius;
+		font: inherit;
 	}
 	&-control-container {
 		display: none !important;

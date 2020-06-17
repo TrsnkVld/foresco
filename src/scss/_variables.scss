@@ -1,7 +1,7 @@
 @import 'mixins';
 
 $vw-viewport: 320;
-$vw-enable: true;
+$vw-enable: false;
 
 $xs:      0;
 $sm:  375px;
@@ -31,6 +31,7 @@ $gutter-lg:  90px;
 $gutter-xl: 120px;
 
 $border-radius:      8px;
+$border-radius-md: 60px;
 $border-radius-lg: 100px;
 
 $transition:      .2s;

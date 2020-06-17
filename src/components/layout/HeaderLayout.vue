@@ -6,7 +6,7 @@
 					<svgicon name="logo" />
 				</b-link>
 			</b-col>
-			<svgicon v-if="isCloseShowed" name="close" class="case-close" @click="$router.push({name: 'home'})" />
+			<svgicon v-if="isCloseShowed && !isMenuOpened" name="close" class="case-close" @click="$router.push({name: 'home'})" />
 			<b-col cols="auto">
 				<svg
 					class="header__burger"
@@ -43,7 +43,7 @@ export default {
 	}),
 	computed: {
 		isCloseShowed() {
-			if (this.$route.name==='home' || this.$route.name==='contacts') return false;
+			if (this.$route.name==='home' || this.$route.name==='contacts' || this.$route.name==='about') return false;
 			return true;
 		},
 
@@ -128,6 +128,11 @@ export default {
 	z-index: 3;
 	height: get-vw(75px, 320);
 	position: fixed;
+	pointer-events: none;
+
+	.col-auto, svg {
+		pointer-events: all;
+	}
 
 	.case-close {
 		width: 29px;

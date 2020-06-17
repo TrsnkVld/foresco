@@ -1,5 +1,6 @@
 <template>
 	<div id="foresco">
+		<AppStars :delimeterProp="6.4" /> 
 		<HeaderLayout />
 		<transition name="route">
 			<router-view />
@@ -7,6 +8,8 @@
 
 		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
 			<div class="modal-wrap" v-if="isModalShowed" >
+				<AppStars :delimeterProp="6.4" /> 
+				
 				<div class="modal-background" @click="isModalShowed=false" />
 
 				<transition name="modal-inner">
@@ -25,13 +28,15 @@
 import HeaderLayout from './components/layout/HeaderLayout';
 import FooterLayout from './components/layout/FooterLayout';
 import FeedbackForm from '@/components/elements/FeedbackForm';
+import AppStars from '@/components/elements/stars';
 
 export default {
 	name: 'foresco',
 	components: {
 		HeaderLayout,
 		FooterLayout,
-		FeedbackForm
+		FeedbackForm,
+		AppStars
 	},
 	computed: {
 		isRouteNameHome() {

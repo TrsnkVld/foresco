@@ -1,12 +1,12 @@
 
 @mixin adopt($value, $prop: max-width) {
-    @media only screen and (#{$prop}: #{$value}) {
+    @media only screen and (#{$prop}: #{($value - 1)}) and (orientation: portrait) {
         @content;
     }
 }
 
 @mixin adoptLandscape($value, $prop: max-width) {
-    @media only screen and (#{$prop}: #{$value}) and (orientation: landscape) {
+    @media only screen and (#{$prop}: #{($value - 1)}) and (orientation: landscape) {
         @content;
     }
 }

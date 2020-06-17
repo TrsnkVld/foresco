@@ -1,6 +1,7 @@
 <template>
 	<transition name="menu" @after-enter="isMenuContentShown = true">
-		<div class="menu" v-show="isMenuOpened">
+		<div class="menu" v-show="isMenuOpened"> <!--  :style="`height: ${heightPx}px`" -->
+			<AppStars :delimeterProp="6.4" /> 
 			<transition
 				name="menu-links"
 				@enter="timer"
@@ -19,15 +20,18 @@
 
 <script>
 import HeaderMenuInner from '@/components/layout/HeaderMenuInner';
+import AppStars from '@/components/elements/stars';
 
 export default {
 	name: "HeaderMenu",
 	components: {
-		HeaderMenuInner
+		HeaderMenuInner,
+		AppStars
 	},
 	data: () => ({
 		test: false,
 		indicatorHeight: null,
+		heightPx: null,
 	}),
 	props: {
 		isIndicatorClose:{
@@ -65,6 +69,10 @@ export default {
 		},
 	},
 	methods: {
+		height() {
+			//alert(window.innerHeight);
+			return (this.heightPx = window.innerHeight);
+		},
 
 		timer() {
 			setTimeout(() => {
@@ -72,7 +80,13 @@ export default {
 			}, 1);
 		},
 	},
+	watch: {
+		heightPx(newHeight, oldHeight) {
+			console.log(`it changed to ${newHeight} from ${oldHeight}`);
+		}
+	},
 	mounted() {
+		this.height();
 	}
 };
 </script>

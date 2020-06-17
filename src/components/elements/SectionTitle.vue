@@ -21,8 +21,8 @@ export default {
 .section-title {
 	padding: get-vw($gutter-sm, 320) 0;
 	color: $white;
-	text-align: center;
 	user-select: none;
+	text-align: left;
 	
 	@include up($sm) {
 		padding: get-vw($gutter-sm, 414) 0;
@@ -30,10 +30,12 @@ export default {
 
     @include up($md) {
 		padding: get-vw($gutter-sm, 768) 0;
+		text-align: center;
     }
 
     @include upLandscape($xl-land) {
 		padding: $gutter-md 0;
+		text-align: center;
     }
 }
 </style>

@@ -43,36 +43,95 @@ export default {
 .list-block {
 	//padding-top: $gutter-sm;
     //padding-bottom: $gutter-sm;
-    padding-top: 80px;
-    padding-bottom: 80px;
 
 	h2 {
         margin-bottom: $gutter-sm;
     }
     
     &__content {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        @include up($md) {
+            flex: 0 0 58.3333333333%;
+            max-width: 58.3333333333%;
+        }
+
+        @include upLandscape($xs-land) {
+            flex: 0 0 58.3333333333%;
+            max-width: 58.3333333333%;
+        }
+
+        @include upLandscape($md-land) {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+    }
+
+    .row {
+        flex-flow: column;
+
+        @include up($md) {
+            flex-flow: row;
+        }
+        
+        @include upLandscape($xs-land) {
+            flex-flow: row;
+        }
     }
 
     &__img {        
+        flex: 0 0 100%;
+        max-width: 100%;
+
         .img-wrap {
             position: relative;
             height: 100%;
         }
 
         img {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 100%;
+            max-height: 80vh;
+            margin: 0 auto;
+            display: block;
+
+            @include up($lg) {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                max-height: 100%;
+            }
+
+            @include upLandscape($xs-land) {
+                max-height: none;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                max-height: 100%;
+            }
+        }
+
+        @include up($md) {
+            flex: 0 0 41.6666666667%;
+            max-width: 41.6666666667%;
+        }
+
+        @include upLandscape($xs-land) {
+            flex: 0 0 41.6666666667%;
+            max-width: 41.6666666667%;
         }
 
     }
 
-    @include up($lg) {
-        //padding: $gutter-lg 0;
+    @include up($md) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include upLandscape($xl-land) {
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
 }
 </style>

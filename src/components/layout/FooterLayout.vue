@@ -19,14 +19,18 @@ export default {
     border-top: solid 1px #1a1a1a;
 
     .container {
-        height: 175px;
+        //height: 175px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-flow: column;
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
 
     a {
         text-decoration: none;
+        margin-bottom: 25px;
         
         * {
             color: $white;
@@ -34,6 +38,26 @@ export default {
         }
     }
 
+
+	@include up($md) {
+        .container {
+            flex-flow: row;
+            
+            a {
+                margin: 0;
+            }
+        }
+	}
+
+	@include upLandscape($xs-land) {
+        .container {
+            flex-flow: row;
+
+            a {
+                margin: 0;
+            }
+        }
+	}
 
 }
 </style>

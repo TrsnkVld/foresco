@@ -66,6 +66,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
+	
 
 	&-background {
 		width: 100%;
@@ -73,8 +74,6 @@ export default {
 		position: absolute;
 		top: 0;
 		left: 0;
-		background-image: url('../../assets/img/stars.png');
-		background-size: cover;
 	}
 
 	&-inner {

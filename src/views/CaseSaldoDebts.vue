@@ -8,13 +8,17 @@
 					title="Ведите долги совместно"
 					text="Приглашайте участников сделки, отправив QR-код или ссылку-приглашение"
 					bgStyle="background: linear-gradient(to bottom, #8569ff -64%, #0048ff 100%);"
+					imgPosition="top-right"
+					img="saldo/saldo-1.png"
 				/>
 				<ContentBlockLG
 					title="Управляйте совместными долгами"
 					text="Любые изменения по долгу происходят только с согласия всех сторон сделки. Каждому участнику доступна история платежей и действий за весь период"
-					image="left"
+					type="left"
 					position="bot"
 					bgStyle="background-color: #1a1a1a;"
+					imgPosition="bottom-left--overflow"
+					img="saldo/saldo-2.png"
 				/>
 				<ContentBlockSM
 					title="Отслеживайте статистику"
@@ -31,6 +35,7 @@
 					title="Сохраняйте конфиденциальность личных данных"
 					text="Доступ к сделкам осуществляется по паролю, а личные данные участников остаются скрытыми"
 					bgStyle="background-color: #1a1a1a;"
+					img="saldo/saldo-3.png"
 				/>
 			</ContentBlockWrap>
 		</SingleSection>
@@ -75,7 +80,7 @@
 		</SingleSection>
 
 		<SingleSection>
-			<BannerLink :imageSrc="require('../assets/img/mockup_2.png')" />
+			<BannerLink img="saldo/banner-saldo.png" />
 		</SingleSection>
 
 		<SingleSection>
