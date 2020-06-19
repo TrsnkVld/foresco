@@ -93,6 +93,18 @@ body {
 main {
     overflow: hidden;
     z-index: 1;
+	opacity: 1;
+	transition: opacity .5s;
+
+	&.hidden {
+		opacity: 0;
+    }
+    
+    &.case {
+        &>section:first-child {
+            padding-top: 0;
+        }
+    }
 }
 
 img {
@@ -689,6 +701,11 @@ ul {
                 margin: 0 auto;
                 display: block;
                 max-height: 220px;
+
+                @include up($md) {
+                    padding-top: 0;
+                    max-height: 100%;
+                }
             }
 
             @include up($md) {
@@ -738,7 +755,20 @@ ul {
                         max-width: initial;
                         position: absolute;
                         left: 0;
-                        transform: translateX(-5%);
+                        transform: translateX(-10%);
+                        max-height: 100%;
+                        width: auto;
+                        height: auto;
+                        max-width: 100%;    
+                    }
+
+                    @include up($lg) {
+                        height: 90%;
+                        width: auto;
+                        max-width: initial;
+                        position: absolute;
+                        left: 0;
+                        transform: translateX(-10%);
                     }
                 }
             }
@@ -1139,8 +1169,10 @@ input,
 .custom-checkbox {
     user-select: none;
     margin-right: 0;
+    padding-left: 34px;
 
     .custom-control {
+
         &-label {
             color: #737373;
             @extend .checkbox-label;
@@ -1148,6 +1180,7 @@ input,
 
             &::before {
                 top: 0;
+                left: -34px;
                 border-radius: get-vw(6px, 320);
                 border: none;
                 width: get-vw(21px, 320);
@@ -1200,6 +1233,7 @@ input,
 
             &::after {
                 top: 0;
+                left: -34px;
                 background: $pink;
                 border-radius: 3px;
                 box-sizing: content-box;

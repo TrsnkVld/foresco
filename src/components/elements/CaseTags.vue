@@ -1,10 +1,17 @@
 <template>
 <div class="case-tags">
-	<svgicon name="appstore" />
-	<svgicon name="googleplay" />
+	<a v-if="items.appstore" :href="(isRouteNameAbout) ? foresco.appstore : items.appstore" target="_blank">
+		<svgicon name="appstore" />
+	</a>
+	<a v-if="items.googleplay" :href="(isRouteNameAbout) ? foresco.appstore : items.googleplay" target="_blank">
+		<svgicon name="googleplay" />
+	</a>
 	
 	<template v-if="!isRouteNameAbout">
-		<div class="case-tags__item" v-for="(item, index) in tags" :key="index">{{ item }}</div>
+		<!-- TODO: Когда нет гугла, то в один ряд -->
+		<div class="case-tags__wrap">
+			<div class="case-tags__item" v-for="(item, index) in items.simple" :key="index">{{ item }}</div>
+		</div>
 	</template>
 
 </div>
@@ -13,8 +20,18 @@
 <script>
 export default {
 	name: "CaseTags",
+	props: {
+		items: {
+			type: Object,
+    		default: () => ({}),
+		}
+	},
 	data: () => ({
-		tags: ["development", "development", "design"]
+		tags: ["development", "development", "design"],
+		foresco: {
+			appstore: 'https://apps.apple.com/us/developer/foresco/id1500003861',
+			googleplay: 'https://apps.apple.com/us/developer/foresco/id1500003861'
+		}
 	}),
 	computed: {
 		isRouteNameAbout() {
@@ -35,13 +52,21 @@ export default {
 	flex-flow: wrap;
 	margin: 0 auto;
 
+	a {
+		pointer-events: all;
+	}
+
+	&__wrap {
+		width: 100%;
+	}
+
 	&__item {
 		display: inline-block;
 		font-size: get-vw(13px, 320);
 		line-height: get-vw(13px, 320);
 		font-weight: bold;
 		font-family: Source Sans Pro;
-		background: rgba(0, 0, 0, 0.2);
+		background: rgba(111, 111, 111, 0.2);
 		border-radius: get-vw($border-radius, 320);
 		padding: get-vw(14px, 320) get-vw(20px, 320);
 		margin: 0px get-vw(4px, 320) get-vw(8px, 320);

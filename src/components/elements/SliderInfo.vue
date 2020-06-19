@@ -24,14 +24,14 @@
 		<template v-else>
 			<h2 data-aos="fade-up" class="section-title slider-info-title flex-grow-1 text-center" v-if="title">{{ title }}</h2>
 			<b-row  data-aos="fade-up" class="slider-info slider-info--not-slider">
-				<b-col cols="12" sm="4"  v-for="(item, index) in showed" :key="index">
+				<b-col cols="12" sm="4"  v-for="(item, index) in showed" :key="index" v-if="itemsTest[index]">
 					<div class="slider-info__item swiper-slide-active">
 						<h5>{{itemsTest[index].title}}</h5>
 						<p>{{itemsTest[index].text}}</p>
 					</div>
 				</b-col>
 			</b-row>
-		<b-button data-aos="fade-up" @click="showed += 6" variant="more" class="slider-info-more">Смотреть еще<svgicon name="btn-arrow" /></b-button>
+		<b-button v-if="showed < itemsTest.length" data-aos="fade-up" @click="showed += 3" variant="more" class="slider-info-more">Смотреть еще<svgicon name="btn-arrow" /></b-button>
 		</template>
 	</b-container>
 </template>
@@ -53,7 +53,7 @@ export default {
 			default: false
 		},
 		items: {
-			type: Array,
+			type: Object,
     		default: () => ({}),
 		}
 	},
@@ -151,32 +151,10 @@ export default {
 					title: '🔥 Firebase',
 					text: 'Получение полной статистики приложения, отслеживание активности пользователей',
 				},
-				
-				/*
-
-				{
-					title: 'Backend - разработка',
-					text: 'Программно-аппаратная часть нашего сервиса. Набор средств, с помощью которых происходит реализация логики приложения.',
-					icon: 'settings',
-				},
-				{
-					title: 'Frontend - разработка',
-					text: 'Разработка функциональности и пользовательского интерфейса. Сюда относится всё, что пользователь видит, открывая приложение.',
-					icon: 'instruments',
-				},
-				{
-					title: 'iOS',
-					text: 'Платформа iOS – флагман мобильных приложений с самыми высокими показателями прибыли. Объединяет наиболее платежеспособную аудиторию.',
-					icon: 'apple-logo',
-				},
-				{
-					title: 'Android',
-					text: 'Создавая приложение, мы стараемся реализовать потенциал платформы для максимального охвата аудитории и устройств.',
-					icon: 'android',
-				},
-				*/
 			]
 		}
+	},
+	mounted() {
 	}
 };
 </script>

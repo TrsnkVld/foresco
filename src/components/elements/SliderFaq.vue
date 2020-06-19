@@ -14,7 +14,7 @@
 				<div class="faq-item">
 					<div class="faq-item__photo" />
 					<div class="faq-item__content">
-						<small>{{ item.date }}</small>
+						<small></small>
 						<h5>{{ item.name }}</h5>
 						<p>{{ item.question }}</p>
 					</div>
@@ -22,7 +22,7 @@
 				<div class="faq-item faq-item--answer">
 					<div class="faq-item__photo" />
 					<div class="faq-item__content">
-						<small>{{ item.date }}</small>
+						<small></small>
 						<h5>Foresco</h5>
 						<p>{{ item.answer }}</p>
 					</div>
@@ -118,11 +118,16 @@ export default {
 
 		&__photo {
 			border-radius: 50%;
-			background: grey;
 			width: 70px;
 			height: 70px;
 			flex-shrink: 0;
 			margin-right: 25px;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: $white;
+			background-image: url('../../assets/img/person-icon.png');
+			background-size: 70%;
+
 
 			@include up($lg) {
 				width: 100px;
@@ -133,7 +138,12 @@ export default {
 
 		&__content {
 			h5 {
-				margin-bottom: $gutter-xs;
+    			margin-top: 20px;
+				margin-bottom: 25px;
+
+				@include up($md) {
+					margin-bottom: $gutter-xs;
+				}
 			}
 
 			p {
@@ -148,6 +158,12 @@ export default {
 			background: $white;
 			color: $black;
 			margin-left: auto;
+
+			.faq-item__photo {
+				background-color: $black;
+				background-image: url('../../assets/img/logo-letter.png');
+				background-size: 30%;
+			}
 
 			@include up($md) {
 				border-radius: $border-radius-lg 0 $border-radius-lg $border-radius-lg;

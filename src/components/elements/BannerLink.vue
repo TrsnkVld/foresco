@@ -33,7 +33,7 @@ export default {
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: color;
-	background-size: auto 100%;
+	background-size: auto 105%;
     background-position: center;
     padding: get-vw(40px, 320) get-vw(20px, 320);
     display: flex;
@@ -79,7 +79,7 @@ export default {
     &:hover {
         background-color: rgba(0, 0, 0, 0.65);
         text-decoration: none;
-	    background-size: auto 105%;
+	    background-size: auto 110%;
     }
 
     
@@ -122,6 +122,11 @@ export default {
     @include upLandscape($xl-land) {
 	    height: 500px;
         padding: 55px 40px 70px;
+        background-size: 105% auto;
+
+        &:hover {
+            background-size: 110% auto;
+        }
     }
 }
 </style>

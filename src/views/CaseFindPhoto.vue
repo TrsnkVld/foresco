@@ -83,44 +83,11 @@
 </template>
 
 <script>
-import CaseHeader from "@/components/elements/CaseHeader";
-import SingleSection from "@/components/elements/SingleSection";
-import SectionTitle from "@/components/elements/SectionTitle";
-import CaseCard from "@/components/elements/CaseCard";
-import ContentBlockWrap from "@/components/elements/ContentBlockWrap";
-import ContentBlockSM from "@/components/elements/ContentBlockSM";
-import ContentBlockMD from "@/components/elements/ContentBlockMD";
-import ContentBlockLG from "@/components/elements/ContentBlockLG";
-import ContentBlockIcon from "@/components/elements/ContentBlockIcon";
-import TitleText from "@/components/elements/TitleText";
-import ImageBlock from "@/components/elements/ImageBlock";
-import TextBlock from "@/components/elements/TextBlock";
-import ListBlock from "@/components/elements/ListBlock";
-import SliderInfo from "@/components/elements/SliderInfo";
-import SliderFaq from "@/components/elements/SliderFaq";
-import PaletteBlock from "@/components/elements/PaletteBlock";
 
 export default {
 	name: "CaseFindPhoto",
-	components: {
-		CaseHeader,
-		SingleSection,
-		SectionTitle,
-		CaseCard,
-		ContentBlockWrap,
-		ContentBlockSM,
-		ContentBlockMD,
-		ContentBlockLG,
-		ContentBlockIcon,
-		TitleText,
-		ImageBlock,
-		TextBlock,
-		ListBlock,
-		SliderInfo,
-		SliderFaq,
-		PaletteBlock
-	},
 	data: () => ({
+
 		colors: [
 			"background-color: #f04f6c;",
 			"background-color: #141516;",
@@ -151,6 +118,7 @@ export default {
 	mounted() {
 		console.log(this.$route.name);
 		this.$emit('onCaseLoad', 4)
+
 	}
 };
 </script>

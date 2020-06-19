@@ -124,11 +124,17 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 100vw;
 	z-index: 3;
 	height: get-vw(75px, 320);
 	position: fixed;
 	pointer-events: none;
+	transition: transform .5s ease;
+	background: #000000b8;
+
+	&.hidden {
+		transform: translateY(-100%);
+	}
 
 	.col-auto, svg {
 		pointer-events: all;

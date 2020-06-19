@@ -18,7 +18,7 @@
                     </li>
                 </ul>
             </b-col>
-            <b-col class="list-block__img" cols="12" sm="5" v-if="imageSrc">
+            <b-col class="list-block__img" :class="{'overflow': overflow}" cols="12" sm="5" v-if="imageSrc">
                 <div class="img-wrap" data-aos="fade-left" data-aos-anchor=".list-block h2" data-aos-delay="1200">
                     <img :src="imageSrc" alt="list_img" />
                 </div>
@@ -34,6 +34,10 @@ export default {
         imageSrc: {
             type: String,
             default: null
+        },
+        overflow: {
+            type: Boolean,
+            default: false,
         }
     }
 };
@@ -51,6 +55,10 @@ export default {
     &__content {
         flex: 0 0 100%;
         max-width: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: flex-start;
 
         @include up($md) {
             flex: 0 0 58.3333333333%;
@@ -63,8 +71,8 @@ export default {
         }
 
         @include upLandscape($md-land) {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
     }
 
@@ -87,18 +95,18 @@ export default {
         .img-wrap {
             position: relative;
             height: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         img {
-            max-height: 80vh;
+            max-height: 65vh;
             margin: 0 auto;
             display: block;
 
             @include up($lg) {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
                 max-height: 100%;
             }
 
@@ -109,6 +117,19 @@ export default {
                 left: 50%;
                 transform: translateX(-50%);
                 max-height: 100%;
+            }
+        }
+
+        &.overflow {
+            img {
+
+                @include upLandscape($xl-land) {
+                    height: 160%;
+                    max-height: 160%;
+                    max-width: 100%;
+                    top: 50%;
+                    transform: translate(-50%, -30%);
+                }
             }
         }
 
@@ -125,13 +146,13 @@ export default {
     }
 
     @include up($md) {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     @include upLandscape($xl-land) {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 </style>

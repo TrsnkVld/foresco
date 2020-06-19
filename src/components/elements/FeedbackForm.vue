@@ -31,8 +31,8 @@
 		</b-form-group>
 
 		<b-form-group id="input-group-4">
-			<b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-				<b-form-checkbox value="me">Я согласен с обработкой персональных данных</b-form-checkbox>
+			<b-form-checkbox-group required v-model="form.checked" id="checkboxes-4">
+				<b-form-checkbox value="me" required>Я согласен с обработкой персональных данных</b-form-checkbox>
 			</b-form-checkbox-group>
 		</b-form-group>
 

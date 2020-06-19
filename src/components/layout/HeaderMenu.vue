@@ -1,7 +1,6 @@
 <template>
 	<transition name="menu" @after-enter="isMenuContentShown = true">
 		<div class="menu" v-show="isMenuOpened"> <!--  :style="`height: ${heightPx}px`" -->
-			<AppStars :delimeterProp="6.4" /> 
 			<transition
 				name="menu-links"
 				@enter="timer"
@@ -13,20 +12,17 @@
 <!--
 			<div class="glow" />
 	-->
-			<!--<StarsParticles /> -->
 		</div>
 	</transition>
 </template>
 
 <script>
 import HeaderMenuInner from '@/components/layout/HeaderMenuInner';
-import AppStars from '@/components/elements/stars';
 
 export default {
 	name: "HeaderMenu",
 	components: {
 		HeaderMenuInner,
-		AppStars
 	},
 	data: () => ({
 		test: false,
@@ -100,7 +96,7 @@ export default {
 	width: 100%;
 	height: 100vh;
 	z-index: -1;
-	background: $black;
+	//background: $black;
 	padding: 50px $gutter;
 
 	.indicator {

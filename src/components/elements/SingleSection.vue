@@ -22,6 +22,7 @@ export default {
 
 <style lang="scss">
 section {
+    overflow: hidden;
     padding: get-vw($gutter-sm, 320) 0;
 
     @include up($sm) {

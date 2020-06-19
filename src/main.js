@@ -18,6 +18,18 @@ import VueScrollTo from 'vue-scrollto';
 import router from './router';
 import store from './store';
 
+const req = require.context('./components/elements/', true, /\.(js|vue)$/i);
+req.keys().forEach(key => {
+
+	const componentConfig = req(key)
+	const componentName = key.match(/\w+/)[0];
+
+	Vue.component(
+		componentName,
+		componentConfig.default || componentConfig
+	  )
+})
+
 
 Vue.use(VueScrollTo);
 

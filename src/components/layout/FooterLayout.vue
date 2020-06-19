@@ -17,6 +17,7 @@ export default {
 <style lang="scss">
 .footer {
     border-top: solid 1px #1a1a1a;
+    margin-top: auto;
 
     .container {
         //height: 175px;

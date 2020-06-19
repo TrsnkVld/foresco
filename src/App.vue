@@ -1,9 +1,11 @@
 <template>
 	<div id="foresco">
-		<AppStars :delimeterProp="6.4" /> 
-		<HeaderLayout />
+		<transition name="stars-wrapper">
+			<AppStars v-if="isRouteNameHome || isMenuOpened" :delimeterProp="6.4" /> 
+		</transition>
+		<HeaderLayout :class="{'hidden': !isHeaderShowed}" />
 		<transition name="route">
-			<router-view />
+			<router-view :class="{'hidden': isMenuOpened}" />
 		</transition>
 
 		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
@@ -29,6 +31,7 @@ import HeaderLayout from './components/layout/HeaderLayout';
 import FooterLayout from './components/layout/FooterLayout';
 import FeedbackForm from '@/components/elements/FeedbackForm';
 import AppStars from '@/components/elements/stars';
+import { debounce } from "debounce";
 
 export default {
 	name: 'foresco',
@@ -38,9 +41,19 @@ export default {
 		FeedbackForm,
 		AppStars
 	},
+	data: () => ({
+		isHeaderShowed: true,
+		lastScrollPosition: 0,
+	}),
+	created () {
+		window.addEventListener('scroll', debounce(this.onScroll, 100));
+	},
+	destroyed () {
+		window.removeEventListener('scroll', debounce(this.onScroll, 100));
+	},
 	computed: {
 		isRouteNameHome() {
-			if (this.$route.name==='home') return true;
+			if (this.$route.name === 'home' || this.$route.name === 'about' ) return true; //TODO: || this.$route.name === 'contacts';
 			return false;
 		},
 		isModalShowed: {
@@ -59,6 +72,54 @@ export default {
 				this.$store.state.isModalInnerShowed = newValue;
 			}
 		},
+
+		isMenuOpened: {
+			get: function() {
+				return this.$store.state.isHeaderMenuOpened;
+			},
+			set: function(newValue) {
+				this.$store.state.isHeaderMenuOpened = newValue;
+			}
+		},
+
+		isPageScrolled: {
+			get: function() {
+				return this.$store.state.isPageScrolled;
+			},
+			set: function(newValue) {
+				this.$store.state.isPageScrolled = newValue;
+			}
+		},
+
+		prevScrollpos: {
+			get: function() {
+				return window.pageYOffset;
+			},
+			set: function(newValue) {
+				this.scrollPosition = newValue;
+				return this.scrollPosition;
+			}
+		},
+	},
+	methods: {
+		onScroll(event) {
+
+
+			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+			if (currentScrollPosition < 0) {
+				return
+			}
+			this.isHeaderShowed = currentScrollPosition < this.lastScrollPosition
+			this.lastScrollPosition = currentScrollPosition
+			
+
+			const windowOffset = event.target.documentElement.scrollTop;
+			if(windowOffset > 10) {
+				this.isPageScrolled = true;
+			} else {
+				this.isPageScrolled = false;
+			}
+		}
 	}
 }
 </script>

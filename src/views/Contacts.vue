@@ -106,7 +106,7 @@ export default {
 <style lang="scss">
 .contacts {
 	padding-top: get-vw(75px, 320);
-	min-height: 100vh;
+	//min-height: 100vh;
 
 	&-row {
 		display: flex;

@@ -1,5 +1,7 @@
 <template>
 	<main class="about">
+
+		<!-- TODO: В моб версии картинку сразу под заголовком -->
 		<CaseHeader>
 			<CaseCard
 				title="Разрабатываем мобильные приложения"
@@ -20,7 +22,6 @@
 				itemsTitles="Прототипирование Интерфейсы Анимации"
 			/>
 			<SliderInfo title="Разработка" btnColor="rgb(2, 98, 206)" slider :items="sliderInfoItems" />
-			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" small />
 			<SliderTabs
 				title="Сервис"
 				btnColor="rgb(2, 98, 206)"
@@ -166,7 +167,7 @@ export default {
 
 <style lang="scss">
 .about {
-	background: $black;
+	//background: $black;
 
 	.case-header {
 		//background-image: url("../assets/img/stars.png");

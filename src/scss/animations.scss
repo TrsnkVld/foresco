@@ -45,6 +45,20 @@
     }
 }
 
+.stars-wrapper {
+    &-enter-active,
+    &-leave-active {
+        transition: 1.5s ease;
+        opacity: 1;
+    }
+
+    &-enter,
+    &-leave-to {
+        transition: 1.5s ease;
+        opacity: 0;
+    }
+}
+
 .menu {
     &-enter-active,
     &-leave-active {
@@ -177,6 +191,22 @@
 /*
 *** ------ KEYFRAMES ------
 */
+
+@keyframes glow {
+	from {
+		transform: translate(-50%, -50%) skew(-30deg, 10deg);
+	}
+
+	30% {
+		transform: translate(-50%, -50%) skew(-25deg, 10deg);
+		opacity: 0.5;
+	}
+
+	to {
+		transform: translate(-50%, -50%) skew(-30deg, 10deg);
+	}
+}
+
 @keyframes glow-animation {
     from {
         transform: translate(-50%, -50%) skew(-30deg, 10deg);

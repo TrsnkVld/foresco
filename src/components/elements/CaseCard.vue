@@ -13,7 +13,7 @@
 					<img v-if="logo" :src="logo" alt="app_icon" />
 				</h1>
 				<h6>{{subTitle}}</h6>
-				<CaseTags  />
+				<CaseTags :items="tags"  />
 				<transition name="route">
 					<b-link v-if="alias" :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
 						<b-button @click="$emit('onCaseBtnClick')" variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
@@ -56,6 +56,10 @@ export default {
 		alias: {
 			type: String,
 			default: null,
+		},
+		tags: {
+			type: Object,
+    		default: () => ({}),
 		}
 	},
 	data: () => ({
@@ -186,7 +190,7 @@ export default {
 		}
 	
 		@include upLandscape($xl-land) {
-			margin-bottom: 25px;
+			margin-bottom: 45px;
 		}
 	}
 
@@ -413,22 +417,4 @@ export default {
 	}
 }
 
-@keyframes glow {
-	from {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-
-	50% {
-		transform: translate(-50%, -50%) skew(-14deg, 10deg);
-		opacity: 0.5;
-	}
-
-	75% {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-
-	to {
-		transform: translate(-50%, -50%) skew(-30deg, 10deg);
-	}
-}
 </style>
