@@ -89,7 +89,7 @@ export default {
 				var el = document.createElement("div");
 				el.className = "marker";
 				el.innerHTML =
-					"<div class='marker__inner'>г. Санкт-Петербург,<br> м. Купчино,<br> ТЦ «Балканский 3», офис 18</div>";
+					"<div class='marker__inner'><i class='icon'></i><span>г. Санкт-Петербург,<br> м. Купчино,<br> ТЦ «Балканский 3», офис 18</span></div>";
 
 				// make a marker for each feature and add to the map
 				new mapboxgl.Marker(el)
@@ -107,6 +107,17 @@ export default {
 .contacts {
 	padding-top: get-vw(75px, 320);
 	//min-height: 100vh;
+	display: flex;
+	flex-flow: column;
+	flex-grow: 1;
+
+	&>section {
+		margin: auto 0;
+		
+		@include upLandscape($xl-land) {
+			padding-bottom: 110px;
+		}
+	}
 
 	&-row {
 		display: flex;
@@ -266,11 +277,11 @@ export default {
 
 		.marker {
 			&__inner {
-				background: linear-gradient(180deg, #8569ff, #0048ff);
+				background-image: linear-gradient(to bottom, #8569ff -64%, #0048ff);
 				position: absolute;
-				top: 10px;
+				top: 8px;
 				left: 50%;
-				transform: translateX(-40%);
+				transform: translateX(-50%);
 				padding: 18px 30px;
 				border-radius: 50px;
 				color: $white;
@@ -278,9 +289,21 @@ export default {
 				width: 250px;
 				font-size: 14px;
 				line-height: 19px;
+				display: flex;
+
+				.icon {
+					background-image: url('../assets/icons/building.png');
+					width: 25px;
+					height: 20px;
+					display: block;
+					background-size: contain;
+					margin-right: 15px;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
 
 				@include up($md) {
-					width: 310px;
+					width: 340px;
 					font-size: 16px;
 					line-height: 21px;
 				}
@@ -288,11 +311,12 @@ export default {
 
 			&::before {
 				content: "";
+    border-radius: 3px;
 				display: block;
 				width: 20px;
 				height: 20px;
 				transform: rotate(45deg);
-				background: #8f76ff;
+				background: #5f66ef;
 			}
 		}
 

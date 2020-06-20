@@ -42,7 +42,7 @@ export default {
 	},
 	watch: {
 		heightPx(newHeight, oldHeight) {
-			//console.log(`it changed to ${newHeight} from ${oldHeight}`);
+			console.log(`it changed to ${newHeight} from ${oldHeight}`);
 		}
 	},
 	mounted() {
@@ -55,6 +55,7 @@ export default {
 .case-header {
 	height: 100vh;
 	padding: 0;
+    //padding-bottom: 40px;
 
 	& > .container {
 		height: 100%;
@@ -84,7 +85,7 @@ export default {
 
 	&__scroll {
 		position: absolute;
-		bottom: 80px;
+		bottom: 40px;
 		left: 50%;
 		transform: translate(-50%, 0);
 		width: 32px;
@@ -94,6 +95,14 @@ export default {
 		transition: 1s;
 		animation: scroll-down 1.5s infinite;
 
+		@include up($md) {
+			bottom: 80px;
+		}
+
+	}
+
+	@include up($sm) {
+		//padding-bottom: 15vh;
 	}
 }
 </style>

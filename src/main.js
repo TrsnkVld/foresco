@@ -42,7 +42,7 @@ new Vue({
 	created() {
 		AOS.init({
 			offset: 90,
-			duration: 1200,
+			duration: 900,
 			once: true,
 			//easing: 'ease-out-in',
 			//delay: 100,

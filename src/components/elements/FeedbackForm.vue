@@ -1,11 +1,11 @@
 <template>
 	<b-form @submit="onSubmit" @reset="onReset" v-if="show" class="feedback-form" autocomplete="off">
-		<template v-if="isPageNameNotAbout">
-			<b-button variant="text" @click="$emit('onFormClose')">вернуться</b-button>
+		<template v-if="!isPageNameContacts">
+			<b-button variant="text" @click="$emit('onFormClose')"><svgicon name="btn-arrow" class="svg-right" />вернуться</b-button>
 			<h2>Напишите нам</h2>
 		</template>
 		<b-form-group id="input-group-3" label-for="input-3">
-			<b-dropdown id="input-3" v-model="form.type" :text="form.type">
+			<b-dropdown id="input-3" v-model="form.type" :text="form.type" :class="{'empty': form.type == 'Тип проекта'}">
 				<b-dropdown-item @click="form.type=item" v-for="(item, index) in type" :key="index">{{item}}</b-dropdown-item>
 			</b-dropdown>
 		</b-form-group>
@@ -78,8 +78,8 @@ export default {
 		}
 	},
 	computed: {
-		isPageNameNotAbout() {
-			if (this.$route.name === 'about') return true;
+		isPageNameContacts() {
+			if (this.$route.name === 'contacts') return true;
 			return false;
 		}
 	}
@@ -92,6 +92,22 @@ export default {
 
 	h2 {
 		color: $white;
+		margin-bottom: 20px;
+	}
+
+	.btn-text {
+		color: $white;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding-left: 0;
+
+		svg {
+			width: 12px;
+			height: 12px;
+			margin-right: 5px;
+			margin-top: 4px;
+		}
 	}
 
 	.form {

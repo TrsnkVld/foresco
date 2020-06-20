@@ -8,8 +8,8 @@
 					title="Ведите долги совместно"
 					text="Приглашайте участников сделки, отправив QR-код или ссылку-приглашение"
 					bgStyle="background: linear-gradient(to bottom, #8569ff -64%, #0048ff 100%);"
-					imgPosition="top-right"
-					img="saldo/saldo-1.png"
+					imgPosition="bottom--overflow"
+					img="saldo/saldo-4.png"
 				/>
 				<ContentBlockLG
 					title="Управляйте совместными долгами"
@@ -41,7 +41,7 @@
 		</SingleSection>
 
 		<SingleSection bgStyle="background-color: #ffffff;">
-			<ListBlock :imageSrc="require('../assets/img/saldo_list.png')" overflow />
+			<ListBlock :imageSrc="require('../assets/img/saldo/two-phones.png')" />
 		</SingleSection>
 
 		<SingleSection>
@@ -54,7 +54,7 @@
 					text="<p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе. </p><p>После обсуждения функционала с заказчиком мы выделили основные пользовательские кейсы и предложения, и создали эскизную схему работы приложения для дальнейшего прототипирования. Заказчик согласовал архитектуру приложения показанную на эскизе.</p>"
 				/>
 			</ContentBlockWrap>
-			<ImageBlock :imageSrc="require('../assets/img/mockup_1.png')" />
+			<ImageBlock :imageSrc="require('../assets/img/mockup_1.png')" hover />
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Дизайн"
@@ -64,7 +64,7 @@
 					<p>При разработке логотипа нам было важно отобразить суть приложения.</p>"
 				/>
 			</ContentBlockWrap>
-			<ImageBlock :imageSrc="require('../assets/img/mockup_2.png')" />
+			<ImageBlock :imageSrc="require('../assets/img/mockup_2.png')" hover />
 		</SingleSection>
 
 		<SingleSection>
@@ -150,7 +150,6 @@ export default {
 		}
 
 		.case-card {
-
 			&__text,
 			&__img {
 				//pointer-events: all;

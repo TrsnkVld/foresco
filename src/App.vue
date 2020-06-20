@@ -1,11 +1,11 @@
 <template>
 	<div id="foresco">
 		<transition name="stars-wrapper">
-			<AppStars v-if="isRouteNameHome || isMenuOpened" :delimeterProp="6.4" /> 
+			<AppStars v-if="isStarsShowed || isMenuOpened" :delimeterProp="6.4" /> 
 		</transition>
 		<HeaderLayout :class="{'hidden': !isHeaderShowed}" />
 		<transition name="route">
-			<router-view :class="{'hidden': isMenuOpened}" />
+			<router-view class="page" :class="{'hidden': isMenuOpened}" />
 		</transition>
 
 		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
@@ -53,7 +53,11 @@ export default {
 	},
 	computed: {
 		isRouteNameHome() {
-			if (this.$route.name === 'home' || this.$route.name === 'about' ) return true; //TODO: || this.$route.name === 'contacts';
+			if (this.$route.name === 'home') return true; 
+			return false;
+		},
+		isStarsShowed() {
+			if (this.$route.name === 'contacts' || this.$route.name === 'about' || this.$route.name === 'home') return true;
 			return false;
 		},
 		isModalShowed: {
@@ -103,17 +107,19 @@ export default {
 	},
 	methods: {
 		onScroll(event) {
-
-
-			const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
-			if (currentScrollPosition < 0) {
-				return
-			}
-			this.isHeaderShowed = currentScrollPosition < this.lastScrollPosition
-			this.lastScrollPosition = currentScrollPosition
-			
-
 			const windowOffset = event.target.documentElement.scrollTop;
+
+			if (windowOffset > 600) {
+				const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+				if (currentScrollPosition < 0) {
+					return
+				}
+				this.isHeaderShowed = currentScrollPosition < this.lastScrollPosition
+				this.lastScrollPosition = currentScrollPosition
+			} else {
+				this.isHeaderShowed = true;
+			}
+
 			if(windowOffset > 10) {
 				this.isPageScrolled = true;
 			} else {

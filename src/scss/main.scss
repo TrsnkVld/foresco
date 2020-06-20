@@ -94,7 +94,7 @@ main {
     overflow: hidden;
     z-index: 1;
 	opacity: 1;
-	transition: opacity .5s;
+    transition: opacity .5s;
 
 	&.hidden {
 		opacity: 0;
@@ -774,6 +774,33 @@ ul {
             }
         }
 
+        &.bottom {
+            img {
+
+                @include up($md) {
+                }
+            }
+
+            &--overflow {
+                img {
+
+                    padding-top: 0;
+                    position: relative;
+                    bottom: -40px;
+
+                    @include up($md) {
+                        bottom: 0;   
+                        max-height: 85%;
+                        margin-top: auto;
+                    }
+
+                    @include up($lg) {
+                        max-height: 90%;
+                    }
+                }
+            }
+        }
+
         p:last-child {
             margin-bottom: 0;
         }
@@ -865,7 +892,7 @@ ul {
             transition: width $transition ease-in-out;
 
             @include up($sm) {
-                width: get-vw(55px, 414);
+                width: get-vw(50px, 414);
                 border-radius: get-vw(27.5px, 414);
             }
 
@@ -1084,8 +1111,14 @@ ul {
     }
 
     &-menu {
+        width: 100%;
+        background: #535a62;
+        padding: 0;
+        margin-top: 10px;
+        overflow: hidden;
+
         li {
-            margin-bottom: 15px;
+            margin-bottom: 0;
 
             &::before {
                 display: none;
@@ -1094,6 +1127,34 @@ ul {
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+    }
+
+    &-item {
+        color: $white;
+        padding: 20px 24px;
+
+        &:hover {
+            background: #0000001a;
+            color: $white;
+        }
+    }
+
+    &.empty {
+        .btn {
+            font-weight: 400;
+            //opacity: 0.2;
+            color: #5a5a5a;
+            
+            &:not(:disabled):active, &:not(:disabled).active {
+                color: red;
+            }
+        }
+    }
+
+    &.show {
+        .btn {
+            color: $white;
         }
     }
 }

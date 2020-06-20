@@ -7,11 +7,14 @@
 		<svgicon name="googleplay" />
 	</a>
 	
-	<template v-if="!isRouteNameAbout">
-		<!-- TODO: Когда нет гугла, то в один ряд -->
+	<template v-if="!isRouteNameAbout && items.appstore && items.googleplay">
 		<div class="case-tags__wrap">
 			<div class="case-tags__item" v-for="(item, index) in items.simple" :key="index">{{ item }}</div>
 		</div>
+	</template>
+	
+	<template v-if="!isRouteNameAbout && !items.googleplay">
+		<div class="case-tags__item" v-for="(item, index) in items.simple" :key="index">{{ item }}</div>
 	</template>
 
 </div>

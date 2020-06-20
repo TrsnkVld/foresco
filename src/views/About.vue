@@ -14,7 +14,7 @@
 			<TitleText
 				text="Мы – динамично развивающаяся IT-компания из Санкт-Петербурга. Уже 3 года внедряем новые технологии в бизнес, создавая нативные приложения. Разрабатываем проекты любой сложности."
 			/>
-			<ImageBlock :imageSrc="require('../assets/img/big-img.png')" small />
+			<ImageBlock :imageSrc="require('../assets/img/about/about-1.png')" small />
 			<SliderTabs
 				title="Дизайн"
 				btnColor="rgb(2, 98, 206)"
@@ -22,6 +22,7 @@
 				itemsTitles="Прототипирование Интерфейсы Анимации"
 			/>
 			<SliderInfo title="Разработка" btnColor="rgb(2, 98, 206)" slider :items="sliderInfoItems" />
+			<ImageBlock :imageSrc="require('../assets/img/about/about-2.png')" small />
 			<SliderTabs
 				title="Сервис"
 				btnColor="rgb(2, 98, 206)"
@@ -36,31 +37,9 @@
 </template>
 
 <script>
-import CaseHeader from "@/components/elements/CaseHeader";
-import SingleSection from "@/components/elements/SingleSection";
-import SectionTitle from "@/components/elements/SectionTitle";
-import CaseCard from "@/components/elements/CaseCard";
-import TitleText from "@/components/elements/TitleText";
-import ImageBlock from "@/components/elements/ImageBlock";
-import SliderInfo from "@/components/elements/SliderInfo";
-import SliderTabs from "@/components/elements/SliderTabs";
-import SliderFaq from "@/components/elements/SliderFaq";
-import FeedbackBlock from "@/components/elements/FeedbackBlock";
 
 export default {
 	name: "About",
-	components: {
-		CaseHeader,
-		SingleSection,
-		SectionTitle,
-		CaseCard,
-		TitleText,
-		ImageBlock,
-		SliderInfo,
-		SliderFaq,
-		SliderTabs,
-		FeedbackBlock
-	},
 	data: () => ({
 		colors: [
 			"background-color: #f04f6c;",
@@ -92,7 +71,7 @@ export default {
 			{
 				content: require("../assets/img/about/design-1.png"),
 				text:
-					"<p>Задача данного этапа –  создание модели конечного продукта. Разработка прототипа мобильного приложения позволяет определить функционал программы. На этом этапе решаются наиболее важные бизнес задачи, проводится согласование с клиентом и тестирование технической части проекта.</p><p>Прототипирование позволяет создать продукт, соответствующий ожиданиям клиента по всем параметрам.</p>"
+					"<p>Задача данного этапа –  создание модели конечного продукта. Разработка прототипа мобильного приложения позволяет определить функционал программы.</p><p>Прототипирование позволяет создать продукт, соответствующий ожиданиям клиента по всем параметрам.</p>"
 			},
 			{
 				content: require("../assets/img/about/design-2.png"),
@@ -107,25 +86,21 @@ export default {
 		],
 		sliderTabsServiceItems: [
 			{
-				content: require("../assets/img/about/Group-12.png"),
 				text:
 					"<p>Перед запуском приложения мы проводим полномасштабное исследование на наличие багов. Тщательно изучаем функциональность приложения и проводим все необходимые мероприятия, чтобы не упустить ни одного расхождения с техническим заданием. Задача нашей команды – выпустить качественное мобильное приложение.</p>",
 				small: true,
 			},
 			{
-				content: require("../assets/img/about/Group-12.png"),
 				text:
 					"<p>После окончания разработки мы готовим необходимую документацию по каждому приложению. Публикуем проект в App Store или Google Play, отслеживаем статистику, предоставляя актуальную информацию по количеству скачиваний и активных пользователей.</p>",
 				small: true,
 			},
 			{
-				content: require("../assets/img/about/Group-12.png"),
 				text:
 					"<p>Мы оказываем техническую поддержку по продукту каждому клиенту. Вы можете обратиться к нам в любое время, и наша команда поможет решить проблему.</p>",
 				small: true,
 			},
 			{
-				content: require("../assets/img/about/Group-12.png"),
 				text:
 					"<p>Мы всегда поддерживаем наших клиентов и стремимся сделать продукт лучше и совершеннее, создавая обновления.</p>",
 				small: true,
@@ -173,15 +148,62 @@ export default {
 		//background-image: url("../assets/img/stars.png");
 		//background-size: cover;
 		height: auto !important;
+
+		.container {
+			@include upLandscape($xl-land) {
+				//max-width: 1024px;
+			}
+		}
+
+		&__scroll {
+			display: none;
+		}
 	}
 
 	.case-card {
-		word-spacing: 6000px;
+		flex-flow: column-reverse;
+		align-items: center;
+		justify-content: center;
+
+		&__img {
+			@include upLandscape($xl-land) {
+				margin: 0;
+				margin-top: 80px;
+				height: 530px;
+				max-width: 100%;
+			}
+		}
+
+		&__text {
+			flex: 0;
+			max-width: none;
+			
+			h1 {
+				@include upLandscape($xl-land) {
+					font-size: 45px;
+					line-height: 50px;
+					text-align: center;
+				}
+				@include up($md) {
+					text-align: center;
+				}
+			}
+
+			h6 {
+				display: none;
+			}
+
+			@include upLandscape($xl-land) {
+				word-spacing: normal;
+				margin: 0;
+			}
+		}
 	}
 
 
 	@include adopt($xl) {
 		.case-card {
+			height: auto;
 			&__text {
 				padding-top: get-vw(70px, 768);
 			}
@@ -193,7 +215,6 @@ export default {
 		flex-grow: 1;
 
 		.case-card {
-			flex-flow: row-reverse;
 		}
 
 		.title-text {
@@ -231,11 +252,11 @@ export default {
 
 			&__img {
 				flex-shrink: 0;
-				height: get-vw(250px, 320);
+				height: get-vw(350px, 320);
 			}
 
 			&__text {
-				min-height: 100vh;
+				//min-height: 100vh;
 				padding-top: get-vw(100px, 414);
 				box-sizing: border-box;
 			}
@@ -246,8 +267,17 @@ export default {
 		}
 	}
 
+	@include up($lg) {
+		.case-card {
+			&__img {
+				height: 400px;
+			}
+		}
+	}
+
 	@include adopt($md) {
 		.case-card {
+		word-spacing: 6000px;
 			&__text {
 				padding-top: get-vw(100px, 414);
 			}

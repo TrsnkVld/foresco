@@ -19,7 +19,7 @@
                 </ul>
             </b-col>
             <b-col class="list-block__img" :class="{'overflow': overflow}" cols="12" sm="5" v-if="imageSrc">
-                <div class="img-wrap" data-aos="fade-left" data-aos-anchor=".list-block h2" data-aos-delay="1200">
+                <div class="img-wrap" data-aos="fade-left" data-aos-anchor=".list-block h2" data-aos-delay="500">
                     <img :src="imageSrc" alt="list_img" />
                 </div>
             </b-col>
@@ -74,6 +74,10 @@ export default {
             padding-top: 20px;
             padding-bottom: 20px;
         }
+
+        @include upLandscape($xl-land) {
+            padding-left: 95px;
+        }
     }
 
     .row {
@@ -102,7 +106,7 @@ export default {
         }
 
         img {
-            max-height: 65vh;
+            max-height: 45vh;
             margin: 0 auto;
             display: block;
 
@@ -111,12 +115,12 @@ export default {
             }
 
             @include upLandscape($xs-land) {
-                max-height: none;
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                max-height: 100%;
+                max-height: 540px;
+                //position: absolute;
+                //top: 0;
+                //left: 50%;
+                //transform: translateX(-50%);
+                //max-height: 100%;
             }
         }
 

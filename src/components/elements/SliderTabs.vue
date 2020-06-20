@@ -1,18 +1,17 @@
 <template>
 	<b-container class="slider-tabs">
 		<h2 data-aos="fade-up" class="section-title text-left flex-grow-1" v-if="title">{{ title }}</h2>
+
 		<!--
-		<div data-aos="fade-up" class="swiper-pagination">
-			<h5
-				class="swiper-pagination-bullet"
-				:class="{'swiper-pagination-bullet-active': index===activeTab}"
-				v-for="(item, index) in tabsTitles"
-				:key="index"
-			>
+		<div data-aos="fade-up" class="slider-nav d-flex align-self-center">
+			<div class="slider-nav__prev" slot="button-prev" :style="(btnColor) ? `background: ${btnColor}` : null">
 				<svgicon name="arrow" />
-				<span @click="onTabTitleClick(index)">{{item}}</span>
-			</h5>
+			</div>
+			<div class="slider-tabs-nav__next" slot="button-next" :style="(btnColor) ? `background: ${btnColor}` : null">
+				<svgicon name="arrow" />
+			</div>
 		</div>
+
 		-->
 		<swiper
 			data-aos="fade-up"
@@ -32,7 +31,7 @@
 		</swiper>
 		<swiper data-aos="fade-up" ref="tabsSwiper" @slideChange="slideChanged" :options="swiperOptions">
 			<swiper-slide class="slider-tabs__item" v-for="(item, index) in items" :key="index">
-				<b-row>
+				<b-row v-if="item.animation || item.content">
 					<b-col cols="12" sm="6">
 						<template v-if="item.animation">
 							<lottie
@@ -44,6 +43,9 @@
 						<img v-else :src="item.content" :class="{'small': item.small}" alt="tab_img" />
 					</b-col>
 					<b-col cols="12" sm="6" v-html="item.text" class="d-flex flex-column justify-content-center" />
+				</b-row>
+				<b-row v-else>
+					<b-col cols="12" v-html="item.text" style="max-width:100%; flex:0 0 100%;" class="d-flex flex-column justify-content-center text-center" />
 				</b-row>
 			</swiper-slide>
 		</swiper>
@@ -83,7 +85,13 @@ export default {
 			slidesPerView: 1,
 			slidesPerGroup: 1,
 			speed: 900,
-			spaceBetween: 140
+			spaceBetween: 140,
+			/*
+			navigation: {
+				nextEl: ".slider-nav__next",
+				prevEl: ".slider-nav__prev"
+			},
+			*/
 		},
 		swiperPagination: {
 			centeredSlides: true,
@@ -251,17 +259,39 @@ export default {
 	}
 
 	&__item {
+		padding: get-vw(60px, 320) 0;
+
+		img {
+			padding-bottom: 40px;
+
+			@include up($lg) {
+				padding-bottom: 0;
+			}
+
+			@include upLandscape($sm-land) {
+				padding-bottom: 0;
+			}
+		}
+
 		img, .animation {
-			padding: get-vw(60px, 320) 0;
+			max-width: 100%;
 
 			&.small {
 				width: 70%;
+			}
+
+			@include up($sm) {
+				max-width: 300px;
+			}
+
+			@include upLandscape($md-land) {
+				max-width: 300px;
 			}
 		}
 	}
 
 	@include up($sm) {
-		.slider-tabs__item img, .slider-tabs__item .animation {
+		.slider-tabs__item {
 			padding: get-vw(60px, 414) 0;
 		}
 	}
@@ -271,7 +301,7 @@ export default {
 			width: 70%;
 		}
 
-		.slider-tabs__item img, .slider-tabs__item .animation {
+		.slider-tabs__item {
 			padding: get-vw(60px, 768) 0 get-vw(80px, 768);
 		}
 	}
@@ -294,8 +324,9 @@ export default {
 			width: 100%;
 		}
 
-		.slider-tabs__item img, .slider-tabs__item .animation {
+		.slider-tabs__item {
 			padding: get-vw(60px, 768) 0 get-vw(80px, 768);
+			
 		}
 	}
 
@@ -317,7 +348,7 @@ export default {
 			width: 100%;
 		}
 
-		.slider-tabs__item img, .slider-tabs__item .animation {
+		.slider-tabs__item {
 			padding: get-vw(60px, 768) 0 get-vw(80px, 768);
 		}
 	}
@@ -327,17 +358,21 @@ export default {
 
 		.row {
 			flex-flow: row;
-			margin: 0 -70px;
+			margin: 0 -30px;
 
 			.col-12 {
 				flex: 0 0 50%;
 				max-width: 50%;
-				padding: 0 70px;
+				padding: 0 30px;
 			}
 		}
 
-		.slider-tabs__item img, .slider-tabs__item .animation {
-			padding: get-vw(80px, 1366) 0;
+		.swiper-container:last-child {
+			width: 80%;
+		}
+
+		.slider-tabs__item {
+			padding: get-vw(120px, 1366) 0 get-vw(80px, 1366) ;
 		}
 	}
 }

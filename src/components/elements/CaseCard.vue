@@ -12,7 +12,7 @@
 					{{ title }}
 					<img v-if="logo" :src="logo" alt="app_icon" />
 				</h1>
-				<h6>{{subTitle}}</h6>
+				<h6 v-html="subTitle" />
 				<CaseTags :items="tags"  />
 				<transition name="route">
 					<b-link v-if="alias" :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
@@ -165,7 +165,12 @@ export default {
 	}
 
 	h6 {
+		margin: 0 auto;
 		margin-bottom: get-vw($gutter, 320);
+
+		span {
+			display: none;
+		}
 
 		@include adopt($sm) {
 			max-width: get-vw(250px, 320);
@@ -175,10 +180,24 @@ export default {
 
 		@include up($md) {
 			margin-bottom: get-vw(25px, 768);
+
+			max-width: 60%;
 		}
 
 		@include up($lg) {
 			margin-bottom: get-vw(60px, 1024);
+
+			span {
+				display: inline;
+			}
+
+			br {
+				display: none;
+			}
+		}
+	
+		@include upLandscape($sm-land) {
+			max-width: none;
 		}
 	
 		@include upLandscape($md-land) {

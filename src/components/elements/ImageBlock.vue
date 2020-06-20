@@ -1,6 +1,6 @@
 <template>
     <b-container class="image-block-wrap" :class="{'small': small, 'big': big}" data-aos="fade-up" >
-        <div class="image-block">
+        <div class="image-block" :class="{'hover': hover}">
             <img :src="imageSrc" alt="case_preview" />
         </div>
     </b-container>
@@ -21,6 +21,10 @@ export default {
         big: {
             type: Boolean,
             default: false,
+        },
+        hover: {
+            type: Boolean,
+            default: false,
         }
     },
     data: () => ({
@@ -31,9 +35,11 @@ export default {
 <style lang="scss">
 .image-block {
     user-select: none;
+    overflow: hidden;
     img {
         display: block;
         margin: 0 auto;
+        transition: transform .8s ease;
     }
 
     &-wrap {
@@ -49,5 +55,15 @@ export default {
         padding-bottom: get-vw($gutter-sm, 1920);
         }
     }
+
+    &.hover {
+        &:hover {
+            img {
+                transform: scale(1.05);
+            }
+        }
+
+    }
+
 }
 </style>

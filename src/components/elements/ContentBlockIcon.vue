@@ -13,7 +13,11 @@
 				</b-col>
 			</b-row>
 		</div>
-		<b-button v-if="isBtnShowed" @click="showed += test.length; isBtnShowed=false" variant="more">Подробнее<svgicon name="btn-arrow" /></b-button>
+		<b-button @click="onBtnClick" variant="more">
+			<span v-if="isBtnShowed">Подробнее</span>
+			<span v-else>Скрыть</span>
+			<svgicon name="btn-arrow" :class="{'svg-down': !isBtnShowed}" />
+		</b-button>
 	</b-col>
 </template>
 
@@ -46,6 +50,17 @@ export default {
 		showed: 1,
 		isBtnShowed: true,
 	}),
+	methods: {
+		onBtnClick() {
+			if (this.isBtnShowed) {
+				this.showed += this.test.length; 
+				this.isBtnShowed=false;
+			} else {
+				this.showed = 1;
+				this.isBtnShowed = true;
+			}
+		}
+	},
 	computed: {
 		test() {
 			return this.text.match(/\<p\b[\s\S]+?\<\/p\>/g);
@@ -102,6 +117,12 @@ export default {
 			@include up($lg) {
 				//padding-top: $gutter-md;
 			}
+		}
+	}
+
+	.btn {
+		svg {
+			transition: transform $transition ease;
 		}
 	}
 }

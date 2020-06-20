@@ -1,5 +1,5 @@
 <template>
-	<header class="header">
+	<header class="header" :class="{'transparent': isRouteNameHome}">
 		<b-row align-v="center" class="justify-content-between">
 			<b-col cols="auto">
 				<b-link class="header__logo" :to="{name: 'home'}">
@@ -42,6 +42,11 @@ export default {
 		isIndicatorClose: false
 	}),
 	computed: {
+		isRouteNameHome() {
+			if (this.$route.name==='home') return true;
+			return false;
+		},
+
 		isCloseShowed() {
 			if (this.$route.name==='home' || this.$route.name==='contacts' || this.$route.name==='about') return false;
 			return true;
@@ -136,18 +141,26 @@ export default {
 		transform: translateY(-100%);
 	}
 
+	&.transparent {
+		background: transparent;
+	}
+
 	.col-auto, svg {
 		pointer-events: all;
 	}
 
 	.case-close {
 		width: 29px;
-		height: 29px;
+		height: 21px;
 		cursor: pointer;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+
+		@include upLandscape($xl-land) {
+			height: 29px;
+		}
 	}
 
 	.row {
@@ -247,7 +260,7 @@ export default {
 
 	@include up($sm) {
 		padding: 0 get-vw($gutter, 414);
-		height: get-vw(100px, 414);
+		height: get-vw(60px, 414);
 	}
 
 	@include up($md) {
@@ -258,6 +271,10 @@ export default {
 	@include up($lg) {
 		padding: 0 get-vw($gutter-sm, 1024);
 		height: get-vw(110px, 1024);
+	}
+
+	@include up($xl) {
+		background: transparent;
 	}
 
 	@include upLandscape($xs) {
