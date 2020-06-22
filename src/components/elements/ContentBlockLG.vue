@@ -1,5 +1,5 @@
 <template>
-	<b-col cols="12" class="content-block content-block--lg" data-aos="fade-up" >
+	<b-col cols="12" class="content-block content-block--lg" :class="{'overflow': overflow}" data-aos="fade-up" >
 		<div class="content-block-inner" :class="imgPosition" :style="`${bgStyle} ${textStyle}`">
 			<b-row :class="(type=='left') ? 'reversed' : null">
 				<b-col cols="12" md="7" class="content-block-inner__text">
@@ -25,7 +25,7 @@ export default {
 		},
 		title: {
 			type: String,
-			default: "Заголовок"
+			default: ""
 		},
 		subTitle: {
 			type: String,
@@ -33,7 +33,7 @@ export default {
 		},
 		text: {
 			type: String,
-			default: "Текст под заголовком"
+			default: ""
 		},
 		bgStyle: {
 			type: String,
@@ -50,6 +50,10 @@ export default {
 		img: {
 			type: String,
 			default: null
+		},
+		overflow: {
+			type: Boolean,
+			default: false,
 		}
 	},
 	data: () => ({

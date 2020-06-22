@@ -77,9 +77,11 @@ export default {
 		},
 	},
 	watch: {
+		/*
 		heightPx(newHeight, oldHeight) {
 			console.log(`it changed to ${newHeight} from ${oldHeight}`);
 		}
+		*/
 	},
 	mounted() {
 		this.height();

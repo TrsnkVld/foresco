@@ -1,5 +1,5 @@
 <template>
-    <section :style="`${bgStyle} ${textStyle}`">
+    <section :style="`${(bgStyle) ? bgStyle : ''} ${(textStyle) ? textStyle : ''}`">
         <slot></slot>
     </section>
 </template>

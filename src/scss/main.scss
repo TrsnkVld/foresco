@@ -93,16 +93,20 @@ body {
 main {
     overflow: hidden;
     z-index: 1;
-	opacity: 1;
-    transition: opacity .5s;
+    opacity: 1;
+    transition: opacity 0.5s;
 
-	&.hidden {
-		opacity: 0;
+    &.hidden {
+        opacity: 0;
     }
-    
+
     &.case {
-        &>section:first-child {
-            padding-top: 0;
+        & > section:first-child {
+            //TODO: Убрать - padding-top: 0;
+        }
+
+        .section-title {
+            color: inherit;
         }
     }
 }
@@ -597,13 +601,22 @@ ul {
     padding-top: $gutter-xs;
     padding-bottom: $gutter-xs;
 
+    &.overflow {
+        .content-block-inner {
+            overflow: hidden;
+        }
+    }
+
     &-inner {
         color: white;
         border-radius: $border-radius;
         height: 100%;
+        min-height: 200px;
         padding: get-vw($gutter-sm, 320) get-vw($gutter, 320);
         position: relative;
-        box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
+        background-size: cover;
+        background-position: center;
+        //box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
 
         h3 {
             margin-bottom: $gutter-xs;
@@ -638,7 +651,6 @@ ul {
         }
 
         &__img {
-
             img {
                 padding-top: $gutter-sm;
                 /*
@@ -704,7 +716,8 @@ ul {
 
                 @include up($md) {
                     padding-top: 0;
-                    max-height: 100%;
+                    max-height: 70%;
+                    max-width: 100%;
                 }
             }
 
@@ -733,9 +746,29 @@ ul {
             }
         }
 
+        &.right {
+            img {
+                @include up($md) {
+                }
+            }
+
+            &--overflow {
+                img {
+                    @include up($md) {
+                        max-width: 130%;
+                        position: relative;
+                        right: -20%;
+                        max-height: 80%;
+                    }
+
+                    @include up($lg) {
+                    }
+                }
+            }
+        }
+
         &.bottom-left {
             img {
-
                 @include up($md) {
                     height: auto;
                     width: 100%;
@@ -748,10 +781,9 @@ ul {
 
             &--overflow {
                 img {
-
                     @include up($md) {
-                        height: auto;
-                        width: 100%;
+                        max-height: 90%;
+                        max-width: 100%;
                         max-width: initial;
                         position: absolute;
                         left: 0;
@@ -759,14 +791,10 @@ ul {
                         max-height: 100%;
                         width: auto;
                         height: auto;
-                        max-width: 100%;    
+                        max-width: 100%;
                     }
 
                     @include up($lg) {
-                        height: 90%;
-                        width: auto;
-                        max-width: initial;
-                        position: absolute;
                         left: 0;
                         transform: translateX(-10%);
                     }
@@ -776,20 +804,18 @@ ul {
 
         &.bottom {
             img {
-
                 @include up($md) {
                 }
             }
 
             &--overflow {
                 img {
-
                     padding-top: 0;
                     position: relative;
                     bottom: -40px;
 
                     @include up($md) {
-                        bottom: 0;   
+                        bottom: 0;
                         max-height: 85%;
                         margin-top: auto;
                     }
@@ -816,6 +842,7 @@ ul {
 
         @include up($lg) {
             padding: get-vw($gutter-md, 1024) get-vw($gutter-sm, 1024);
+            min-height: 350px;
         }
 
         @include upLandscape($xs) {
@@ -1145,8 +1172,9 @@ ul {
             font-weight: 400;
             //opacity: 0.2;
             color: #5a5a5a;
-            
-            &:not(:disabled):active, &:not(:disabled).active {
+
+            &:not(:disabled):active,
+            &:not(:disabled).active {
                 color: red;
             }
         }
@@ -1233,7 +1261,6 @@ input,
     padding-left: 34px;
 
     .custom-control {
-
         &-label {
             color: #737373;
             @extend .checkbox-label;

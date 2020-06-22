@@ -2,32 +2,61 @@
 	<section class="case-header" ref="test" :style="`height: ${heightPx}px`">
 		<slot></slot>
 		<transition name="case-header__scroll">
-			<svgicon v-if="!isRouteNameHome && !isPageScrolled" v-scroll-to="{el: '.case section:first-child', duration: 1200, }" class="case-header__scroll" name="arrow_scroll" />
+			<svgicon
+				v-if="!isRouteNameHome && !isPageScrolled"
+				v-scroll-to="{el: '.case section:first-child', duration: 1200, }"
+				class="case-header__scroll"
+				name="arrow_scroll"
+			/>
 		</transition>
 	</section>
 </template>
 
 <script>
+import device from "current-device";
+
 export default {
 	name: "CaseHeader",
 	data: () => ({
-		heightPx: null
+		heightPx: null,
+		widthPx: null,
 	}),
 	created() {
 		window.addEventListener("resize", this.height);
+		//window.addEventListener("deviceorientation", doOnOrientationChange, true);
 	},
 	destroyed() {
 		window.removeEventListener("resize", this.height);
+		//window.removeEventListener("deviceorientation",doOnOrientationChange,true);
 	},
 	methods: {
 		height() {
 			//alert(window.innerHeight);
-			return (this.heightPx = window.innerHeight);
+			if (this.widthPx !== window.innerWidth) {
+				this.heightPx = window.innerHeight;
+				this.widthPx = window.innerWidth;
+			}
+		},
+		/*
+		doOnOrientationChange() {
+			switch (window.orientation) {
+				case -90:
+				case 90:
+					alert("landscape");
+					break;
+				default:
+					alert("portrait");
+					break;
+			}
+		},
+		device() {
+			alert(device.orientation);
 		}
+		*/
 	},
 	computed: {
 		isRouteNameHome() {
-			if (this.$route.name==='home') return true;
+			if (this.$route.name === "home") return true;
 			return false;
 		},
 
@@ -38,15 +67,33 @@ export default {
 			set: function(newValue) {
 				this.$store.state.isPageScrolled = newValue;
 			}
-		}
+		},
+
+		windowWidth() {
+			return window.innerWidth;
+		},
+
+		/*
+			handleOrientationChange() {
+				const orientation = window.screen.orientation.type;
+				if (orientation === "portrait-primary") {
+					alert('portrait mode')
+				} else if (orientation === "landscape-primary") {
+					alert('landscape mode')
+				}
+			}
+		*/
 	},
 	watch: {
+		/*
 		heightPx(newHeight, oldHeight) {
 			console.log(`it changed to ${newHeight} from ${oldHeight}`);
 		}
+		*/
 	},
 	mounted() {
 		this.height();
+		//this.device();
 	}
 };
 </script>
@@ -55,7 +102,7 @@ export default {
 .case-header {
 	height: 100vh;
 	padding: 0;
-    //padding-bottom: 40px;
+	//padding-bottom: 40px;
 
 	& > .container {
 		height: 100%;
@@ -98,7 +145,6 @@ export default {
 		@include up($md) {
 			bottom: 80px;
 		}
-
 	}
 
 	@include up($sm) {

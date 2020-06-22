@@ -5,15 +5,18 @@
 				<b-col cols="12" class="content-block-inner__text">
 					<h2>{{ title }}</h2>
 					<h6 v-if="subTitle">{{ subTitle }}</h6>
-					<h4>
+					<h4 v-if="test.length == 1">
+						<p v-html="test[0]" data-aos="fade-up" />
+					</h4>
+					<h4 v-else>
 						<template v-if="index <= test.length" v-for="(item, index) in showed">
-							<p v-html="test[index]" />
+							<p v-html="test[index]" data-aos="fade-up" />
 						</template>
 					</h4>
 				</b-col>
 			</b-row>
 		</div>
-		<b-button @click="onBtnClick" variant="more">
+		<b-button v-if="test.length > 1" @click="onBtnClick" variant="more" data-aos="fade-up">
 			<span v-if="isBtnShowed">Подробнее</span>
 			<span v-else>Скрыть</span>
 			<svgicon name="btn-arrow" :class="{'svg-down': !isBtnShowed}" />

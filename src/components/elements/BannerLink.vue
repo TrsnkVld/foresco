@@ -1,9 +1,9 @@
 <template>
 	<b-container :class="{'small': small}" data-aos="fade-up">
-		<a href="https://www.google.ru/" target="_blank" class="banner-link" :style="`background-image: url(${require('../../assets/img/'+img)})`">
+		<a :href="link" target="_blank" class="banner-link" :style="`background-image: url(${require('../../assets/img/'+img)})`">
             <svgicon name="share" />
-            <h3>Соберите все долги и займы в Saldo.Долги</h3>
-            <p>Оцените приложение в AppStore</p>
+            <h3>{{title}}</h3>
+            <p>{{subTitle}}</p>
         </a>
 	</b-container>
 </template>
@@ -19,7 +19,19 @@ export default {
 		small: {
 			type: Boolean,
 			default: false
-		}
+        },
+        title: {
+            type: String,
+            default: '',
+        },
+        subTitle: {
+            type: String,
+            default: '',
+        },
+        link: {
+            type: String,
+            default: '',
+        }
 	},
 	data: () => ({})
 };

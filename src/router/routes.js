@@ -4,10 +4,23 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 const Home = () => import('../views/Home');
-const CaseSaldoDebts = () => import('../views/CaseSaldoDebts');
-const CaseFindPhoto = () => import('../views/CaseFindPhoto');
 const Contacts = () => import('../views/Contacts');
 const About = () => import('../views/About');
+
+/*
+** CASES ********
+*/
+
+const CaseSaldoDebts = () => import('../views/cases/CaseSaldoDebts');
+const CaseMuseAlbum = () => import('../views/cases/CaseMuseAlbum');
+const CaseSohobook = () => import('../views/cases/CaseSohobook');
+const CasePowerPlace = () => import('../views/cases/CasePowerPlace');
+const CaseFindPhoto = () => import('../views/cases/CaseFindPhoto');
+const CaseGusli = () => import('../views/cases/CaseGusli');
+
+/*
+************************
+*/
 
 const routes = [
 	{
@@ -23,17 +36,17 @@ const routes = [
 			{
 				path: '/musealbum',
 				name: 'musealbum',
-				component: CaseFindPhoto
+				component: CaseMuseAlbum,
 			},
 			{
 				path: '/sohobook',
 				name: 'sohobook',
-				component: CaseFindPhoto
+				component: CaseSohobook
 			},
 			{
 				path: '/power-place',
 				name: 'power-place',
-				component: CaseFindPhoto
+				component: CasePowerPlace
 			},
 			{
 				path: '/find-photo',
@@ -43,7 +56,7 @@ const routes = [
 			{
 				path: '/gusli',
 				name: 'gusli',
-				component: CaseFindPhoto
+				component: CaseGusli
 			},
 		]
 	},

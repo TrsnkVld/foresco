@@ -34,7 +34,7 @@ export default {
 		}
 	},
 	data: () => ({
-		logo: require("../../assets/img/logo.png")
+		logo: require("../../assets/img/saldo/saldo_logo.png")
 	})
 };
 </script>

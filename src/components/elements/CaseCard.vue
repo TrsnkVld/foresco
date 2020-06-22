@@ -3,7 +3,7 @@
 		<b-row class="case-card">
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
-				<div class="image-bg" :style="`background-image: url('${imageSrc}')`" />
+				<div class="image-bg" :style="`background-image: url(${imageSrc})`" />
 				
 				<div class="glow" :style="glowStyle" />
 			</b-col>
@@ -79,7 +79,6 @@ export default {
 		}
 	},
 	mounted() {
-		
 	}
 };
 </script>
@@ -206,6 +205,8 @@ export default {
 	
 		@include upLandscape($lg-land) {
 			margin-bottom: get-vw(50px, 1366);
+			max-width: 95%;
+			margin-left: 0;
 		}
 	
 		@include upLandscape($xl-land) {

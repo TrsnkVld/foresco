@@ -57,9 +57,20 @@ export default {
     }
 
     &.hover {
-        &:hover {
-            img {
-                transform: scale(1.05);
+
+        @include up($xl) {
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+
+        @include upLandscape($xl-land) {
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
             }
         }
 
