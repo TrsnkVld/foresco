@@ -79,6 +79,8 @@ export default {
 		justify-content: flex-start;
 		display: flex;
 		flex-flow: column;
+		padding-bottom: 0;
+		padding-top: 0;
 
         .content-block-inner {
 			padding-top: $gutter-xl;
@@ -86,6 +88,9 @@ export default {
 			padding-left: 0;
 			padding-right: 0;
 			width: 100%;
+			padding-bottom: 0;
+			padding-top: 0;
+			min-height: auto;
 
 			* {
 				color: inherit;
@@ -124,8 +129,13 @@ export default {
 	}
 
 	.btn {
+		margin-top: 20px;
 		svg {
 			transition: transform $transition ease;
+		}
+
+		@include up($md) {
+			margin-top: 40px;
 		}
 	}
 }

@@ -20,6 +20,7 @@
 						:glowColor="item.color"
 						:alias='item.alias'
 						:tags='item.tags'
+						:style="(currentSlide === index) ? `opacity: ${slideOpacity}`: null"
 					/>
 				</swiper-slide>
 			</swiper>
@@ -62,6 +63,8 @@ export default {
 			"background-color: #ffffff;"
 		],
 		currentSlide: 1,
+		slideOpacity: 1,
+		dragged: 0,
 	}),
 	methods: {
 		setCaseIndex(caseIndex) {
@@ -72,6 +75,16 @@ export default {
 		setCurrentSlide() {
 			this.currentSlide = this.$refs.casesSwiper.$swiper.activeIndex;
 		},
+
+		handleClickSlide(event) {
+			//console.log(event);
+			//this.dragged = +1;
+			console.log('asd');
+			//if(this.dragged === 2) {
+				//console.log(this.$refs.casesSwiper.$swiper.activeIndex);
+				//this.slideOpacity = this.slideOpacity - 0.005;
+			//}
+		}
 	},
 	computed: {
 		isRouteNameHome() {
@@ -89,7 +102,10 @@ export default {
 				mousewheel: this.sliderMouseWheel,
 				slidesPerView: 1,
 				slidesPerGroup: 1,
-				speed: 1200,
+				speed: 1600,
+				longSwipesMs: 4000,
+				//effect: 'fade',
+				//followFinger: false,
 				//spaceBetween: 15,
 				navigation: {
 					nextEl: ".case-swiper-nav__next",
@@ -133,6 +149,7 @@ export default {
 			//document.documentElement.classList.add("locked");
 			return;
 		}
+
 		setTimeout(() => {
 			//document.documentElement.classList.remove("locked");
 		}, 500);

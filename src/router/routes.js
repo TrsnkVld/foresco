@@ -17,6 +17,7 @@ const CaseSohobook = () => import('../views/cases/CaseSohobook');
 const CasePowerPlace = () => import('../views/cases/CasePowerPlace');
 const CaseFindPhoto = () => import('../views/cases/CaseFindPhoto');
 const CaseGusli = () => import('../views/cases/CaseGusli');
+const CaseExample = () => import('../views/cases/CaseExample');
 
 /*
 ************************
@@ -57,6 +58,11 @@ const routes = [
 				path: '/gusli',
 				name: 'gusli',
 				component: CaseGusli
+			},
+			{
+				path: '/example',
+				name: 'example',
+				component: CaseExample
 			},
 		]
 	},

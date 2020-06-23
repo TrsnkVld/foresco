@@ -92,6 +92,7 @@ body {
 
 main {
     overflow: hidden;
+    flex-shrink: 0;
     z-index: 1;
     opacity: 1;
     transition: opacity 0.5s;

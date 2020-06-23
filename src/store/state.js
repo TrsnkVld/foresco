@@ -105,7 +105,7 @@ let state = {
                     'design'
                 ]
             }
-        }
+        },
     ]
 };
 
