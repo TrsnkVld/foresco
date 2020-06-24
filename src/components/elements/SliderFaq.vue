@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<swiper data-aos="fade-up" class="slider-faq" :options="swiperOptions" ref="swiper">
-			<swiper-slide class="slider-faq__item" v-for="(item, index) in faqs" :key="index">
+			<swiper-slide class="slider-faq__item" v-for="(item, index) in items" :key="index">
 				<div class="faq-item">
 					<div class="faq-item__photo" />
 					<div class="faq-item__content">
@@ -43,7 +43,11 @@ export default {
 		btnColor: {
 			type: String,
 			default: null
+		},
+		items: {
+			type: Array,
 		}
+
 	},
 	data: () => ({
 		swiperOptions: {
@@ -58,42 +62,6 @@ export default {
 				prevEl: ".slider-nav__prev"
 			},
 		},
-		faqs: [
-			{
-				date: "20.12.2020 11:35",
-				name: "Алексей",
-				question: "Нужна ли регистрация для работы в приложении?",
-				answer: "Нет, регистрация не требуется."
-			},
-			{
-				date: "20.12.2020 11:35",
-				name: "Ирина",
-				question: "Есть ли возможность вести долг в другой валюте?",
-				answer:
-					"Вы сами выбираете валюту, в которой будете вести долг. На данный момент в Saldo представлено более 150 видов валют."
-			},
-			{
-				date: "20.12.2020 11:35",
-				name: "Максим",
-				question: "Можно ли сохранить анонимность при вступлении в совместный долг?",
-				answer:
-					"Личные данные участников остаются скрытыми для всех сторон сделки."
-			},
-			{
-				date: "20.12.2020 11:35",
-				name: "Александр",
-				question: "Как будут начисляться проценты, если постоянно менялась сумма долга?",
-				answer:
-					"При изменении суммы долга за расчетный период проценты будут высчитываться отдельно за каждый промежуток."
-			},
-			{
-				date: "20.12.2020 11:35",
-				name: "Елена",
-				question: "Сохранятся ли долги при потере телефона?",
-				answer:
-					"Да, сохранятся, если у вас PREMIUM версия, в которой есть синхронизация с iCloud."
-			}
-		]
 	}),
 	mounted() {
 		/*
