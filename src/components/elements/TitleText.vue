@@ -1,6 +1,6 @@
 <template>
 	<b-container class="small">
-		<div class="title-text">
+		<div class="title-text" :style="textStyle">
 			<h2 v-if="title" data-aos="fade-up">{{title}}</h2>
 			<h4 data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".title-text h2">{{text}}</h4>
 		</div>
@@ -18,6 +18,10 @@ export default {
 		text: {
 			type: String,
 			default: null
+		},
+		textStyle: {
+			type: String,
+			default: null
 		}
 	}
 };
@@ -28,7 +32,7 @@ export default {
 	color: $white;
 	text-align: center;
 	margin: 0 auto;
-	padding: $gutter-sm 0;
+	//padding: $gutter-sm 0;
 
 	h2 {
 		margin-bottom: $gutter-md;

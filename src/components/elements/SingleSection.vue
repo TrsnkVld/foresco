@@ -23,6 +23,7 @@ export default {
 <style lang="scss">
 section {
     overflow: hidden;
+    /*
     padding: get-vw($gutter-sm, 320) 0;
 
     @include up($sm) {
@@ -37,9 +38,6 @@ section {
     }
 
     @include up($xl) {
-        //font-size: get-vw(60px, 2560);
-        //line-height: get-vw(65px, 2560);
-        //letter-spacing: get-vw(-1px, 2560);
     }
 
     @include upLandscape($xs) {
@@ -52,7 +50,12 @@ section {
     }
 
     @include upLandscape($xl-land) {
-        padding: 90px 0;
+        padding: 60px 0;
     }
+
+    @include upLandscape($xxl-land) {
+        padding: 80px 0;
+    }
+    */
 }
 </style>

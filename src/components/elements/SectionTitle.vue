@@ -19,22 +19,22 @@ export default {
 
 <style lang="scss">
 .section-title {
-	padding: get-vw($gutter-sm, 320) 0;
+	padding: 0 0 get-vw($gutter-sm, 320);
 	color: $white;
 	user-select: none;
 	text-align: left;
 	
 	@include up($sm) {
-		padding: get-vw($gutter-sm, 414) 0;
+		padding: 0 0 get-vw($gutter-sm, 414);
     }
 
     @include up($md) {
-		padding: get-vw($gutter-sm, 768) 0;
+		padding: 0 0get-vw($gutter-sm, 768);
 		text-align: center;
     }
 
     @include upLandscape($xl-land) {
-		padding: $gutter-md 0;
+		padding: 0 0 $gutter-md;
 		text-align: center;
     }
 }

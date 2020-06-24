@@ -23,6 +23,7 @@ const CaseExample = () => import('../views/cases/CaseExample');
 ************************
 */
 
+
 const routes = [
 	{
 		path: '/',

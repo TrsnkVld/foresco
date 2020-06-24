@@ -34,9 +34,12 @@
 			</ContentBlockWrap>
 		</SingleSection>
 
-		<SingleSection>
-			<TitleText title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
+		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
+			<TitleText textStyle="color: #000000;" title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
+
+		</SingleSection>
+		<SingleSection bgStyle="background: #000000;" textStyle="color: #ffffff;">
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Исследование и проектирование"

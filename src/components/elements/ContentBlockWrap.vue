@@ -23,8 +23,8 @@ export default {
 	}
 
 	@include up($md) {
-		padding-top: $gutter-md;
-		padding-bottom: $gutter-md;
+		//padding-top: 25px;
+		//padding-bottom: 25px;
 	}
 	
 }

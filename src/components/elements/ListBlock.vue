@@ -7,19 +7,11 @@
                 </div>
             </b-col>
             <b-col class="list-block__content reverse"  cols="12" :sm="(imageSrc) ? 7 : 12">
-		        <h2 data-aos="fade-up">Совместный долг в Saldо - это:</h2>
+		        <h2 data-aos="fade-up">{{title}}</h2>
                 <ul>
-                    <li data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".list-block h2">
+                    <li data-aos="fade-up" :data-aos-delay="(index+1) * 300" data-aos-anchor=".list-block h2" v-for="(item, index) in items" :key="index">
                         <svgicon name="checkmark" />
-                        Увеличение или уменьшение суммы долга с согласия каждого участника сделки
-                    </li>
-                    <li data-aos="fade-up" data-aos-delay="600" data-aos-anchor=".list-block h2">
-                        <svgicon name="checkmark" />
-                        История платежей и подтверждений по выплатам у всех участников
-                    </li>
-                    <li data-aos="fade-up" data-aos-delay="900" data-aos-anchor=".list-block h2">
-                        <svgicon name="checkmark" />
-                        Безопасность и конфиденциальность личных данных
+                        {{item}}
                     </li>
                 </ul>
             </b-col>
@@ -28,19 +20,11 @@
     <b-container v-else  class="list-block">
         <b-row>
             <b-col class="list-block__content"  cols="12" :sm="(imageSrc) ? 7 : 12">
-		        <h2 data-aos="fade-up">Совместный долг в Saldо - это:</h2>
+		        <h2 data-aos="fade-up">{{title}}</h2>
                 <ul>
-                    <li data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".list-block h2">
+                    <li data-aos="fade-up" :data-aos-delay="(index+1) * 300" data-aos-anchor=".list-block h2" v-for="(item, index) in items" :key="index">
                         <svgicon name="checkmark" />
-                        Увеличение или уменьшение суммы долга с согласия каждого участника сделки
-                    </li>
-                    <li data-aos="fade-up" data-aos-delay="600" data-aos-anchor=".list-block h2">
-                        <svgicon name="checkmark" />
-                        История платежей и подтверждений по выплатам у всех участников
-                    </li>
-                    <li data-aos="fade-up" data-aos-delay="900" data-aos-anchor=".list-block h2">
-                        <svgicon name="checkmark" />
-                        Безопасность и конфиденциальность личных данных
+                        {{item}}
                     </li>
                 </ul>
             </b-col>
@@ -68,6 +52,14 @@ export default {
         reverse: {
             type: Boolean,
             default: false,
+        },
+        title: {
+            type: String,
+            default: null
+        },
+        items: {
+            type: Array,
+			default: () => ({}),
         }
     }
 };
@@ -140,6 +132,7 @@ export default {
 
         @include upLandscape($xl-land) {
             padding-left: 95px;
+            padding-right: 80px;
         }
     }
 

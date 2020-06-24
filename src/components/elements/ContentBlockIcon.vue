@@ -88,9 +88,10 @@ export default {
 			padding-left: 0;
 			padding-right: 0;
 			width: 100%;
-			padding-bottom: 0;
-			padding-top: 0;
+			padding-bottom: 20px;
+			padding-top: 20px;
 			min-height: auto;
+			box-shadow: none;
 
 			* {
 				color: inherit;

@@ -161,7 +161,6 @@ export default {
 
 <style lang="scss">
 .slider-info {
-	margin: $gutter-sm 0 $gutter-lg;
 	overflow: visible;
 	cursor: grab;
 	width: 85%;

@@ -22,7 +22,7 @@
 					img="musealbum/musealbum-4.png"
 				/>
 			</ContentBlockWrap>
-			<ListBlock :imageSrc="require('../../assets/img/musealbum/musealbum-5.png')" reverse />
+			<ListBlock title="qweasdxzc" :imageSrc="require('../../assets/img/musealbum/musealbum-5.png')"  />
 		</SingleSection>
 
 		<SingleSection>

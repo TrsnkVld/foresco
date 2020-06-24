@@ -1,7 +1,8 @@
 <template>
 	<main class="case">
 		
-		<SingleSection textStyle="color: #ffffff;">
+		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
+			<SeparatorLine sm="20" md="40" lg="90" />
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
 				<ContentBlockLG
@@ -39,9 +40,11 @@
 				/>
 			</ContentBlockWrap>
 		</SingleSection>
+		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
 
-		<SingleSection bgStyle="background-color: #ffffff;">
-			<ListBlock :imageSrc="require('../../assets/img/saldo/two-phones.png')" />
+			<ListBlock title="Совместный долг в Saldо - это:" :items="listBlockItems" :imageSrc="require('../../assets/img/saldo/two-phones.png')" />
+
+
 		</SingleSection>
 
 		<SingleSection>
@@ -87,7 +90,12 @@
 		</SingleSection>
 
 		<SingleSection>
+
+			<SeparatorLine sm="20" md="70" lg="90" />
+
 			<FeedbackBlock btnColor="rgb(2, 98, 206)" />
+
+			<SeparatorLine sm="20" md="70" lg="90" />
 		</SingleSection>
 	</main>
 </template>
@@ -125,6 +133,11 @@ export default {
 			}
 		},
 		
+		listBlockItems: [
+			"Увеличение или уменьшение суммы долга с согласия каждого участника сделки",
+			"История платежей и подтверждений по выплатам у всех участников",
+		],
+
 		sliderInfoItems: [
 			{
 				title: '🔥 Push & Local Notification',

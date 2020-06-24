@@ -110,7 +110,7 @@ export default {
 
 <style lang="scss">
 .slider-faq {
-	margin: $gutter-sm 0 $gutter-lg;
+	margin: 0;
 	overflow: visible;
 	width: 100%;
 	

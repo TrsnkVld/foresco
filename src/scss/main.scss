@@ -532,7 +532,6 @@ ul {
 
 .container {
     &.small {
-        max-width: 700px;
     }
 
     &.big {
@@ -554,12 +553,20 @@ ul {
         padding-right: get-vw(20px, 768);
         padding-left: get-vw(20px, 768);
         max-width: get-vw(640px, 768);
+
+        &.small {
+            max-width: get-vw(640px, 768);
+        }
     }
 
     @include up($lg) {
         padding-right: get-vw(20px, 1024);
         padding-left: get-vw(20px, 1024);
         max-width: get-vw(890px, 1024);
+
+        &.small {
+            max-width: get-vw(700px, 768);
+        }
     }
 
     @include up($xl) {
@@ -617,7 +624,7 @@ ul {
         position: relative;
         background-size: cover;
         background-position: center;
-        //box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 2px 87px 0 rgba(0, 0, 0, 0.19);
 
         h3 {
             margin-bottom: $gutter-xs;
@@ -1353,6 +1360,7 @@ input,
     &-nav {
         position: relative;
         user-select: none;
+        width: 100%;
 
         &__prev,
         &__next {

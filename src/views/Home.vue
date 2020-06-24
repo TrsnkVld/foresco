@@ -79,7 +79,7 @@ export default {
 		handleClickSlide(event) {
 			//console.log(event);
 			//this.dragged = +1;
-			console.log('asd');
+			//console.log('asd');
 			//if(this.dragged === 2) {
 				//console.log(this.$refs.casesSwiper.$swiper.activeIndex);
 				//this.slideOpacity = this.slideOpacity - 0.005;
@@ -103,7 +103,9 @@ export default {
 				slidesPerView: 1,
 				slidesPerGroup: 1,
 				speed: 1600,
-				longSwipesMs: 4000,
+				shortSwipes: true,
+				longSwipesMs: 100,
+				threshold: 20,
 				//effect: 'fade',
 				//followFinger: false,
 				//spaceBetween: 15,
