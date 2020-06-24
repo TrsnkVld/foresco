@@ -11,6 +11,22 @@ let state = {
 
     cases: [
         {
+            title: "Find Photo",
+            alias: 'find-photo',
+            subtitle: "Сортируйте фото и создавайте метки, которые перенесут вас в нужное время и место.",
+            color: "#f04f6c",
+            image: require("../assets/img/findphoto/findphoto.png"),
+            logo: require("../assets/img/findphoto/findphoto_logo.png"),
+            tags: {
+                appstore: 'https://apps.apple.com/ru/app/find-photo/id1500003862',
+                googleplay: '',
+                simple: [
+                    'development',
+                    'design'
+                ]
+            }
+        },
+        {
             title: "Saldo. Долги",
             alias: 'saldo-debts',
             subtitle: "Удобный инструмент для ведения финансовых вопросов. <span>Ведите совместные долги, сохраняйте анонимность личных данных.</span>",
@@ -67,22 +83,6 @@ let state = {
             logo: require("../assets/img/powerplace/powerplace_logo.png"),
             tags: {
                 appstore: 'https://apps.apple.com/us/app/saldo-%D1%83%D1%87%D0%B5%D1%82-%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE%D0%B2-%D0%B8-%D0%B7%D0%B0%D0%B9%D0%BC%D0%BE%D0%B2/id1501316505',
-                googleplay: '',
-                simple: [
-                    'development',
-                    'design'
-                ]
-            }
-        },
-        {
-            title: "Find Photo",
-            alias: 'find-photo',
-            subtitle: "Сортируйте фото и создавайте метки, которые перенесут вас в нужное время и место.",
-            color: "#f04f6c",
-            image: require("../assets/img/findphoto/findphoto.png"),
-            logo: require("../assets/img/findphoto/findphoto_logo.png"),
-            tags: {
-                appstore: 'https://apps.apple.com/ru/app/find-photo/id1500003862',
                 googleplay: '',
                 simple: [
                     'development',
