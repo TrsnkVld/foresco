@@ -2,7 +2,9 @@
 	<main class="case">
 		
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
-			<SeparatorLine sm="20" md="40" lg="90" />
+
+			<SeparatorLine sm="120" md="40" lg="90" />
+
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
 				<ContentBlockLG
@@ -65,10 +67,14 @@
 					text="<p>В приложении используются три основных цвета: красный – для долгов, зеленый – для займов и синий – нейтральный цвет интерфейса. В качестве фонового цвета взята светлая тема, которая оптимальна для работы с текстовой информацией.</p><p>При разработке логотипа нам было важно отобразить суть приложения. Основной элемент -стрелки, направленные в противоположных направлениях. Одна символизирует входящие долги, другая – исходящие. Общая концепция логотипа строится на современном тренде минимализма.</p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="120" md="40" lg="90" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_2.png')" hover />
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
+			<SeparatorLine sm="120" md="40" lg="90" />
+
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 

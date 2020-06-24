@@ -36,9 +36,7 @@
 
 		<SingleSection>
 			<TitleText title="Задача" text="Разработать приложение, которое станет удобной мобильной платформой для создания и заказа фотокниг." />
-		</SingleSection>
 
-		<SingleSection>
 			<ImageBlock :imageSrc="require('../../assets/img/sohobook/sohobook-4.png')" small />
 			<ContentBlockWrap>
 				<ContentBlockIcon
