@@ -32,9 +32,15 @@ export default {
 	methods: {
 		height() {
 			//alert(window.innerHeight);
-			if (this.widthPx !== window.innerWidth) {
+
+			if (this.$route.name == 'home') {
 				this.heightPx = window.innerHeight;
 				this.widthPx = window.innerWidth;
+			} else {
+				if (this.widthPx !== window.innerWidth) {
+					this.heightPx = window.innerHeight;
+					this.widthPx = window.innerWidth;
+				}
 			}
 		},
 		/*
