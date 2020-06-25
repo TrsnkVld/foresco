@@ -104,7 +104,7 @@ export default {
 				slidesPerGroup: 1,
 				speed: 1600,
 				shortSwipes: true,
-				longSwipesMs: 100,
+				//longSwipesMs: 100,
 				threshold: 20,
 				//effect: 'fade',
 				//followFinger: false,
