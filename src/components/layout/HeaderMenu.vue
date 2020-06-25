@@ -8,10 +8,6 @@
 			>
 				<HeaderMenuInner v-if="isMenuContentShown" @onLinkClick="$emit('onLinkClick')" :isIndicatorClose="isIndicatorClose" />
 			</transition>
-
-<!--
-			<div class="glow" />
-	-->
 		</div>
 	</transition>
 </template>

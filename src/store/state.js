@@ -4,6 +4,7 @@ let state = {
     isMenuLinksShowed: false,
     isWelcomeScreenShowing: true,
     isModalShowed: false,
+    isTeamModalShowed: false,
     isModalInnerShowed: false,
     isPageScrolled: false,
 

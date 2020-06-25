@@ -3,7 +3,7 @@
 		<transition name="menu">
 			<!--<StarsParticles v-if="isWelcomeScreenShowing" intro /> -->
 		</transition>
-		<CaseHeader :class="{'no-swipe': !isRouteNameHome}"> <!--  -->
+		<CaseHeader :class="{'no-swipe': !isRouteNameHome}">
 			<swiper
 				class="case-swiper"
 				:options="swiperOptions"

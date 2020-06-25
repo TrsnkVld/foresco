@@ -22,6 +22,20 @@
 			</div>
 		</transition>
 
+		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
+			<div class="modal-wrap" v-if="isTeamModalShowed" >
+				<AppStars :delimeterProp="6.4" /> 
+				
+				<div class="modal-background" @click="isTeamModalShowed=false" />
+
+				<transition name="modal-inner">
+					<div v-if="isModalInnerShowed" class="modal-inner">
+						<FeedbackFormTeam @onFormClose="isTeamModalShowed=false" />
+					</div>
+				</transition>
+			</div>
+		</transition>
+
 		<FooterLayout v-if="!isRouteNameHome" />
 	</div>
 </template>
@@ -53,7 +67,7 @@ export default {
 	},
 	computed: {
 		isRouteNameHome() {
-			if (this.$route.name === 'home') return true; 
+			if (this.$route.name === 'home' || this.$route.name === 'team') return true; 
 			return false;
 		},
 		isStarsShowed() {
@@ -66,6 +80,14 @@ export default {
 			},
 			set: function(newValue) {
 				this.$store.state.isModalShowed = newValue;
+			}
+		},
+		isTeamModalShowed: {
+			get: function() {
+				return this.$store.state.isTeamModalShowed;
+			},
+			set: function(newValue) {
+				this.$store.state.isTeamModalShowed = newValue;
 			}
 		},
 		isModalInnerShowed: {
