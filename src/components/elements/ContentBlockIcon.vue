@@ -98,17 +98,26 @@ export default {
 			}
 
 			h4 {
-				margin-top: 60px;
+				margin-top: 16px;
 				width: 100%;
 
 				p {
 					max-width: 620px;
 				}
+
+				@include up($md) {
+					margin-top: 30px;
+				}
 			}
 
 			h6 {
+				margin-top: 10px;
 				margin-bottom: 0;
 				color: #6e6e6e;
+
+				@include up($md) {
+					margin-top: 10px;
+				}
 			}
 
 			&__text {
@@ -130,14 +139,12 @@ export default {
 	}
 
 	.btn {
-		margin-top: 20px;
+		margin-top: 4px;
+
 		svg {
 			transition: transform $transition ease;
 		}
 
-		@include up($md) {
-			margin-top: 40px;
-		}
 	}
 }
 </style>

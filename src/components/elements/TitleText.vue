@@ -35,7 +35,7 @@ export default {
 	//padding: $gutter-sm 0;
 
 	h2 {
-		margin-bottom: $gutter-md;
+		margin-bottom: 30px;
 	}
 
     @include up($lg) {

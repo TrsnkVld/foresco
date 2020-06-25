@@ -35,17 +35,27 @@
 		</SingleSection>
 
 		<SingleSection>
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<TitleText title="Задача" text="Разработать приложение, которое станет удобной мобильной платформой для создания и заказа фотокниг." />
+			<SeparatorLine sm="120" md="40" lg="60" />
 
 			<ImageBlock :imageSrc="require('../../assets/img/sohobook/sohobook-4.png')" small />
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<ContentBlockWrap>
+
 				<ContentBlockIcon
 					title="Исследование и проектирование"
 					subTitle="24 часа"
 					text="<p>На этапе создания мобильного приложения у заказчика был онлайн портал с разработанным функционалом. Нашей команде предстояло адаптировать возможности сайта в мобильную версию. Функционал был оставлен без изменений. Главная цель заказчика – создать ещё один ресурс, который станет альтернативным вариантом сайта.</p><p>После запуска приложения общее чисто заказов увеличилось на 40%. В данный момент половина пользователей оформляет заказ через мобильное приложение. </p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="120" md="40" lg="45" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/sohobook/sohobook-7.png')" hover />
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Дизайн"
@@ -53,15 +63,23 @@
 					text="<p>При работе с графической информацией предпочтение отдается светлым темам. Белый фон позволяет пользователю воспринимать цвета без искажений. А также оценить подобранные художественные режимы и стили в реальном времени.</p><p>Логотип привлекает внимание своей простотой и ясностью. Соответствует дизайнерским решениям сайта компании</p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="120" md="40" lg="60" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/sohobook/sohobook-5.png')" hover />
 		</SingleSection>
 
 		<SingleSection  textStyle="color: #ffffff;">
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 
 		<SingleSection>
+			<SeparatorLine sm="120" md="40" lg="45" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/sohobook/sohobook-6.png')" small />
+			<SeparatorLine sm="120" md="40" lg="45" />
+
 		</SingleSection>
 
 		<SingleSection>
@@ -73,6 +91,7 @@
 			/>
 			
 		</SingleSection>
+		<SeparatorLine sm="120" md="40" lg="90" />
 
 		<SingleSection>
 			<FeedbackBlock btnColor="#008EB8" />

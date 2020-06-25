@@ -86,6 +86,14 @@ export default {
 		text-align: left;
 	}
 
+	&-nav {
+		margin-bottom: 40px;
+
+		@include up($md) {
+			margin-bottom: 0;
+		}
+	}
+
 	.faq-item {
 		background: $dark-grey;
 		padding: 30px;

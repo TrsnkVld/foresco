@@ -3,9 +3,9 @@
 		
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
 
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="120" md="40" lg="120" />
 
-			<SectionTitle>Возможности приложения</SectionTitle>
+			<SectionTitle class="main-title">Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
 				<ContentBlockLG
 					title="Управляйте долгами с Saldo"
@@ -41,26 +41,42 @@
 					img="saldo/saldo-3.png"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="120" md="40" lg="60" />
+
 		</SingleSection>
+		<!--
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 
 			<ListBlock title="Совместный долг в Saldо - это:" :items="listBlockItems" :imageSrc="require('../../assets/img/saldo/two-phones.png')" />
 
 
 		</SingleSection>
-
+-->
 		<SingleSection>
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<TitleText title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
+			<SeparatorLine sm="120" md="40" lg="60" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
+			<SeparatorLine sm="120" md="40" lg="90" />
+
 			<ContentBlockWrap>
+
 				<ContentBlockIcon
 					title="Исследование и проектирование"
 					subTitle="24 часа"
 					text="<p>На первом этапе мы изучили запросы целевой аудитории, которые на данный момент не были реализованы полностью ни в одном приложении. Ключевые из них – частичное погашение долгов, сохранение анонимности личных данных, отсутствие регистрации в приложении и совместное ведение долгов. За время разработки наша команда столкнулась с задачами, которые не имели готового технического решения. </p><p>Например, было важно сохранить информацию о долгах не в телефоне, а привязать ее к пользователю. Частичная синхронизация с iCloud обеспечила доступ к долгам и займам с любого устройства</p><p>После реализации технических вопросов мы приступили к тестированию продукта. Нам важно, чтобы приложение не только работало без ошибок, но и было удобно для пользователя</p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="120" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_1.png')" hover />
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<ContentBlockWrap>
+
 				<ContentBlockIcon
 					title="Дизайн"
 					subTitle="24 часа"
@@ -73,20 +89,26 @@
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="120" md="40" lg="120" />
 
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 
 		<SingleSection>
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<SliderFaq title="Вопрос-Ответ" :items="sliderFaqItems" btnColor="rgb(2, 98, 206)" />
 		</SingleSection>
 
 		<SingleSection>
+			<SeparatorLine sm="120" md="40" lg="120" />
+
 			<BannerLink 
 				title="Соберите все долги и займы в Saldo.Долги" 
 				subTitle="Оцените приложение в AppStore"  
@@ -150,12 +172,12 @@ export default {
 				date: "20.12.2020 11:35",
 				name: "Алексей",
 				question: "Нужна ли регистрация для работы в приложении?",
-				answer: "Нет, регистрация не требуется."
+				answer: "Нет, регистрация в приложении не требуется."
 			},
 			{
 				date: "20.12.2020 11:35",
 				name: "Ирина",
-				question: "Есть ли возможность вести долг в другой валюте?",
+				question: "Есть ли возможность вести долги в нескольких валютах?",
 				answer:
 					"Вы сами выбираете валюту, в которой будете вести долг. На данный момент в Saldo представлено более 150 видов валют."
 			},

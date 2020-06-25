@@ -101,6 +101,10 @@ main {
         opacity: 0;
     }
 
+    &-title {
+        padding-bottom: 35px;
+    }
+
     &.case {
         & > section:first-child {
             //TODO: Убрать - padding-top: 0;

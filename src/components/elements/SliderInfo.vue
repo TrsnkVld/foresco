@@ -298,7 +298,11 @@ export default {
 	}
 
 	&-more {
-		margin: 70px auto 0;
+		margin: 30px auto 0;
+
+		@include up($md) {
+			//margin-top: 30px;
+		}
 	}
 
 	&--not-slider {
