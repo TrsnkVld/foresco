@@ -1,11 +1,7 @@
 <template>
 	<main class="contacts">
 		<SingleSection>
-			<SectionTitle tag="h1">
-				Свяжитесь с нами
-				<span class="h5" v-if="isMapOpened" @click="isMapOpened = false">Скрыть карту</span>
-				<span class="h5" v-else>Мы на связи 24/7</span>
-			</SectionTitle>
+			<SectionTitle tag="h1">Свяжитесь с нами</SectionTitle>
 			<b-container>
 				<b-row class="contacts-row">
 					<b-col cols="12">

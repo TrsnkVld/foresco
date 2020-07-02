@@ -49,13 +49,11 @@ export default {
 				color: "rgba(255, 167, 56)",
 				link: "about"
 			},
-			/*
 			{
 				title: "команда",
 				color: "rgba(96, 224, 135)",
-				link: "home"
+				link: "team"
 			},
-			*/
 			{
 				title: "контакты",
 				color: "rgba(62, 219, 237)",

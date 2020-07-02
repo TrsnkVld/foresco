@@ -3,8 +3,19 @@
 		<b-row class="case-card">
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
-				<div class="image-bg" :style="`background-image: url(${imageSrc})`" />
-				
+				<div class="image-bg">
+					<div class="image-bg__inner">
+						<template v-if="svgs">
+							<i v-if="item"
+								:class="`image-bg__inner--svg image-bg__inner--svg-${index + 1}`"
+								:style="`background-image: url('${require('../../assets/img/'+item)}')`"
+								v-for="(item, index) in svgs"
+							/>
+						</template>
+						<img :src="imageSrc" alt="case-mockup" draggable="false" />
+					</div>
+				</div>
+
 				<div class="glow" :style="glowStyle" />
 			</b-col>
 			<b-col cols="12" lg="6" class="case-card__text">
@@ -13,10 +24,17 @@
 					<img v-if="logo" :src="logo" alt="app_icon" />
 				</h1>
 				<h6 v-html="subTitle" />
-				<CaseTags :items="tags"  />
+				<CaseTags :items="tags" />
 				<transition name="route">
-					<b-link v-if="alias" :to="{name: alias}" class="case-route-to" :class="{'hidden': !isRouteNameHome}">
-						<b-button @click="$emit('onCaseBtnClick')" variant="circle"><div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс</b-button>
+					<b-link
+						v-if="alias"
+						:to="{name: alias}"
+						class="case-route-to"
+						:class="{'hidden': !isRouteNameHome}"
+					>
+						<b-button @click="$emit('onCaseBtnClick')" variant="circle">
+							<div class="btn-circle__hover" :style="`background: ${glowColor}`" />Смотреть кейс
+						</b-button>
 					</b-link>
 				</transition>
 			</b-col>
@@ -47,30 +65,33 @@ export default {
 		},
 		title: {
 			type: String,
-			default: null,
+			default: null
 		},
 		subTitle: {
 			type: String,
-			default: null,
+			default: null
 		},
 		alias: {
 			type: String,
-			default: null,
+			default: null
 		},
 		tags: {
 			type: Object,
-    		default: () => ({}),
+			default: () => ({})
+		},
+		svgs: {
+			type: Array,
+			default: () => ([])
 		}
 	},
 	data: () => ({
-		img: "../../assets/img/saldo_mockup.png",
+		img: "../../assets/img/saldo_mockup.png"
 		//glowColor: '#3779bccc'
 	}),
-	methods: {
-	},
+	methods: {},
 	computed: {
 		isRouteNameHome() {
-			if (this.$route.name==='home') return true;
+			if (this.$route.name === "home") return true;
 			return false;
 		},
 
@@ -78,15 +99,12 @@ export default {
 			return `background: radial-gradient(circle closest-side, ${this.glowColor}, #0067de00 73%);`;
 		}
 	},
-	mounted() {
-	}
+	mounted() {}
 };
 </script>
 
 <style lang="scss">
-
-
-.case-card { 
+.case-card {
 	height: 100vh;
 	color: $white;
 	padding: get-vw(75px, 320) 0 get-vw(56px, 320);
@@ -101,7 +119,7 @@ export default {
 		justify-content: center;
 		*/
 		margin-bottom: get-vw(5px, 320);
-		
+
 		img {
 			width: get-vw(27px, 320);
 			height: get-vw(27px, 320);
@@ -133,7 +151,7 @@ export default {
 				margin-top: get-vw(-5px, 568);
 				margin-left: 0px;
 			}
-	
+
 			@include upLandscape($xl-land) {
 				width: 50px;
 				height: 50px;
@@ -153,11 +171,11 @@ export default {
 			justify-content: flex-start;
 			margin-bottom: get-vw(10px, 1024);
 		}
-	
+
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(31px, 1024);
 		}
-	
+
 		@include upLandscape($xl-land) {
 			margin-bottom: 31px;
 		}
@@ -194,21 +212,21 @@ export default {
 				display: none;
 			}
 		}
-	
+
 		@include upLandscape($sm-land) {
 			max-width: none;
 		}
-	
+
 		@include upLandscape($md-land) {
 			margin-bottom: get-vw(25px, 1024);
 		}
-	
+
 		@include upLandscape($lg-land) {
 			margin-bottom: get-vw(50px, 1366);
 			max-width: 95%;
 			margin-left: 0;
 		}
-	
+
 		@include upLandscape($xl-land) {
 			margin-bottom: 45px;
 		}
@@ -252,9 +270,9 @@ export default {
 			@include upLandscape($xs-land) {
 				font-size: get-vw(16px, 568);
 				line-height: get-vw(21px, 568);
-				letter-spacing:get-vw(0.42px, 568);
+				letter-spacing: get-vw(0.42px, 568);
 			}
-	
+
 			@include upLandscape($md-land) {
 				margin-bottom: get-vw(55px, 1024);
 				margin-left: 0;
@@ -262,7 +280,7 @@ export default {
 				line-height: get-vw(21px, 1024);
 				letter-spacing: get-vw(0.4px, 1024);
 			}
-	
+
 			@include upLandscape($lg-land) {
 				margin-bottom: get-vw(80px, 1366);
 				font-size: get-vw(25px, 1366);
@@ -279,14 +297,14 @@ export default {
 		}
 
 		@include up($md) {
-    		margin-bottom: auto;
+			margin-bottom: auto;
 		}
 
 		@include up($lg) {
 			//text-align: left;
 			//flex: 0 0 50%;
 		}
-	
+
 		@include upLandscape($xs) {
 			flex: 0 0 60%;
 			max-width: 60%;
@@ -310,6 +328,12 @@ export default {
 		min-height: 0;
 		max-height: get-vw(340px, 320);
 
+		img {
+			max-height: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
 		.glow {
 			position: absolute;
 			top: 50%;
@@ -320,10 +344,13 @@ export default {
 			z-index: -1;
 			animation: glow 5s infinite ease-in-out;
 			pointer-events: none;
-			opacity: .4;
+			opacity: 0.4;
 		}
 
 		.image-bg {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			width: 100%;
 			height: 100%;
 			background-position: center;
@@ -336,26 +363,67 @@ export default {
 			max-height: 100%;
 			height: 100%;
 			*/
+
+			&__inner {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+				max-width: 100%;
+				position: relative;
+
+				&--svg {
+					width: 80px;
+					height: 80px;
+					position: absolute;
+					z-index: -1;
+
+					background-position: center;
+					background-repeat: no-repeat;
+					display: none;
+
+					&-1 {
+						top: 10%;
+						left: -30%;
+					}
+					&-2 {
+						top: 40%;
+						right: -30%;
+					}
+					&-3 {
+						bottom: -5%;
+						right: -30%;
+					}
+					&-4 {
+						bottom: 10%;
+						left: -30%;
+					}
+
+					@include upLandscape($md-land) {
+						display: block;
+					}
+				}
+			}
 		}
 
 		@include up($sm) {
 			padding-top: get-vw(35px, 414);
 			margin-bottom: get-vw(45px, 414);
-    		//margin-top: auto;
+			//margin-top: auto;
 		}
 
 		@include up($md) {
 			padding-top: get-vw(65px, 768);
 			max-height: get-vw(500px, 768);
 			margin-bottom: get-vw(50px, 768);
-    		//margin-top: auto;
+			//margin-top: auto;
 		}
 
 		@include up($lg) {
 			max-height: get-vw(665px, 1024);
 			margin-bottom: get-vw(50px, 1024);
 		}
-	
+
 		@include upLandscape($xs) {
 			flex: 0 0 40%;
 			max-width: 40%;
@@ -363,19 +431,19 @@ export default {
 			padding: get-vw($gutter, 568);
 			padding-left: 0;
 			margin: auto 0;
-    		height: 100%;
+			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-		}    
+		}
 
 		@include upLandscape($md-land) {
-    		height: get-vw(500px, 1024);
+			height: get-vw(500px, 1024);
 			flex: 0 0 45%;
 			max-width: 45%;
 			padding-right: 0;
 			padding-top: 0;
-    		max-height: 100%;
+			max-height: 100%;
 		}
 
 		@include upLandscape($xl-land) {
@@ -392,7 +460,7 @@ export default {
 
 	.case-route-to {
 		display: block;
-		transition: .4s;
+		transition: 0.4s;
 
 		&.hidden {
 			opacity: 0;
@@ -400,7 +468,6 @@ export default {
 			transform: translateY(20%);
 		}
 	}
-
 
 	@include up($sm) {
 		justify-content: center;
@@ -420,21 +487,20 @@ export default {
 		//flex-direction: row-reverse;
 		//align-items: center;
 	}
-	
+
 	@include upLandscape($xs) {
 		flex-flow: row-reverse;
 		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
 	}
-	
+
 	@include upLandscape($md-land) {
 		flex-flow: row-reverse;
 		padding: get-vw(50px, 568) 0 get-vw(30px, 568);
 	}
-	
+
 	@include upLandscape($lg-land) {
 		flex-flow: row-reverse;
 		padding: get-vw(62px, 568) 0 get-vw(30px, 568);
 	}
 }
-
 </style>

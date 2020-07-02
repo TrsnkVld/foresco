@@ -3,7 +3,7 @@
 		<slot></slot>
 		<transition name="case-header__scroll">
 			<svgicon
-				v-if="!isRouteNameHome && !isPageScrolled"
+				v-if="!isRouteNameHome "
 				v-scroll-to="{el: '.case section:first-child', duration: 1200, }"
 				class="case-header__scroll"
 				name="arrow_scroll"
@@ -32,9 +32,15 @@ export default {
 	methods: {
 		height() {
 			//alert(window.innerHeight);
-			if (this.widthPx !== window.innerWidth) {
+
+			if (this.$route.name == 'home') {
 				this.heightPx = window.innerHeight;
 				this.widthPx = window.innerWidth;
+			} else {
+				if (this.widthPx !== window.innerWidth) {
+					this.heightPx = window.innerHeight;
+					this.widthPx = window.innerWidth;
+				}
 			}
 		},
 		/*
@@ -102,6 +108,7 @@ export default {
 .case-header {
 	height: 100vh;
 	padding: 0;
+	position: relative;
 	//padding-bottom: 40px;
 
 	& > .container {
@@ -126,12 +133,17 @@ export default {
 		}
 	}
 
-	&.no-swipe {
+	&.no-swipe, &.no-swipe.swiper-slide-active {
 		pointer-events: none;
+		
+		.case-swiper__item {
+			pointer-events: none;
+		}
 	}
 
 	&__scroll {
 		position: absolute;
+		z-index: 1;
 		bottom: 40px;
 		left: 50%;
 		transform: translate(-50%, 0);

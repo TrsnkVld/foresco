@@ -5,6 +5,7 @@ Vue.use(Router);
 
 const Home = () => import('../views/Home');
 const Contacts = () => import('../views/Contacts');
+const Team = () => import('../views/Team');
 const About = () => import('../views/About');
 
 /*
@@ -71,6 +72,11 @@ const routes = [
 		path: '/contacts',
 		name: 'contacts',
 		component: Contacts
+	},
+	{
+		path: '/team',
+		name: 'team',
+		component: Team
 	},
 	{
 		path: '/about',

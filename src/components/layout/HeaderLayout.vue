@@ -48,7 +48,7 @@ export default {
 		},
 
 		isCloseShowed() {
-			if (this.$route.name==='home' || this.$route.name==='contacts' || this.$route.name==='about') return false;
+			if (this.$route.name==='home' || this.$route.name==='contacts' || this.$route.name==='about' || this.$route.name==='team') return false;
 			return true;
 		},
 

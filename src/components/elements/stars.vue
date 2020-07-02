@@ -93,11 +93,11 @@ export default {
 				sizes.push(20);
 			}
 			this.geometry = new THREE.BufferGeometry();
-			this.geometry.addAttribute(
+			this.geometry.setAttribute(
 				"position",
 				new THREE.Float32BufferAttribute(positions, 3)
 			);
-			this.geometry.addAttribute(
+			this.geometry.setAttribute(
 				"size",
 				new THREE.Float32BufferAttribute(sizes, 1).setDynamic(true)
 			);
