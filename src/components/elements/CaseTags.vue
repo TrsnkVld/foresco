@@ -61,6 +61,13 @@ export default {
 
 	&__wrap {
 		width: 100%;
+		display: flex;
+		flex-flow: wrap;
+		justify-content: center;
+
+		@include upLandscape($md-land) {
+			justify-content: flex-start;
+		}
 	}
 
 	&__item {
@@ -73,7 +80,6 @@ export default {
 		border-radius: get-vw($border-radius, 320);
 		padding: get-vw(14px, 320) get-vw(20px, 320);
 		margin: 0px get-vw(4px, 320) get-vw(8px, 320);
-		pointer-events: all;
 
 		@include up($md) {
 			font-size: get-vw(12px, 768);

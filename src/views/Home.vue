@@ -1,8 +1,5 @@
 <template>
 	<main :class="routeName">
-		<transition name="menu">
-			<!--<StarsParticles v-if="isWelcomeScreenShowing" intro /> -->
-		</transition>
 		<CaseHeader :class="{'no-swipe': !isRouteNameHome}">
 			<swiper
 				class="case-swiper"
@@ -18,28 +15,30 @@
 						:subTitle="item.subtitle"
 						:imageSrc="item.image"
 						:glowColor="item.color"
-						:alias='item.alias'
-						:tags='item.tags'
-						:style="(currentSlide === index) ? `opacity: ${slideOpacity}`: null"
+						:alias="item.alias"
+						:tags="item.tags"
+						:svgs="item.svgs"
 					/>
 				</swiper-slide>
 			</swiper>
+
 			<div class="case-swiper-nav" :class="{'hidden': !isRouteNameHome}">
 				<svgicon
 					name="arrow"
-					class="case-swiper-nav__prev"
+					class="case-swiper-nav__item case-swiper-nav__prev"
 					slot="button-prev"
-					:style="`stroke: ${cases[currentSlide].color}`"
+					:style="`stroke: ${cases[0].color}`"
+					@click="onClickNavNext()"
 				/>
 				<div class="case-swiper-pagination">
 					<div class="case-swiper-pagination__inner" />
-					<!--:style="`color: ${cases[currentSlide].color}`"-->
 				</div>
 				<svgicon
 					name="arrow"
-					class="case-swiper-nav__next svg-down"
+					class="case-swiper-nav__item case-swiper-nav__next svg-down"
 					slot="button-next"
-					:style="`stroke: ${cases[currentSlide].color}`"
+					:style="`stroke: ${cases[0].color}`"
+					@click="onClickNavPrev()"
 				/>
 			</div>
 		</CaseHeader>
@@ -51,67 +50,87 @@
 </template>
 
 <script>
+import { TweenMax } from "gsap";
+
 export default {
 	name: "Home",
-	data: () => ({
-		componentKey: 0,
-		sliderMouseWheel: true,
-		colors: [
-			"background-color: #f04f6c;",
-			"background-color: #141516;",
-			"background-color: #2d2d32;",
-			"background-color: #ffffff;"
-		],
-		currentSlide: 1,
-		slideOpacity: 1,
-		dragged: 0,
-	}),
-	methods: {
-		setCaseIndex(caseIndex) {
-			this.currentSlide = caseIndex;
-			this.$refs.casesSwiper.$swiper.slideTo(caseIndex, 0);
-		},
+	data() {
+		const self = this;
+		//const currentTransitionSpeed = 0;
 
-		setCurrentSlide() {
-			this.currentSlide = this.$refs.casesSwiper.$swiper.activeIndex;
-		},
+		return {
+			allowNext: true,
 
-		handleClickSlide(event) {
-			//console.log(event);
-			//this.dragged = +1;
-			//console.log('asd');
-			//if(this.dragged === 2) {
-				//console.log(this.$refs.casesSwiper.$swiper.activeIndex);
-				//this.slideOpacity = this.slideOpacity - 0.005;
-			//}
-		}
-	},
-	computed: {
-		isRouteNameHome() {
-			if (this.$route.name==='home') return true;
-			return false;
-		},
+			componentKey: 0,
+			sliderMouseWheel: true,
+			currentTransitionSpeed: 0,
+			currentSlide: 1,
+			slideOpacity: 1,
+			dragged: 0,
 
-		cases() {
-			return this.$store.state.cases;
-		},
+			colors: [
+				"#f04f6c",
+				"#0262ce",
+				"#c1a476",
+				"#0895be",
+				"#737373",
+				"#f04f6c"
+			],
 
-		swiperOptions() {
-			return {
+			swiperOptions: {
 				direction: "vertical",
-				mousewheel: this.sliderMouseWheel,
+				mousewheelControl: true,
+				preventInteractionOnTransition: false,
 				slidesPerView: 1,
 				slidesPerGroup: 1,
-				speed: 1600,
-				shortSwipes: true,
+				simulateTouch: true,
+				//speed: 1600,
+				//shortSwipes: true,
 				//longSwipesMs: 100,
-				threshold: 20,
+				//threshold: 20,
 				//effect: 'fade',
 				//followFinger: false,
 				//spaceBetween: 15,
-				navigation: {
-					nextEl: ".case-swiper-nav__next",
-					prevEl: ".case-swiper-nav__prev"
+
+				//////
+				//custom
+				longSwipesMs: 400,
+
+				speed: 1300,
+				watchSlidesProgress: true,
+				virtualTranslate: true,
+				watchSlidesVisibility: true,
+				effect: "myCustomTransition",
+				///////
+				on: {
+					init: function() {
+						const swiper = this;
+						//console.log(swiper);
+					},
+
+					transitionStart() {
+						//console.log('transitionStart');
+						// Update if start
+						self.allowNext = false;
+						self.afterSliderTransition();
+					},
+
+					progress: function(progress) {
+						const swiper = this;
+						if (swiper.params.effect !== "myCustomTransition") return;
+						self.progress(swiper, progress);
+					},
+
+					setTransition(transition) {
+						const swiper = this;
+						if (swiper.params.effect !== "myCustomTransition") return;
+						self.setTransition(swiper, transition);
+					},
+					setTranslate(translate) {
+						const swiper = this;
+						if (swiper.params.effect !== "myCustomTransition") return;
+						self.setTranslate(swiper, translate);
+					}
 				},
 				pagination: {
 					el: ".case-swiper-pagination__inner",
@@ -121,7 +140,196 @@ export default {
 						return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
 					}
 				}
-			};
+			}
+		};
+	},
+	methods: {
+		test() {
+			//this.$refs.casesSwiper.$swiper.params.preventInteractionOnTransition=false;
+			//this.$refs.casesSwiper.$swiper.slideNext();
+			console.log(this.swiper);
+		},
+
+		getTransitionSpeed() {
+			const transitionSpeed = this.currentTransitionSpeed;
+			// don't forget to reset the variable for future calls
+			this.currentTransitionSpeed = 0;
+			return 1300;
+		},
+
+		setCaseIndex(caseIndex) {
+			this.currentSlide = caseIndex;
+			this.$refs.casesSwiper.$swiper.slideTo(caseIndex, 0);
+		},
+
+		progress(swiper, progress) {
+			/* 
+			if you need to change something for each progress
+			do it here (progress variable is always in range from 0 to 1) representing progress of the whole slider 
+			*/
+		},
+
+		getActiveIndexBeforeTransitionStart(swiper, slides) {
+			const isDragging = !Math.abs(slides[swiper.activeIndex].progress === 1);
+			if (isDragging) {
+				return swiper.slidesGrid.indexOf(
+					-swiper.touchEventsData.startTranslate || swiper.params.initialSlide
+				);
+			} else {
+				return swiper.activeIndex;
+			}
+		},
+
+		getDirection(animationProgress) {
+			if (animationProgress === 0) {
+				return "NONE";
+			} else if (animationProgress > 0) {
+				return "NEXT";
+			} else {
+				return "BACK";
+			}
+		},
+
+		setTransition(swiper, transitionSpeed) {
+			this.currentTransitionSpeed = transitionSpeed;
+			// console.log("transition", transitionSpeed);
+		},
+
+		setTranslate(swiper, wrapperTranslate) {
+			const durationInSeconds = this.getTransitionSpeed() / 1000;
+			// convert slides object to plain array
+			const slides = Object.values(swiper.slides).slice(0, -1);
+
+			// get the index of the slide active before transition start (activeIndex changes halfway when dragging)
+			const originIndex = this.getActiveIndexBeforeTransitionStart(
+				swiper,
+				slides
+			);
+			// get information about animation progress from the active slide - the active slide's value is always -1 to 1.
+			/* 
+				every slide has a progress attribute equal to the "distance" from the current active index.
+			*/
+			//console.warn(slides[originIndex].progress);
+			//const animationProgress = slides[originIndex].progress;
+			// you can then get the drag direction like so:
+			//const direction = this.getDirection(animationProgress);
+			// console.log(direction);
+
+			// do magic with each slide
+			slides.map((slide, index) => {
+				// to put the slides behind each other we have to set their CSS translate accordingly since by default they are arranged in line.
+				const offset = slide.swiperSlideOffset;
+				let x = -offset;
+				if (!swiper.params.virtualTranslate) x -= swiper.translate;
+				let y = 0;
+				if (!swiper.isHorizontal()) {
+					y = x;
+					x = 0;
+				}
+				TweenMax.set(slide, {
+					x,
+					y
+				});
+
+				// do our animation stuff!
+				const clip = (val, min, max) => Math.max(min, Math.min(val, max));
+				const ZOOM_FACTOR = 0.5;
+				const TRANSLATE_FACTOR = 150;
+
+				const opacity = Math.max(1 - Math.abs(slide.progress * 10), 0);
+
+				if (slide.progress > 0.5) {
+					//console.log('x');
+				}
+
+				const clippedProgress = clip(slide.progress, -1, 1);
+				const scale = 1 - ZOOM_FACTOR * clippedProgress;
+				y = 1 - TRANSLATE_FACTOR * clippedProgress;
+
+				// you can do your CSS animation instead of using tweening.
+				TweenMax.to(slide, durationInSeconds, {
+					//y: x,
+					//scale,
+					//'margin-top': tY*10,
+				});
+				TweenMax.to(slide.children[0], durationInSeconds, {
+					y,
+					opacity
+				});
+			});
+		},
+
+		setCurrentSlide() {
+			const color = this.cases[this.$refs.casesSwiper.$swiper.activeIndex]
+				.color;
+			this.currentSlide = this.$refs.casesSwiper.$swiper.activeIndex;
+
+			setTimeout(() => {
+				document.querySelectorAll(".case-swiper-nav__item").forEach(element => {
+					element.style.stroke = color;
+				});
+			}, 100);
+		},
+
+		handleClickSlide(event) {
+			//console.log(event);
+			//this.dragged = +1;
+			//console.log('asd');
+			//if(this.dragged === 2) {
+			//console.log(this.$refs.casesSwiper.$swiper.activeIndex);
+			//this.slideOpacity = this.slideOpacity - 0.005;
+			//}
+		},
+
+		afterSliderTransition() {
+			setTimeout(() => {
+				this.allowNext = true;
+			}, 800);
+		},
+
+		watchScrollWheel(event) {
+			if (this.allowNext && this.isRouteNameHome) {
+				if (event.deltaY < 0) {
+					this.swiper.slidePrev();
+				} else {
+					this.swiper.slideNext();
+				}
+			}
+		},
+
+		onClickNavNext() {
+			if (this.allowNext) {
+				this.swiper.slidePrev();
+				this.allowNext = false;
+				this.afterSliderTransition();
+			}
+		},
+
+		onClickNavPrev() {
+			if (this.allowNext) {
+				this.swiper.slideNext();
+				this.allowNext = false;
+
+				this.afterSliderTransition();
+			}
+		}
+	},
+	computed: {
+		swiper() {
+			return this.$refs.casesSwiper.$swiper;
+		},
+
+		isSwiperAnimating() {
+			return this.$refs.casesSwiper.$swiper.animating;
+		},
+
+		isRouteNameHome() {
+			if (this.$route.name === "home") return true;
+			return false;
+		},
+
+		cases() {
+			return this.$store.state.cases;
 		},
 
 		routeName() {
@@ -156,13 +364,46 @@ export default {
 			//document.documentElement.classList.remove("locked");
 		}, 500);
 	},
+
+	destroyed() {
+		//Remove when destroyed, to prevent memory leaks
+		this.content.removeEventListener("wheel", this.watchScrollWheel);
+	},
+
+	watch: {
+		$route(to, from) {
+			if (!this.isRouteNameHome) {
+				this.swiper.params.simulateTouch = false;
+			}
+		}
+	},
+
 	mounted() {
-		this.setCurrentSlide();
+		this.content = document.querySelector("body");
+		this.content2 = document.querySelector(".case-swiper-nav__item");
+		this.content.addEventListener("wheel", this.watchScrollWheel);
+		this.content.addEventListener("click", this.watchNavClick);
+
+		this.setCurrentSlide();		
 	}
 };
 </script>
 
 <style lang="scss">
+.slider {
+	height: 100%;
+
+	&-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			height: 600px;
+		}
+	}
+}
+
 .home {
 	//background: $black;
 	height: 100%;
@@ -180,26 +421,33 @@ export default {
 
 	&__item {
 		height: 100% !important;
-		
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.3s ease 0s;
+
 		& > .container {
 			height: 100%;
 
 			.case-card {
-				opacity: 0;
-				transition: 0.3s;
-				transition-delay: 0s;
-				transition-property: opacity;
 			}
 		}
 
+		a {
+			pointer-events: none;
+		}
+
 		&.swiper-slide-active {
+			pointer-events: all;
+			opacity: 1;
+			transition: opacity 0.3s ease 0.4s;
+
 			& > .container {
 				.case-card {
-					opacity: 1;
-					transition: 0.8s;
-					transition-delay: 0.5s;
-					transition-property: opacity;
 				}
+			}
+
+			a {
+				pointer-events: all;
 			}
 		}
 	}
@@ -313,7 +561,7 @@ export default {
 
 	&-nav {
 		position: absolute;
-		transition: .4s;
+		transition: 0.4s;
 		top: 50%;
 		right: get-vw($gutter, 320);
 		z-index: 2;
@@ -334,7 +582,7 @@ export default {
 			transition: opacity 0.3s;
 			outline: none;
 			fill: none;
-			transition: stroke, $transition;
+			transition: stroke 0.6s;
 			user-select: none;
 
 			&:hover {
@@ -428,10 +676,10 @@ export default {
 		}
 
 		&.hidden {
-			
 			.case-swiper-nav__prev {
 				margin-bottom: 100%;
-				transition: margin-bottom .4s ease .4s, opacity .4s ease .8s, visibility .4s ease .8s;
+				transition: margin-bottom 0.4s ease 0.4s, opacity 0.4s ease 0.8s,
+					visibility 0.4s ease 0.8s;
 			}
 
 			.case-swiper-pagination {
@@ -442,9 +690,8 @@ export default {
 			svg {
 				opacity: 0;
 				visibility: hidden;
-				transition: opacity .4s ease .8s, visibility .4s ease .8s;
+				transition: opacity 0.4s ease 0.8s, visibility 0.4s ease 0.8s;
 			}
-
 		}
 
 		@include up($sm) {

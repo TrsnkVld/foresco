@@ -135,39 +135,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="scss">
-.case {
-	background: $black;
-	height: 100%;
-	flex-grow: 1;
-
-	.case-header {
-		.swiper-container {
-			//pointer-events: none;
-		}
-
-		.case-card {
-			&__text,
-			&__img {
-				//pointer-events: all;
-			}
-		}
-	}
-}
-
-.case-swiper {
-	height: 100%;
-	position: relative;
-
-	&__item {
-		opacity: 0;
-		transition: opacity 0.3s;
-
-		&.swiper-slide-active {
-			opacity: 1;
-			transition-delay: .5s;
-		}
-	}
-}
-</style>
