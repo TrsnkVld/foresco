@@ -39,7 +39,11 @@
 		</SingleSection>
 
 		<SingleSection>
+
+			<SeparatorLine sm="60" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/gusli/gusli-5.png')" />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Исследование и проектирование"
@@ -48,6 +52,8 @@
 				/>
 			</ContentBlockWrap>
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_1.png')" hover />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Дизайн"
@@ -55,14 +61,22 @@
 					text="<p>За основу взята темная тема и светлые текстовые поля. Такое решение позволяет использовать приложение при различном уровне освещенности и сокращает потребление энергии устройством. Метки на карте встречаются двух типов: ярко розовые – для работающих заведений, серые – закрытых. Такое решение показывает пользователю актуальную информацию на данный момент времени.</p><p>Логотип сделан в пастельных тонах. Контур фигуры внутри иконки напоминает гусли и повторяет первый символ в названии</p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="30" md="40" lg="60" />
+
 			<ImageBlock :imageSrc="require('../../assets/img/gusli/gusli-6.png')" hover />
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 		</SingleSection>
 		<SingleSection>
 			<ImageBlock :imageSrc="require('../../assets/img/gusli/gusli-7.png')" small />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 		</SingleSection>
 
 		<SingleSection>
 			<FeedbackBlock btnColor="rgb(240, 79, 108)" />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 		</SingleSection>
 	</main>
 </template>
