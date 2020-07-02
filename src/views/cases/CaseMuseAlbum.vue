@@ -2,7 +2,7 @@
 	<main class="case">
 		
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
@@ -26,12 +26,12 @@
 
 			</ContentBlockWrap>
 			<!--<ListBlock title="qweasdxzc" :imageSrc="require('../../assets/img/musealbum/musealbum-5.png')"  />-->
-			<SeparatorLine sm="120" md="40" lg="60" />
+			<SeparatorLine sm="60" md="40" lg="60" />
 
 		</SingleSection>
 
 		<SingleSection>
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<ContentBlockWrap>
 				<ContentBlockIcon
@@ -40,9 +40,9 @@
 					text="<p>На начальном этапе разработки мы обсудили функционал с заказчиком. Перед нашей командой стояла задача реализовать онлайн сервис по созданию фотокниг в мобильной версии. При разработке пользовательских кейсов мы учли возможность сохранения черновиков, а также просмотр конечной версии фотокниги перед оформлением заказа.</p>"
 				/>
 			</ContentBlockWrap>
-			<SeparatorLine sm="120" md="40" lg="45" />
+			<SeparatorLine sm="15" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/musealbum/musealbum-6.png')" hover />
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="90" />
 
 			<ContentBlockWrap>
 
@@ -52,23 +52,23 @@
 					text="<p>Дизайн приложения построен на монохромном сочетании. Черно-белое рабочее пространство создает необходимый контраст для качественной работы с изображениями. Основные цвета палитры – белый, черный, серый. Бежевый используется для важных элементов.</p><p>В логотипе мы отобразили фирменный знак компании на черном фоне. Такое цветовое решение ассоциируется с высоким качеством продукта</p>"
 				/>
 			</ContentBlockWrap>
-			<SeparatorLine sm="120" md="40" lg="45" />
+			<SeparatorLine sm="25" md="40" lg="45" />
 
 			<ImageBlock :imageSrc="require('../../assets/img/musealbum/musealbum-1.png')" hover />
 
 		</SingleSection>
 
 		<SingleSection  textStyle="color: #ffffff;">
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 
 		<SingleSection>
-			<SeparatorLine sm="120" md="40" lg="120" />
 
+			<SeparatorLine sm="60" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/musealbum/musealbum-2.png')" small />
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="90" />
 
 		</SingleSection>
 
@@ -79,13 +79,15 @@
 				img="musealbum/banner-musealbum.png" 
 				link="https://apps.apple.com/tt/app/%D1%84%D0%BE%D1%82%D0%BE%D0%B0%D0%BB%D1%8C%D0%B1%D0%BE%D0%BC-musealbum/id1447112453"
 			/>
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="40" md="40" lg="90" />
 
 
 		</SingleSection>
 
 		<SingleSection>
 			<FeedbackBlock btnColor="#C1A476" />
+			<SeparatorLine sm="40" md="40" lg="60" />
+
 		</SingleSection>
 	</main>
 </template>

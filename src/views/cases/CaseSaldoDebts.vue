@@ -3,7 +3,7 @@
 		
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
 
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SectionTitle class="main-title">Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
@@ -41,7 +41,7 @@
 					img="saldo/saldo-3.png"
 				/>
 			</ContentBlockWrap>
-			<SeparatorLine sm="120" md="40" lg="60" />
+			<SeparatorLine sm="60" md="20" lg="60" />
 
 		</SingleSection>
 		<!--
@@ -55,13 +55,13 @@
 		</SingleSection>
 -->
 		<SingleSection>
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<TitleText title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
-			<SeparatorLine sm="120" md="40" lg="60" />
+			<SeparatorLine sm="60" md="40" lg="60" />
 
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="60" md="40" lg="90" />
 
 			<ContentBlockWrap>
 
@@ -71,9 +71,9 @@
 					text="<p>На первом этапе мы изучили запросы целевой аудитории, которые на данный момент не были реализованы полностью ни в одном приложении. Ключевые из них – частичное погашение долгов, сохранение анонимности личных данных, отсутствие регистрации в приложении и совместное ведение долгов. За время разработки наша команда столкнулась с задачами, которые не имели готового технического решения. </p><p>Например, было важно сохранить информацию о долгах не в телефоне, а привязать ее к пользователю. Частичная синхронизация с iCloud обеспечила доступ к долгам и займам с любого устройства</p><p>После реализации технических вопросов мы приступили к тестированию продукта. Нам важно, чтобы приложение не только работало без ошибок, но и было удобно для пользователя</p>"
 				/>
 			</ContentBlockWrap>
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="60" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_1.png')" hover />
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<ContentBlockWrap>
 
@@ -83,34 +83,34 @@
 					text="<p>В приложении используются три основных цвета: красный – для долгов, зеленый – для займов и синий – нейтральный цвет интерфейса. В качестве фонового цвета взята светлая тема, которая оптимальна для работы с текстовой информацией.</p><p>При разработке логотипа нам было важно отобразить суть приложения. Основной элемент -стрелки, направленные в противоположных направлениях. Одна символизирует входящие долги, другая – исходящие. Общая концепция логотипа строится на современном тренде минимализма.</p>"
 				/>
 			</ContentBlockWrap>
-			<SeparatorLine sm="120" md="40" lg="90" />
+			<SeparatorLine sm="60" md="40" lg="90" />
 
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_2.png')" hover />
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 
 		<SingleSection>
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SliderFaq title="Вопрос-Ответ" :items="sliderFaqItems" btnColor="rgb(2, 98, 206)" />
 		</SingleSection>
 
 		<SingleSection>
-			<SeparatorLine sm="120" md="40" lg="120" />
+			<SeparatorLine sm="0" md="0" lg="60" />
 
 			<BannerLink 
-				title="Соберите все долги и займы в Saldo.Долги" 
+				title="Соберите все долги и займы в Saldo"
 				subTitle="Оцените приложение в AppStore"  
 				img="saldo/banner-saldo.png" 
 				link="https://www.google.ru/"
@@ -119,11 +119,11 @@
 
 		<SingleSection>
 
-			<SeparatorLine sm="20" md="70" lg="90" />
+			<SeparatorLine sm="40" md="70" lg="90" />
 
 			<FeedbackBlock btnColor="rgb(2, 98, 206)" />
 
-			<SeparatorLine sm="20" md="70" lg="90" />
+			<SeparatorLine sm="40" md="70" lg="90" />
 		</SingleSection>
 	</main>
 </template>

@@ -2,6 +2,7 @@
 	<main class="case">
 		
 		<SingleSection textStyle="color: #ffffff;">
+
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
 				<ContentBlockLG
@@ -32,14 +33,24 @@
 					textStyle="color: #000000"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="60" md="20" lg="60" />
+
 		</SingleSection>
 
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<TitleText textStyle="color: #000000;" title="Задача" text="Разработать приложение, которое станет простым инструментом для учета бухгалтерии по долгам и займам. Программа автоматизирует процесс ведения долгов и будет производить расчеты под контролем всех участников сделки. Сможет эффективно применяться как в бизнесе, так и в повседневной жизни." />
+
+			<SeparatorLine sm="60" md="40" lg="60" />
 			<ImageBlock :imageSrc="require('../../assets/img/big-img.png')" small />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 
 		</SingleSection>
 		<SingleSection bgStyle="background: #000000;" textStyle="color: #ffffff;">
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Исследование и проектирование"
@@ -47,7 +58,10 @@
 					text="<p>На первом этапе мы обсудили функционал с заказчиком, выделили ключевые моменты, составили пользовательские кейсы и предложения. Второй этап – создание эскиза схемы работы приложения для дальнейшего прототипирования. <br><br>Заказчик согласовал представленную архитектуру приложения.</p>"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="60" md="40" lg="60" />
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_1.png')" hover />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 			<ContentBlockWrap>
 				<ContentBlockIcon
 					title="Дизайн"
@@ -55,7 +69,11 @@
 					text="<p>За основу была взята современная темная тема, набирающая всё большую популярность среди пользователей. Такая цветовая палитра не отвлекает от основной задачи и делает навигацию по приложению удобной и понятной. Принцип минимализма и простоты дополняется ярким запоминающимся логотипом</p>"
 				/>
 			</ContentBlockWrap>
+
+			<SeparatorLine sm="60" md="40" lg="30" />
 			<ImageBlock :imageSrc="require('../../assets/img/mockup_2.png')" hover />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 		</SingleSection>
 
 		<SingleSection textStyle="color: #ffffff;">
@@ -63,7 +81,11 @@
 		</SingleSection>
 
 		<SingleSection>
+
+			<SeparatorLine sm="60" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../../assets/img/findphoto/findphoto-4.png')" small />
+			<SeparatorLine sm="60" md="40" lg="90" />
+
 		</SingleSection>
 
 		<SingleSection>
@@ -74,10 +96,13 @@
 				link="https://apps.apple.com/us/app/find-photo/id1500003862"
 			/>
 		</SingleSection>
+		<SeparatorLine sm="60" md="40" lg="90" />
 
 		<SingleSection>
 			<FeedbackBlock btnColor="#F04F6C" />
 		</SingleSection>
+		<SeparatorLine sm="40" md="40" lg="60" />
+
 	</main>
 </template>
 
