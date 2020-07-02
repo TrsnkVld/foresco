@@ -11,7 +11,7 @@
 				<svg
 					class="header__burger"
 					:class="{'active': isMenuOpened && burgerActive}"
-					@click="onMenuToggle(); burgerActive = !burgerActive"
+					@click="onMenuToggle()"
 					width="38"
 					height="19"
 					viewBox="0 0 38 19"
@@ -84,13 +84,15 @@ export default {
 			this.isIndicatorClose = false;
 
 			if (this.isMenuOpened) {
-				this.isIndicatorClose = true;
-				this.isMenuLinksShowed = false;
-
-				this.isMenuContentShown = false;
+				this.burgerActive = false;
 				setTimeout(() => {
+					this.isIndicatorClose = true;
+				}, 100);
+				this.isMenuLinksShowed = false;
+				setTimeout(() => {
+					this.isMenuContentShown = false;
 					setTimeout(() => {}, 1);
-				}, 400);
+				}, 200);
 
 				/*
 				this.isMenuLinksShowed = false;
@@ -100,6 +102,7 @@ export default {
 				*/
 			} else {
 				this.isMenuOpened = true;
+				this.burgerActive = true;
 			}
 		}
 	},

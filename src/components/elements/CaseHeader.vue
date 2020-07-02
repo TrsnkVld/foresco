@@ -42,6 +42,7 @@ export default {
 					this.widthPx = window.innerWidth;
 				}
 			}
+			this.$emit('onScreenRotation');
 		},
 		/*
 		doOnOrientationChange() {

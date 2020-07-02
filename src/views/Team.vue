@@ -1,11 +1,12 @@
 <template>
     <main class="team page">
-        <h2 class="team-title">Наша команда</h2>
+        <h2 class="team-title"  data-aos="fade-up">Наша команда</h2>
         <swiper
             class="team-swiper"
             :options="swiperOptions"
             ref="teamSwiper"
             :style="`left: -${offset}px`"
+             data-aos="fade-up"
         >
             <swiper-slide class="team-swiper__item" v-for="(item, index) in team" :key="index">
                 <h2>0{{index+1}}</h2>
@@ -21,7 +22,7 @@
             <swiper-slide class="team-swiper__item team-swiper__item--form" >
                 <div class="worker open-form">
                     <div class="worker__img" @click="isModalShowed = !isModalShowed">
-                        s
+                        <svgicon name="plus" />
                     </div>
                     <div class="worker-info">
                         <h3 class="worker__name">Наш будущий сотрудник</h3>
@@ -45,12 +46,6 @@ export default {
                 about: "Опыт работы 4 года (Swift)",
             },
             {
-                img: "arthur.jpg",
-                name: "Артур",
-                position: "Android-developer, back-end developer",
-                about: "Опыт работы 3 года (Elixir, Kotlin, Java)",
-            },
-            {
                 img: "andrew.jpg",
                 name: "Андрей",
                 position: "Маркетинг",
@@ -69,6 +64,12 @@ export default {
                 about: "Опыт работы 10 лет",
             },
             {
+                img: "arthur.jpg",
+                name: "Артур",
+                position: "Android-developer, back-end developer",
+                about: "Опыт работы 3 года (Elixir, Kotlin, Java)",
+            },
+            {
                 img: "vlad.jpg",
                 name: "Владислав",
                 position: "Frontend-developer",
@@ -81,9 +82,8 @@ export default {
             //mousewheel: this.sliderMouseWheel,
             slidesPerView: 1,
             keyboard: true,
-            speed: 1600,
-            centeredSlides: true,
-            spaceBetween: 0,
+            speed: 700,
+            spaceBetween: 20,
             navigation: {
                 nextEl: ".team-swiper-nav__next",
                 prevEl: ".team-swiper-nav__prev"
@@ -98,10 +98,15 @@ export default {
             },
 			breakpoints: {
 				768: {
-                    slidesPerView: 'auto',
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                    speed: 1200,
 				},
 				1320: {
                     slidesPerView: 'auto',
+                    centeredSlides: true,
+                    spaceBetween: 0,
+                    speed: 1200,
 				}
 			}
 		},
@@ -115,6 +120,9 @@ export default {
         const values = wrapper.style.transform.split(/\w+\(|\);?/);
         const transform = values[1].split(/,\s?/g).map(parseInt);
         this.offset = transform[0];
+
+
+        document.querySelector('html').classList.add("locked"); 
     },
 	computed: {
 		isModalShowed: {
@@ -135,17 +143,21 @@ export default {
     padding-top: get-vw(75px, 320);
 
     &-title {
-        position: absolute;
         top: 0;
         left: 0;
         color: $white;
-        padding-left: 50px;
+        padding-left: 20px;
+
+        @include up($md) {
+            position: absolute;
+            padding-left: 50px;
+        }
     }
     
 	@include up($sm) {
-        padding-top: get-vw(100px, 414);
+        padding-top: get-vw(75px, 414);
         .team-title {
-        padding-top: get-vw(100px, 414);
+        //padding-top: get-vw(100px, 414);
 
         }
 	}
@@ -208,12 +220,16 @@ export default {
 }
 
 .team-swiper {
-    padding: 0 50px;
+    padding: 0 20px;
     overflow: visible;
+    width: 65%;
+    margin-left: 0;
+
+    .swiper-wrapper {
+    }
 
     &__item, .team-swiper__item--form {
-        border-right: solid 1px #97979766;
-        padding: 200px 110px 0;
+        padding: 40px 0 0;
         width: auto;
         transition: border-right .4s ease .3s;
 
@@ -222,6 +238,11 @@ export default {
             position: absolute;
             top: 0;
             right: 110px;
+            display: none;
+
+            @include up($xl) {
+                display: block;
+            }
         }
 
         * {
@@ -250,17 +271,37 @@ export default {
             }
 
             .worker {
-                transform: translateY(-30px);
 
                 &__img {
                     filter: unset;
-                    height: 530px;
+                    border-radius: 3px;
+                }
+
+                &-info {
+                    opacity: 1;
                 }
 
                 &__about {
                     opacity: .5;
                     transform: translateY(0%);
                     transition: opacity, transform, .6s ease .5s;
+                }
+
+                @include up($md) {
+
+                    .worker__img {
+                        height: 400px;
+                        border-radius: 0px;
+                    }
+                }
+
+                @include up($lg) {
+                    transform: translateY(-30px);
+
+                    .worker__img {
+                        height: 530px;
+                        border-radius: 0px;
+                    }
                 }
             }
 
@@ -277,11 +318,32 @@ export default {
             }
 
         }
+
+        @include up($md) {
+            padding: 130px 0 0;
+
+            &.swiper-slide-active {
+                .worker__img {
+                    height: 530px;
+                }
+            }
+        }
+
+        @include up($lg) {
+            padding: 200px 110px 0;
+            border-right: solid 1px #97979766;
+
+            &.swiper-slide-active {
+                .worker__img {
+                    height: 530px;
+                }
+            }
+        }
     }
 
     .worker {
         transition: transform .4s ease;
-        width: 415px;
+        width: 100%;
 
         &__about {
             opacity: 0;
@@ -292,29 +354,65 @@ export default {
         &__img {
             overflow: hidden;
             width: 100%;
-            height: 500px;
+            height: 260px;
             background-size: cover;
             background-position: top;
             filter: grayscale(1);
             transition: filter, height, .4s ease;
+
+            svg {
+                width: 40px;
+                height: 40px;
+            }
 
             img {
                 width: 100%;
             }
         }
         &-info {
+            width: 500px;
+            opacity: 0;
+            transition: opacity .5s;
 
             h3 {
                 font-weight: 600;
-                margin-top: 70px;
+                margin-top: 20px;
+
+                @include up($md) {
+                    margin-top: 70px;
+                }
             }
 
             p {
                 margin-top: 9px;
             }
 
+            @include up($md) {
+                width: auto;
+                opacity: 1;
+            }
 
         }
+
+        @include up($md) {
+
+            .worker__img {
+                height: 400px;
+            }
+        }
+
+        @include up($lg) {
+            width: 415px;
+
+            .worker__img {
+                height: 500px;
+            }
+        }
+    }
+
+    @include up($md) {
+        padding: 0 50px;
+    width: 90%;
     }
 }
 </style>

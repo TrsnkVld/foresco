@@ -1,6 +1,6 @@
 <template>
 	<main :class="routeName">
-		<CaseHeader :class="{'no-swipe': !isRouteNameHome}">
+		<CaseHeader :class="{'no-swipe': !isRouteNameHome}" @onScreenRotation="onScreenRotation">
 			<swiper
 				class="case-swiper"
 				:options="swiperOptions"
@@ -51,6 +51,7 @@
 
 <script>
 import { TweenMax } from "gsap";
+import { debounce } from "debounce";
 
 export default {
 	name: "Home",
@@ -60,7 +61,6 @@ export default {
 
 		return {
 			allowNext: true,
-
 			componentKey: 0,
 			sliderMouseWheel: true,
 			currentTransitionSpeed: 0,
@@ -96,7 +96,7 @@ export default {
 				//custom
 				longSwipesMs: 400,
 
-				speed: 1300,
+				speed: 1000,
 				watchSlidesProgress: true,
 				virtualTranslate: true,
 				watchSlidesVisibility: true,
@@ -144,6 +144,13 @@ export default {
 		};
 	},
 	methods: {
+
+		onScreenRotation() {
+			setTimeout(() => {
+				this.swiper.update();
+			}, 1000);
+		},
+
 		test() {
 			//this.$refs.casesSwiper.$swiper.params.preventInteractionOnTransition=false;
 			//this.$refs.casesSwiper.$swiper.slideNext();
@@ -154,7 +161,7 @@ export default {
 			const transitionSpeed = this.currentTransitionSpeed;
 			// don't forget to reset the variable for future calls
 			this.currentTransitionSpeed = 0;
-			return 1300;
+			return 1000;
 		},
 
 		setCaseIndex(caseIndex) {
@@ -288,12 +295,17 @@ export default {
 		},
 
 		watchScrollWheel(event) {
+			//event.preventDefault();
+			//console.log(event);
 			if (this.allowNext && this.isRouteNameHome) {
 				if (event.deltaY < 0) {
-					this.swiper.slidePrev();
+					debounce(this.swiper.slidePrev(), 2000);
 				} else {
-					this.swiper.slideNext();
+					debounce(this.swiper.slideNext(), 2000);
 				}
+
+				event.stopPropagation();
+				event.preventDefault();
 			}
 		},
 
@@ -366,7 +378,6 @@ export default {
 	},
 
 	destroyed() {
-		//Remove when destroyed, to prevent memory leaks
 		this.content.removeEventListener("wheel", this.watchScrollWheel);
 	},
 
@@ -374,6 +385,9 @@ export default {
 		$route(to, from) {
 			if (!this.isRouteNameHome) {
 				this.swiper.params.simulateTouch = false;
+				 document.querySelector('html').classList.remove("locked");
+			} else {
+				 document.querySelector('html').classList.add("locked"); 
 			}
 		}
 	},
@@ -381,10 +395,16 @@ export default {
 	mounted() {
 		this.content = document.querySelector("body");
 		this.content2 = document.querySelector(".case-swiper-nav__item");
-		this.content.addEventListener("wheel", this.watchScrollWheel);
+		this.content.addEventListener("wheel", this.watchScrollWheel, {passive: false});
 		this.content.addEventListener("click", this.watchNavClick);
 
-		this.setCurrentSlide();		
+		this.setCurrentSlide();	
+		
+		if (!this.isRouteNameHome) {
+			document.querySelector('html').classList.remove("locked");
+		} else {
+			document.querySelector('html').classList.add("locked"); 
+		}
 	}
 };
 </script>

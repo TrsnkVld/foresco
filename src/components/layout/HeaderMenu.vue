@@ -191,7 +191,7 @@ export default {
 			}
 
             @include up($md) {
-				width: get-vw(480px, 768);
+				width: get-vw(370px, 768);
 			}
 			
 			@include up($lg) {
@@ -250,17 +250,27 @@ export default {
 			overflow: hidden;
 			width: 0;
     		transition: width .6s ease;
+			height: 100%;
 		}
 
 		@include up($sm) {
 			font-size: 55px;
 			margin-top: 0;
 			height: 100%;
+			margin: auto auto auto 0;
+
+			.menu-links__item {
+				a {
+					padding: 15px 0;
+				}
+			}
 		}
 
 		@include up($md) {
 			//max-width: 450px;
-			width: get-vw(480px, 768);
+			width: get-vw(370px, 768);
+			margin-left: auto;
+			margin-right: 0;
 			padding-left: $gutter-lg;
 			padding-right: $gutter-sm;
 			height: 70%;
@@ -343,7 +353,7 @@ export default {
 	}
 
 	@include up($sm) {
-		padding: get-vw(100px, 414) $gutter;
+		padding: get-vw(80px, 414) $gutter get-vw(110px, 414);
 	}
 
 	@include up($md) {

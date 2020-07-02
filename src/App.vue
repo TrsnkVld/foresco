@@ -36,7 +36,7 @@
 			</div>
 		</transition>
 
-		<FooterLayout v-if="!isRouteNameHome" />
+		<FooterLayout v-if="!isRouteNameHome" :class="{'hidden': isMenuOpened}" />
 	</div>
 </template>
 
