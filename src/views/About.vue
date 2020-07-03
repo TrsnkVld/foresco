@@ -27,7 +27,7 @@
 			<SeparatorLine sm="60" md="40" lg="60" />
 
 			<SliderInfo title="Разработка" btnColor="rgb(2, 98, 206)" slider :items="sliderInfoItems" />
-			<SeparatorLine sm="60" md="40" lg="60" />
+			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<ImageBlock :imageSrc="require('../assets/img/about/about-2.png')" small />
 			<SeparatorLine sm="60" md="40" lg="120" />
@@ -39,13 +39,16 @@
 				animation="fade"
 				itemsTitles="Тестирование Публикация Поддержка Развитие"
 			/>
+			<SeparatorLine sm="0" md="40" lg="80" />
 			<ImageBlock :imageSrc="require('../assets/img/about/img-1.png')" big />
 			<SeparatorLine sm="60" md="40" lg="120" />
 
 			<SliderFaq title="Вопрос-Ответ" :items="sliderFaqItems"  btnColor="rgb(2, 98, 206)" />
+
+			<SeparatorLine sm="0" md="40" lg="60" />
 			<FeedbackBlock btnColor="rgb(2, 98, 206)" />
 
-			<SeparatorLine sm="60" md="40" lg="60" />
+			<SeparatorLine sm="60" md="40" lg="80" />
 		</SingleSection>
 
 	</main>

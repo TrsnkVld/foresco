@@ -111,8 +111,8 @@ export default {
 					transitionStart() {
 						//console.log('transitionStart');
 						// Update if start
-						self.allowNext = false;
-						self.afterSliderTransition();
+						//self.allowNext = false;
+						//self.afterSliderTransition();
 					},
 
 					progress: function(progress) {
@@ -291,21 +291,29 @@ export default {
 		afterSliderTransition() {
 			setTimeout(() => {
 				this.allowNext = true;
-			}, 800);
+			}, 600);
+		},
+
+		afterSliderTransitionLong() {
+			setTimeout(() => {
+				this.allowNext = true;
+			}, 1400);
 		},
 
 		watchScrollWheel(event) {
-			//event.preventDefault();
-			//console.log(event);
+			event.preventDefault();
+			event.stopPropagation();
+
+			debounce(this.test(event), 20000);
+		},
+
+		test(event) {
 			if (this.allowNext && this.isRouteNameHome) {
 				if (event.deltaY < 0) {
-					debounce(this.swiper.slidePrev(), 2000);
+					this.onClickNavNextLong();
 				} else {
-					debounce(this.swiper.slideNext(), 2000);
+					this.onClickNavPrevLong();
 				}
-
-				event.stopPropagation();
-				event.preventDefault();
 			}
 		},
 
@@ -324,7 +332,24 @@ export default {
 
 				this.afterSliderTransition();
 			}
-		}
+		},
+
+		onClickNavNextLong() {
+			if (this.allowNext) {
+				this.swiper.slidePrev();
+				this.allowNext = false;
+				this.afterSliderTransitionLong();
+			}
+		},
+
+		onClickNavPrevLong() {
+			if (this.allowNext) {
+				this.swiper.slideNext();
+				this.allowNext = false;
+
+				this.afterSliderTransitionLong();
+			}
+		},
 	},
 	computed: {
 		swiper() {
@@ -382,7 +407,7 @@ export default {
 	},
 
 	mounted() {
-		this.content = document.querySelector("body");
+		this.content = document.querySelector(".case-swiper");
 		this.content2 = document.querySelector(".case-swiper-nav__item");
 		this.content.addEventListener("wheel", this.watchScrollWheel, {passive: false});
 		this.content.addEventListener("click", this.watchNavClick);
