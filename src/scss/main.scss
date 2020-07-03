@@ -1509,6 +1509,15 @@ input,
 			margin-top: get-vw(20px,1920);
 		}
     }
+
+    &__wrap {
+        filter: blur(0px);
+        transition: 1s filter linear;
+
+        &.blur {
+            filter: blur(5px);
+        }
+    }
     
     &__sent {
         color: white;
