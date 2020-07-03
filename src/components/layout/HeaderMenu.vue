@@ -129,13 +129,9 @@ export default {
 	&-links {
 		position: relative;
 		z-index: 1;
-		//transform: translateX(20%);
-		//opacity: 0;
 		padding: 0;
 		margin: 0;
-		//max-width: 730px;
 		height: calc(100% - 110px);
-		padding-left: $gutter-sm;
 		padding-left: 0;
 		margin-top: $gutter-md;
 		margin-left: auto;
@@ -144,8 +140,7 @@ export default {
 		font-size: 37px;
 		line-height: normal;
 		overflow: hidden;
-		width: 600px;
-		width: get-vw(280px, 320);
+		width: 100%;
 		right: 0;
 		transition: transform $transition-menu ease;
 
@@ -166,7 +161,6 @@ export default {
 			top: 0;
 			right: 0;
 			width: 100%;
-			width: get-vw(280px, 320);
 			height: 100%;
 
 			&.anim {
@@ -182,7 +176,7 @@ export default {
 			&.closing {
 				.active {
 					a {
-						transform: translateX(25px);
+						transform: translateX(0px);
 						transition-delay: 0s;
 						transition: transform, color, .6s ease;
 						color: inherit !important;

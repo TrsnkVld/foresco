@@ -6,8 +6,8 @@ import './plugins/vue-svgicon';
 import 'hamburgers/_sass/hamburgers/hamburgers.scss';
 import 'vue-svgicon/dist/polyfill';
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import './scss/main.scss';
 

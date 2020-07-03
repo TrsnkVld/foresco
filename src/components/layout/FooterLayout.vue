@@ -1,6 +1,6 @@
 <template>
-    <footer class="footer"  data-aos="fade-in">
-        <b-container>
+    <footer class="footer">
+        <b-container data-aos="fade-in">
             <a href="tel:+78124674523"><h4>8 812 567-45-23</h4></a>
             <a href="mailto:info@foresco.ru"><h4>info@foresco.ru</h4></a>
         </b-container>
@@ -18,8 +18,7 @@ export default {
 .footer {
     border-top: solid 1px #1a1a1a;
     margin-top: auto;
-
-
+    background: $black;
 
     &.hidden {
         opacity: 0;

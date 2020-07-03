@@ -39,13 +39,15 @@
 
 			<b-button type="submit" variant="border">Оставить заявку</b-button>
 		</div>
-		<div class="feedback-form__sent" v-if="formSent">
-			<div class="feedback-form__sent--inner">
-				<p class="title">Спасибо!</p>
-				<p>Мы получили Вашу заявку и скоро перезвоним.</p>
-				<b-button variant="text" @click="formSent = false">Закрыть</b-button>
+		<transition name="route">
+			<div class="feedback-form__sent" v-if="formSent">
+				<div class="feedback-form__sent--inner">
+					<p class="title">Спасибо!</p>
+					<p>Мы получили Вашу заявку и скоро перезвоним.</p>
+					<b-button variant="text" @click="formSent = false">Закрыть</b-button>
+				</div>
 			</div>
-		</div>
+		</transition>
 	</b-form>
 </template>
 
@@ -57,7 +59,7 @@ export default {
 	name: "FeedbackForm",
 	directives: {mask},
 	data: () => ({
-		formSent: true,
+		formSent: false,
 		pickedSelectOption: 'Мобильное приложение',
 		form: {
 			name: "",
@@ -73,6 +75,7 @@ export default {
         onSubmit(event) {
 			event.preventDefault();
             if (this.form.name && this.form.phone) {
+				/*
                 axios({
                     method: 'post',
                     url: '../email.php',
@@ -88,23 +91,33 @@ export default {
                 .catch(function (response) {
                     alert(response);
 				});
+				*/
 				
 				//alert(JSON.stringify(this.form));
-            }
+			}
+			
+			this.formSent = true;
+
+			setTimeout(() => {
+				this.onReset();
+			}, 3000);
 		},
 		
 		onReset(evt) {
-			evt.preventDefault();
-			// Reset our form values
-			this.form.email = "";
 			this.form.name = "";
-			this.form.food = null;
+			this.form.phone = "";
+			this.form.type = "Должность";
+			this.form.text = "";
 			this.form.checked = [];
+			this.formSent = false;
 			// Trick to reset/clear native browser form validation state
+
+			/*
 			this.show = false;
 			this.$nextTick(() => {
 				this.show = true;
 			});
+			*/
 		}
 	},
 	computed: {

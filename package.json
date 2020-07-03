@@ -8,7 +8,7 @@
     "svg": "vsvg -s ./src/svg -t ./src/icons"
   },
   "dependencies": {
-    "aos": "^2.3.4",
+    "aos": "^3.0.0-beta.6",
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.4",

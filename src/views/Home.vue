@@ -381,30 +381,13 @@ export default {
 		this.content.removeEventListener("wheel", this.watchScrollWheel);
 	},
 
-	watch: {
-		$route(to, from) {
-			if (!this.isRouteNameHome) {
-				this.swiper.params.simulateTouch = false;
-				 document.querySelector('html').classList.remove("locked");
-			} else {
-				 document.querySelector('html').classList.add("locked"); 
-			}
-		}
-	},
-
 	mounted() {
 		this.content = document.querySelector("body");
 		this.content2 = document.querySelector(".case-swiper-nav__item");
 		this.content.addEventListener("wheel", this.watchScrollWheel, {passive: false});
 		this.content.addEventListener("click", this.watchNavClick);
 
-		this.setCurrentSlide();	
-		
-		if (!this.isRouteNameHome) {
-			document.querySelector('html').classList.remove("locked");
-		} else {
-			document.querySelector('html').classList.add("locked"); 
-		}
+		this.setCurrentSlide();
 	}
 };
 </script>

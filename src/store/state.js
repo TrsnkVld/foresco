@@ -7,6 +7,7 @@ let state = {
     isTeamModalShowed: false,
     isModalInnerShowed: false,
     isPageScrolled: false,
+    isRouteSheetVisible: true,
 
     cases: [
         {

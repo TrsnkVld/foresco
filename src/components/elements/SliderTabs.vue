@@ -73,33 +73,42 @@ export default {
 		itemsTitles: {
 			type: String,
 			default: null
+		},
+		animation: {
+			type: String,
+			default: 'slide',
 		}
 	},
 	components: {
 		'lottie': Lottie
 	},
-	data: () => ({
-		activeTab: 0,
-		swiperOptions: {
-			grabCursor: true,
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			speed: 900,
-			spaceBetween: 140,
-			/*
-			navigation: {
-				nextEl: ".slider-nav__next",
-				prevEl: ".slider-nav__prev"
+	data() {
+		const self = this;
+
+		return {
+			activeTab: 0,
+			swiperOptions: {
+				grabCursor: true,
+				slidesPerView: 1,
+				slidesPerGroup: 1,
+				speed: 900,
+				spaceBetween: 140,
+				effect: self.animation,
+				/*
+				navigation: {
+					nextEl: ".slider-nav__next",
+					prevEl: ".slider-nav__prev"
+				},
+				*/
 			},
-			*/
-		},
-		swiperPagination: {
-			centeredSlides: true,
-			slidesPerView: "auto",
-			speed: 900,
-			slideToClickedSlide: true
+			swiperPagination: {
+				centeredSlides: true,
+				slidesPerView: "auto",
+				speed: 900,
+				slideToClickedSlide: true
+			}
 		}
-	}),
+	},
 	methods: {
 		onTabTitleClick(index) {
 			this.activeTab = index;
@@ -260,6 +269,8 @@ export default {
 
 	&__item {
 		padding: get-vw(60px, 320) 0;
+		opacity: 0 !important;
+		transition: opacity .5s ease 0s !important;
 
 		img {
 			padding-bottom: 40px;
@@ -287,6 +298,11 @@ export default {
 			@include upLandscape($md-land) {
 				max-width: 300px;
 			}
+		}
+
+		&.swiper-slide-active {
+			opacity: 1 !important;
+			transition: opacity .5s ease .5s !important;
 		}
 	}
 

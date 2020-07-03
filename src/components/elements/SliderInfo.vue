@@ -53,35 +53,37 @@ export default {
 			default: false
 		},
 		items: {
-			type: Object,
-    		default: () => ({}),
+			type: Array,
+    		default: () => ([]),
 		}
 	},
-	data: () => ({
-		showed: 6,
-		swiperOptions: {
-			grabCursor: true,
-			slidesPerView: 1,
-			slidesPerGroup: 1,
-			speed: 900,
-			spaceBetween: 10,
-			navigation: {
-				nextEl: ".slider-nav__next",
-				prevEl: ".slider-nav__prev"
-			},
-			breakpoints: {
-				768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-					spaceBetween: 30,
+	data() {
+		return {
+			showed: 6,
+			swiperOptions: {
+				grabCursor: true,
+				slidesPerView: 1,
+				slidesPerGroup: 1,
+				speed: 900,
+				spaceBetween: 10,
+				navigation: {
+					nextEl: ".slider-nav__next",
+					prevEl: ".slider-nav__prev"
 				},
-				1320: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 1,
+				breakpoints: {
+					768: {
+						slidesPerView: 2,
+						slidesPerGroup: 2,
+						spaceBetween: 30,
+					},
+					1320: {
+						slidesPerView: 2,
+						slidesPerGroup: 1,
+					}
 				}
 			}
 		}
-	}),
+	},
 	computed: {
 		itemsTest() {
 			return [

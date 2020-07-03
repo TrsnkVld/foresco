@@ -127,7 +127,7 @@ export default {
     }
 
     @include upLandscape($lg-land) {
-	    height: get-vw(400px, 1366);
+	    height: get-vw(470px, 1366);
         padding: get-vw(55px, 1366) get-vw(40px, 1366) get-vw(70px, 1366);
     }
 

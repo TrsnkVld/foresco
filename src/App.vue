@@ -1,18 +1,19 @@
 <template>
 	<div id="foresco">
 		<transition name="stars-wrapper">
-			<AppStars v-if="isStarsShowed || isMenuOpened" :delimeterProp="6.4" /> 
+			<AppStars  :delimeterProp="6.4" /> <!-- v-if="isStarsShowed" -->
 		</transition>
-		<HeaderLayout :class="{'hidden': !isHeaderShowed}" />
+		<HeaderLayout :class="{'hidden': !isHeaderShowed||isModalShowed||isTeamModalShowed}" />
 		<transition name="route">
-			<router-view class="page" :class="{'hidden': isMenuOpened}" />
+			<router-view class="page" :class="{'hidden': isMenuOpened||isModalShowed||isTeamModalShowed}" />
 		</transition>
 
 		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
 			<div class="modal-wrap" v-if="isModalShowed" >
+				<!--
 				<AppStars :delimeterProp="6.4" /> 
-				
-				<div class="modal-background" @click="isModalShowed=false" />
+				-->
+				<div class="modal-background"/>
 
 				<transition name="modal-inner">
 					<div v-if="isModalInnerShowed" class="modal-inner">
@@ -24,9 +25,10 @@
 
 		<transition name="modal-wrap" @enter="isModalInnerShowed=true" @after-leave="isModalInnerShowed=false">
 			<div class="modal-wrap" v-if="isTeamModalShowed" >
+				<!--
 				<AppStars :delimeterProp="6.4" /> 
-				
-				<div class="modal-background" @click="isTeamModalShowed=false" />
+				-->
+				<div class="modal-background" />
 
 				<transition name="modal-inner">
 					<div v-if="isModalInnerShowed" class="modal-inner">
@@ -36,7 +38,10 @@
 			</div>
 		</transition>
 
-		<FooterLayout v-if="!isRouteNameHome" :class="{'hidden': isMenuOpened}" />
+		<transition name="route">
+			<div v-if="isRouteSheetVisible" class="route-sheet" />
+		</transition>
+		<FooterLayout v-if="!isRouteNameHome" :class="{'hidden': isMenuOpened||isModalShowed||isTeamModalShowed}" />
 	</div>
 </template>
 
@@ -71,9 +76,19 @@ export default {
 			return false;
 		},
 		isStarsShowed() {
-			if (this.$route.name === 'contacts' || this.$route.name === 'about' || this.$route.name === 'home') return true;
-			return false;
+			if (this.$route.name == 'team') return false;
+			return true;
 		},
+
+		isRouteSheetVisible: {
+			get: function() {
+				return this.$store.state.isRouteSheetVisible;
+			},
+			set: function(newValue) {
+				this.$store.state.isRouteSheetVisible = newValue;
+			}
+		},
+
 		isModalShowed: {
 			get: function() {
 				return this.$store.state.isModalShowed;
@@ -148,6 +163,22 @@ export default {
 				this.isPageScrolled = false;
 			}
 		}
+	},
+
+	watch: {
+		$route(to, from) {
+			if (!this.isRouteNameHome) {
+				document.querySelector('html').classList.remove("scroll-locked");
+			} else {
+				document.querySelector('html').classList.add("scroll-locked");
+			}
+		}
+	},
+
+	mounted() {
+		setTimeout(() => {
+			this.isRouteSheetVisible = false;
+		}, 1000);
 	}
 }
 </script>

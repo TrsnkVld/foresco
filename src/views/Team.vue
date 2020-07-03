@@ -11,10 +11,13 @@
             <swiper-slide class="team-swiper__item" v-for="(item, index) in team" :key="index">
                 <h2>0{{index+1}}</h2>
                 <div class="worker">
-                    <div class="worker__img" :style="`background-image: url('${require('../assets/img/team/'+item.img)}')`" />
+                    <div class="worker__img">
+                        <div class="worker__img--inner" :style="`background-image: url('${require('../assets/img/team/'+item.img)}')`" />
+                        <div class="worker__img--inner bw" :style="`background-image: url('${require('../assets/img/team/'+item.img2)}')`" />
+                    </div>
                     <div class="worker-info">
                         <h3 class="worker__name">{{item.name}}</h3>
-                        <p>{{item.position}}</p>
+                        <p >{{item.position}}</p>
                         <p class="worker__about">{{item.about}}</p>
                     </div>
                 </div>
@@ -41,36 +44,42 @@ export default {
         team: [
             {
                 img: "anatoly2.jpg",
+                img2: "anatoly2.jpg",
                 name: "Анатолий",
                 position: "iOS-developer",
                 about: "Опыт работы 4 года (Swift)",
             },
             {
                 img: "andrew.jpg",
+                img2: "andrew.jpg",
                 name: "Андрей",
                 position: "Маркетинг",
                 about: "Опыт работы 8 лет",
             },
             {
                 img: "suren.jpg",
+                img2: "suren.jpg",
                 name: "Сурен",
                 position: "Founder, CEO",
                 about: "Опыт работы 8 лет",
             },
             {
                 img: "victoria.jpg",
+                img2: "victoria.jpg",
                 name: "Виктория",
                 position: "Дизайн",
                 about: "Опыт работы 10 лет",
             },
             {
                 img: "arthur.jpg",
+                img2: "arthur.jpg",
                 name: "Артур",
-                position: "Android-developer, back-end developer",
+                position: "Android, back-end developer",
                 about: "Опыт работы 3 года (Elixir, Kotlin, Java)",
             },
             {
                 img: "vlad.jpg",
+                img2: "vlad.jpg",
                 name: "Владислав",
                 position: "Frontend-developer",
                 about: "Опыт работы 3 года",
@@ -102,12 +111,15 @@ export default {
                     spaceBetween: 50,
                     speed: 1200,
 				},
-				1320: {
+				1366: {
                     slidesPerView: 'auto',
                     centeredSlides: true,
                     spaceBetween: 0,
-                    speed: 1200,
-				}
+				},
+				1800: {
+                    slidesPerView: 'auto',
+                    centeredSlides: true,
+				},
 			}
 		},
     }),
@@ -141,6 +153,11 @@ export default {
 <style lang="scss">
 .team {
     padding-top: get-vw(75px, 320);
+    padding-bottom: get-vw(75px, 320);
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
 
     &-title {
         top: 0;
@@ -156,6 +173,7 @@ export default {
     
 	@include up($sm) {
         padding-top: get-vw(75px, 414);
+        padding-bottom: get-vw(100px, 414);
         .team-title {
         //padding-top: get-vw(100px, 414);
 
@@ -164,6 +182,7 @@ export default {
 
 	@include up($md) {
 		padding-top: get-vw(70px, 768);
+		padding-bottom: get-vw(70px, 768);
         .team-title {
 		padding-top: get-vw(70px, 768);
 
@@ -172,6 +191,7 @@ export default {
 
 	@include up($lg) {
 		padding-top: get-vw(110px, 1024);
+		padding-bottom: get-vw(110px, 1024);
         .team-title {
             
             padding-top: get-vw(110px, 1024);
@@ -180,6 +200,7 @@ export default {
 
 	@include upLandscape($xs) {
 		padding-top: 50px;
+		padding-bottom: 50px;
         .team-title {
 		padding-top: 50px;
 
@@ -188,14 +209,16 @@ export default {
 
 	@include upLandscape($sm-land) {
 		padding-top: get-vw(100px, 895);
+		padding-bottom: get-vw(100px, 895);
         .team-title {
-		padding-top: get-vw(100px, 895);
+		    padding-top: get-vw(0px, 895);
 
         }
 	}
 
 	@include upLandscape($md-land) {
 		padding-top: get-vw(70px, 1024);
+		padding-bottom: get-vw(70px, 1024);
         .team-title {
 		padding-top: get-vw(70px, 1024);
 
@@ -204,6 +227,7 @@ export default {
 
 	@include upLandscape($lg-land) {
 		padding-top: get-vw(80px, 1366);
+		padding-bottom: get-vw(80px, 1366);
         .team-title {
 		padding-top: get-vw(80px, 1366);
 
@@ -212,6 +236,7 @@ export default {
 
 	@include upLandscape($xl-land) {
 		padding-top: get-vw(120px, 1920);
+		padding-bottom: get-vw(120px, 1920);
         .team-title {
 		padding-top: get-vw(120px, 1920);
 
@@ -224,12 +249,22 @@ export default {
     overflow: visible;
     width: 65%;
     margin-left: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex: 1;
+    display: flex;
+    flex-flow: column;
 
     .swiper-wrapper {
+        overflow: visible;
+        flex: 1;
     }
+
+
 
     &__item, .team-swiper__item--form {
         padding: 40px 0 0;
+        height: auto;
         width: auto;
         transition: border-right .4s ease .3s;
 
@@ -240,7 +275,7 @@ export default {
             right: 110px;
             display: none;
 
-            @include up($xl) {
+            @include upLandscape($lg-land) {
                 display: block;
             }
         }
@@ -273,18 +308,18 @@ export default {
             .worker {
 
                 &__img {
-                    filter: unset;
-                    border-radius: 3px;
+                    //filter: unset;
+
+                    &--inner {
+                        &.bw {
+                            opacity: 0;
+                            transition: opacity .3s linear;
+                        }
+                    }
                 }
 
                 &-info {
                     opacity: 1;
-                }
-
-                &__about {
-                    opacity: .5;
-                    transform: translateY(0%);
-                    transition: opacity, transform, .6s ease .5s;
                 }
 
                 @include up($md) {
@@ -295,12 +330,30 @@ export default {
                     }
                 }
 
-                @include up($lg) {
+                @include upLandscape($lg-land) {
                     transform: translateY(-30px);
 
                     .worker__img {
                         height: 530px;
                         border-radius: 0px;
+                    }
+                }
+
+                @include upLandscape($lg-land) {
+                    .worker__img {
+                        max-height: 565px;
+                    }
+                }
+
+                @include upLandscape($lg-land) {
+                    .worker__img {
+                        max-height: 480px;
+                    }
+                }
+
+                @include upLandscape($xxl-land) {
+                    .worker__img {
+                        max-height: 630px;
                     }
                 }
             }
@@ -329,7 +382,7 @@ export default {
             }
         }
 
-        @include up($lg) {
+        @include upLandscape($lg-land) {
             padding: 200px 110px 0;
             border-right: solid 1px #97979766;
 
@@ -339,26 +392,44 @@ export default {
                 }
             }
         }
+
+        @include upLandscape($md-land) {
+            padding-top: 80px;
+        }
     }
 
     .worker {
         transition: transform .4s ease;
         width: 100%;
-
-        &__about {
-            opacity: 0;
-            transform: translateY(10%);
-            transition: opacity, transform, .6s ease;
-        }
+        height: 100%;
+        display: flex;
+        flex-flow: column;
 
         &__img {
+            flex: 1;
             overflow: hidden;
             width: 100%;
-            height: 260px;
-            background-size: cover;
-            background-position: top;
-            filter: grayscale(1);
+            height: 190px;
+            border-radius: 3px;
+            //filter: grayscale(1);
             transition: filter, height, .4s ease;
+            min-height: 170px;
+            position: relative;
+
+            &--inner {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: top;
+
+                &.bw {
+                    opacity: 1;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+
 
             svg {
                 width: 40px;
@@ -368,11 +439,50 @@ export default {
             img {
                 width: 100%;
             }
+
+            @include up($sm) {
+                height: 260px;
+                max-height: 380px;
+            }
+
+            @include up($md) {
+                border-radius: 0px;
+            }
+
+            @include up($lg) {
+                max-height: 500px;
+            }
+
+            @include upLandscape($lg-land) {
+                max-height: 420px;
+            }
+
+            @include upLandscape($xxl-land) {
+                max-height: 570px;
+            }
         }
+
+        p {
+            margin-bottom: 8px;
+        }
+
+        &__about {
+            color: #8e8e8e;
+            margin-top: 0;
+            font-size: 14px;
+            margin-bottom: 0 !important;
+
+            @include upLandscape($lg-land) {
+                font-size: inherit;
+            }
+        }
+
         &-info {
-            width: 500px;
+            width: calc(100vw - 40px);
             opacity: 0;
             transition: opacity .5s;
+            height: 150px;
+            overflow: auto;
 
             h3 {
                 font-weight: 600;
@@ -384,12 +494,17 @@ export default {
             }
 
             p {
-                margin-top: 9px;
+                margin-top: 8px;
             }
 
             @include up($md) {
                 width: auto;
                 opacity: 1;
+                height: 155px;
+            }
+
+            @include upLandscape($lg-land) {
+                height: 175px;
             }
 
         }
@@ -402,10 +517,26 @@ export default {
         }
 
         @include up($lg) {
-            width: 415px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        @include upLandscape($lg-land) {
+            width: 300px;
 
             .worker__img {
                 height: 500px;
+            }
+        }
+
+        @include upLandscape($xl-land) {
+            width: 415px;
+        }
+
+        @include upLandscape($xl-land) {
+            .worker__img {
+                height: 550px;
             }
         }
     }
