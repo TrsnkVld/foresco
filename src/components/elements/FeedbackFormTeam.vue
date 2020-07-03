@@ -1,6 +1,6 @@
 <template>
 	<b-form @submit="onSubmit" @reset="onReset" v-if="show" class="feedback-form" autocomplete="off">
-		<div class="feedback-form__wrap">
+		<div class="feedback-form__wrap" :class="{'blur': formSent}">
 			<template v-if="!isPageNameContacts">
 				<b-button variant="text" @click="$emit('onFormClose')"><svgicon name="btn-arrow" class="svg-right" />вернуться</b-button>
 				<h2>Напишите нам</h2>
@@ -39,16 +39,25 @@
 
 			<b-button type="submit" variant="border">Оставить заявку</b-button>
 		</div>
+		<div class="feedback-form__sent" v-if="formSent">
+			<div class="feedback-form__sent--inner">
+				<p class="title">Спасибо!</p>
+				<p>Мы получили Вашу заявку и скоро перезвоним.</p>
+				<b-button variant="text" @click="formSent = false">Закрыть</b-button>
+			</div>
+		</div>
 	</b-form>
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
+import {mask} from 'vue-the-mask';
+import axios from 'axios';
 
 export default {
 	name: "FeedbackForm",
 	directives: {mask},
 	data: () => ({
+		formSent: true,
 		pickedSelectOption: 'Мобильное приложение',
 		form: {
 			name: "",
@@ -61,10 +70,29 @@ export default {
 		show: true
 	}),
 	methods: {
-		onSubmit(evt) {
-			evt.preventDefault();
-			alert(JSON.stringify(this.form));
+        onSubmit(event) {
+			event.preventDefault();
+            if (this.form.name && this.form.phone) {
+                axios({
+                    method: 'post',
+                    url: '../email.php',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                        name: this.name,
+                        phone: this.phone
+                    }
+                })
+                .then(this.$bvToast.show('example-toast'))
+                .catch(function (response) {
+                    alert(response);
+				});
+				
+				//alert(JSON.stringify(this.form));
+            }
 		},
+		
 		onReset(evt) {
 			evt.preventDefault();
 			// Reset our form values
