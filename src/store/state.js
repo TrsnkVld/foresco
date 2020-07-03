@@ -71,6 +71,27 @@ let state = {
             }
         },
         {
+            title: "Gusli",
+            alias: 'gusli',
+            subtitle: "Ищите бары с поддержкой Gusli. Заказывайте любимые песни.",
+            color: "#f04f6c",
+            image: require("../assets/img/gusli/gusli.png"),
+            svgs: [
+                "gusli/svgs/gu1.svg",
+                "",
+                "gusli/svgs/gu2.svg",
+                "",
+            ],
+            logo: require("../assets/img/gusli/gusli_logo.png"),
+            tags: {
+                appstore: 'https://apps.apple.com/ru/app/gusli/id1090409008',
+                googleplay: 'https://play.google.com/store/apps/details?id=ru.mobileup.gusliapp',
+                simple: [
+                    'design'
+                ]
+            }
+        },
+        {
             title: "Sohobook",
             alias: 'sohobook',
             subtitle: "Онлайн сервис по изготовлению фотокниг. <span>Создайте уникальный макет и закажите доставку на дом.</span> ",
@@ -102,28 +123,6 @@ let state = {
             tags: {
                 appstore: 'https://apps.apple.com/us/app/saldo-%D1%83%D1%87%D0%B5%D1%82-%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE%D0%B2-%D0%B8-%D0%B7%D0%B0%D0%B9%D0%BC%D0%BE%D0%B2/id1501316505',
                 googleplay: '',
-                simple: [
-                    'development',
-                    'design'
-                ]
-            }
-        },
-        {
-            title: "Gusli",
-            alias: 'gusli',
-            subtitle: "Ищите бары с поддержкой Gusli. Заказывайте любимые песни.",
-            color: "#f04f6c",
-            image: require("../assets/img/gusli/gusli.png"),
-            svgs: [
-                "gusli/svgs/gu1.svg",
-                "",
-                "gusli/svgs/gu2.svg",
-                "",
-            ],
-            logo: require("../assets/img/gusli/gusli_logo.png"),
-            tags: {
-                appstore: 'https://apps.apple.com/ru/app/gusli/id1090409008',
-                googleplay: 'https://play.google.com/store/apps/details?id=ru.mobileup.gusliapp',
                 simple: [
                     'development',
                     'design'

@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <b-container data-aos="fade-in">
-            <a href="tel:+78124674523"><h4>8 812 567-45-23</h4></a>
+            <a href="tel:+79119999955"><h4>8 911 999-99-55</h4></a>
             <a href="mailto:info@foresco.ru"><h4>info@foresco.ru</h4></a>
         </b-container>
     </footer>
