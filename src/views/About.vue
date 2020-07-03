@@ -10,19 +10,28 @@
 			/>
 		</CaseHeader>
 
-		<SingleSection bgStyle="background: #000000">
+		<SingleSection>
 			<TitleText
 				text="Мы – динамично развивающаяся IT-компания из Санкт-Петербурга. Уже 3 года внедряем новые технологии в бизнес, создавая нативные приложения. Разрабатываем проекты любой сложности."
 			/>
+			<SeparatorLine sm="60" md="40" lg="90" />
 			<ImageBlock :imageSrc="require('../assets/img/about/about-1.png')" small />
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<SliderTabs
 				title="Дизайн"
 				btnColor="rgb(2, 98, 206)"
 				:items="sliderTabsItems"
 				itemsTitles="Прототипирование Интерфейсы Анимации"
 			/>
+			<SeparatorLine sm="60" md="40" lg="60" />
+
 			<SliderInfo title="Разработка" btnColor="rgb(2, 98, 206)" slider :items="sliderInfoItems" />
+			<SeparatorLine sm="60" md="40" lg="60" />
+
 			<ImageBlock :imageSrc="require('../assets/img/about/about-2.png')" small />
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<SliderTabs
 				title="Сервис"
 				btnColor="rgb(2, 98, 206)"
@@ -31,9 +40,14 @@
 				itemsTitles="Тестирование Публикация Поддержка Развитие"
 			/>
 			<ImageBlock :imageSrc="require('../assets/img/about/img-1.png')" big />
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<SliderFaq title="Вопрос-Ответ" :items="sliderFaqItems"  btnColor="rgb(2, 98, 206)" />
 			<FeedbackBlock btnColor="rgb(2, 98, 206)" />
+
+			<SeparatorLine sm="60" md="40" lg="60" />
 		</SingleSection>
+
 	</main>
 </template>
 

@@ -2,6 +2,8 @@
 	<main class="case">
 		
 		<SingleSection bgStyle="background: #ffffff;" textStyle="color: #000000;">
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<SectionTitle>Возможности приложения</SectionTitle>
 			<ContentBlockWrap>
 				<ContentBlockLG
@@ -22,23 +24,33 @@
 					textStyle="color: #000000;"
 					img="powerplace/powerplace-2.png"
 				/>
+
 				<ContentBlockLG
 					:bgStyle="`background-image: url('${require('../../assets/img/powerplace/powerplace-3.png')}');`"
 				/>
 			</ContentBlockWrap>
+			<SeparatorLine sm="60" md="40" lg="60" />
+
 		</SingleSection>
 
 		<SingleSection  textStyle="color: #ffffff;">
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 			<SliderInfo title="Технологии" btnColor="rgb(2, 98, 206)" :items="sliderInfoItems" />
 		</SingleSection>
 
 		<SingleSection>
+			<SeparatorLine sm="60" md="40" lg="120" />
 			<ImageBlock :imageSrc="require('../../assets/img/powerplace/powerplace-4.png')" small />
+			<SeparatorLine sm="60" md="40" lg="120" />
+
 		</SingleSection>
 
 		<SingleSection>
 			<FeedbackBlock btnColor="#0262CE" />
 		</SingleSection>
+		<SeparatorLine sm="60" md="40" lg="60" />
+
 	</main>
 </template>
 
