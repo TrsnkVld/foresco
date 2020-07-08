@@ -75,23 +75,23 @@ export default {
         onSubmit(event) {
 			event.preventDefault();
             if (this.form.name && this.form.phone) {
-				/*
                 axios({
                     method: 'post',
-                    url: '../email.php',
+                    url: '../emailTeam.php',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     data: {
-                        name: this.name,
-                        phone: this.phone
+						name: this.form.name,
+						phone: this.form.phone,
+						type: this.form.type,
+						text: this.form.text,
                     }
                 })
                 .then(this.$bvToast.show('example-toast'))
                 .catch(function (response) {
-                    alert(response);
+                    console.error(response);
 				});
-				*/
 				
 				//alert(JSON.stringify(this.form));
 			}

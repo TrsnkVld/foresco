@@ -21,11 +21,11 @@
     $type = trim($type);
     $text = trim($text);
 
-    $message = "Имя заказчика: ".$name."\nТелефон: ".$phone."\nТип проекта: ".$type."\nКомментарий: ".$text;
+    $message = "Имя: ".$name."\nТелефон: ".$phone."\nДолжность: ".$type."\nКомментарий: ".$text;
 
     $to_email = 'info@foresco.ru';
 
-    $subject = 'Заявка с Foresco';
+    $subject = 'Заявка с Foresco (вакансия)';
     $headers[] = 'MIME-Version: 1.0';
     $headers[] = 'From: Foresco <noreply@foresco.ru>';
     mail($to_email, $subject, $message, implode("\r\n", $headers));
