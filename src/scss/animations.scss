@@ -239,49 +239,115 @@
 }
 
 @keyframes burger-start1 {
+    from {
+        transform: translateY(0%);
+    }
     to {
         transform: translateY(-50%);
     }
 }
+
+@-webkit-keyframes burger-start1 {
+    from {
+        -webkit-transform: translateY(0%);
+    }
+    to {
+        -webkit-transform: translateY(-50%);
+    }
+}
+@-moz-keyframes burger-start1 {
+    from {
+        -moz-transform: translateY(0%);
+    }
+    to {
+        -moz-transform: translateY(-50%);
+    }
+}
+@-o-keyframes burger-start1 {
+    from {
+        -o-transform: translateY(0%);
+    }
+    to {
+        -o-transform: translateY(-50%);
+    }
+}
+
+
+
 @keyframes burger-start2 {
+    from {
+        transform: translateY(0%);
+    }
     to {
         transform: translateY(50%);
     }
 }
 
+@-webkit-keyframes burger-start2 {
+    from {
+        -webkit-transform: translateY(0%);
+    }
+    to {
+        -webkit-transform: translateY(50%);
+    }
+}
+@-moz-keyframes burger-start2 {
+    from {
+        -moz-transform: translateY(0%);
+    }
+    to {
+        -moz-transform: translateY(50%);
+    }
+}
+@-o-keyframes burger-start2 {
+    from {
+        -o-transform: translateY(0%);
+    }
+    to {
+        -o-transform: translateY(50%);
+    }
+}
+
+
+
+
+
+
+
+
 @keyframes burger1 {
     from {
-        transform: translateY(-50%);
+        transform: translateY(0%);
     }
 
     50% {
-        transform: translateY(0%);
+        transform: translateY(-8px);
     }
 
     55% {
-        transform: translateY(0%);
+        transform: translateY(-8px);
     }
 
     to {
-        transform: rotate(-45deg);
+        transform: translate(-5px, -6px) rotate(-45deg);
     }
 }
 
 @keyframes burger2 {
     from {
-        transform: translateY(50%);
+        transform: translateY(0%);
     }
 
     50% {
-        transform: translateY(0%);
+        transform: translateY(8px);
     }
 
     55% {
-        transform: translateY(0%);
+        transform: translateY(8px);
     }
 
     to {
-        transform: rotate(45deg);
+        transform: translate(-5px, 6px) rotate(45deg);
     }
 }
 

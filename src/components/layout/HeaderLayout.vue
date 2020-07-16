@@ -8,19 +8,23 @@
 			</b-col>
 			<svgicon v-if="isCloseShowed && !isMenuOpened" name="close" class="case-close" @click="$router.push({name: 'home'})" />
 			<b-col cols="auto">
+
 				<svg
-					class="header__burger"
-					:class="{'active': isMenuOpened && burgerActive}"
-					@click="onMenuToggle()"
-					width="38"
-					height="19"
-					viewBox="0 0 38 19"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path d="M0 8H38V11.1667H0V8Z" fill="white" />
-					<path d="M0 8H38V11.1667H0V8Z" fill="white" />
+						class="header__burger"
+						:class="{'active': isMenuOpened && burgerActive}"
+						@click="onMenuToggle()"
+						width="38" height="19" viewBox="0 0 38 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g>
+						<path d="M0 16H38V19.1667H0V16Z" fill="white"/>
+						<path d="M0 0H38V3.1667H0V0Z" fill="white"/>
+					</g>
+					<defs>
+						<clipPath id="clip0">
+							<rect width="38" height="19" fill="white"/>
+						</clipPath>
+					</defs>
 				</svg>
+
 			</b-col>
 		</b-row>
 		<HeaderMenu :isIndicatorClose="isIndicatorClose" @onLinkClick="onMenuToggle" />
@@ -38,7 +42,8 @@ export default {
 		HeaderMenu
 	},
 	data: () => ({
-		burgerActive: false,
+		burgerActive: true,
+		isBurgerClosing: false,
 		isIndicatorClose: false
 	}),
 	computed: {
@@ -85,14 +90,25 @@ export default {
 
 			if (this.isMenuOpened) {
 				this.burgerActive = false;
+
 				setTimeout(() => {
 					this.isIndicatorClose = true;
 				}, 100);
+
 				this.isMenuLinksShowed = false;
+
 				setTimeout(() => {
 					this.isMenuContentShown = false;
-					setTimeout(() => {}, 1);
+					//setTimeout(() => {}, 1);
 				}, 200);
+
+				document.querySelector('header__burger').classList.remove("active").classList.add('closing');
+				alert('asdasd');
+
+				setTimeout(() => {
+				}, 1000);
+
+				//this.burgerActive = false;
 
 				/*
 				this.isMenuLinksShowed = false;
@@ -222,10 +238,10 @@ export default {
 			transition: transform 0.4s ease;
 			transform-origin: center;
 			&:first-child {
-				animation: burger-start1 0.4s ease forwards;
+				//animation: burger-start1 0.4s ease forwards;
 			}
 			&:last-child {
-				animation: burger-start2 0.4s ease forwards;
+				//animation: burger-start2 0.4s ease forwards;
 			}
 		}
 
@@ -239,6 +255,30 @@ export default {
 				}
 				&:last-child {
 					animation: burger2 0.8s ease forwards;
+				}
+			}
+
+			&::before {
+				transform: rotate(-45deg);
+				top: calc(50% - 1px);
+			}
+
+			&::after {
+				transform: rotate(45deg);
+				top: calc(50% - 1px);
+			}
+		}
+
+		&.closing {
+			height: 30px;
+
+			path {
+				transition: transform 0.4s ease;
+				&:first-child {
+					animation: burger1 0.8s ease reverse forwards;
+				}
+				&:last-child {
+					animation: burger2 0.8s ease reverse forwards;
 				}
 			}
 
