@@ -167,6 +167,8 @@ export default {
 
 	watch: {
 		$route(to, from) {
+			document.title = to.meta.title || 'Foresco';
+			
 			if (!this.isRouteNameHome) {
 				document.querySelector('html').classList.remove("scroll-locked");
 			} else {
