@@ -236,7 +236,7 @@ export default {
 
 	@include upLandscape($xl-land) {
 		padding-top: get-vw(120px, 1920);
-		padding-bottom: get-vw(120px, 1920);
+		padding-bottom: get-vw(40px, 1920);
         .team-title {
 		padding-top: get-vw(120px, 1920);
 
@@ -254,13 +254,12 @@ export default {
     flex: 1;
     display: flex;
     flex-flow: column;
+    max-height: 100%;
 
     .swiper-wrapper {
         overflow: visible;
         flex: 1;
     }
-
-
 
     &__item, .team-swiper__item--form {
         padding: 40px 0 0;
@@ -313,7 +312,7 @@ export default {
                     &--inner {
                         &.bw {
                             opacity: 0;
-                            transition: opacity .3s linear;
+                            transition: opacity, height, .5s ease;
                         }
                     }
                 }
@@ -331,7 +330,7 @@ export default {
                 }
 
                 @include upLandscape($lg-land) {
-                    transform: translateY(-30px);
+                    //transform: translateY(-30px);
 
                     .worker__img {
                         height: 530px;
@@ -347,7 +346,11 @@ export default {
 
                 @include upLandscape($lg-land) {
                     .worker__img {
-                        max-height: 480px;
+                       max-height: 480px;
+
+                       &--inner {
+                           height: calc(100% + 30px);
+                       }
                     }
                 }
 
@@ -407,7 +410,7 @@ export default {
 
         &__img {
             flex: 1;
-            overflow: hidden;
+            //overflow: hidden;
             width: 100%;
             height: 190px;
             border-radius: 3px;
@@ -421,11 +424,16 @@ export default {
                 height: 100%;
                 background-size: cover;
                 background-position: top;
+                transition: height .5s ease;
+                position: absolute;
+                bottom: 0;
+                left: 0;
 
                 &.bw {
                     opacity: 1;
+                    z-index: 1;
                     position: absolute;
-                    top: 0;
+                    bottom: 0;
                     left: 0;
                 }
             }
@@ -482,7 +490,7 @@ export default {
             opacity: 0;
             transition: opacity .5s;
             height: 150px;
-            overflow: auto;
+            overflow: visible;
 
             h3 {
                 font-weight: 600;
@@ -531,6 +539,10 @@ export default {
         }
 
         @include upLandscape($xl-land) {
+            width: 300px;
+        }
+
+        @include upLandscape($xl) {
             width: 415px;
         }
 
@@ -543,7 +555,7 @@ export default {
 
     @include up($md) {
         padding: 0 50px;
-    width: 90%;
+        width: 90%;
     }
 }
 </style>
