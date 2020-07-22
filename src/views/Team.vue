@@ -111,6 +111,10 @@ export default {
                     spaceBetween: 50,
                     speed: 1200,
 				},
+                1150: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 0,
+                },
 				1366: {
                     slidesPerView: 'auto',
                     centeredSlides: true,
@@ -340,13 +344,13 @@ export default {
 
                 @include upLandscape($lg-land) {
                     .worker__img {
-                        max-height: 565px;
+                        //max-height: 565px;
                     }
                 }
 
                 @include upLandscape($lg-land) {
                     .worker__img {
-                       max-height: 480px;
+                       //max-height: 480px;
 
                        &--inner {
                            height: calc(100% + 30px);

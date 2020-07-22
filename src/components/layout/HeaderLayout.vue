@@ -237,11 +237,12 @@ export default {
 		path {
 			transition: transform 0.4s ease;
 			transform-origin: center;
+			
 			&:first-child {
-				//animation: burger-start1 0.4s ease forwards;
+				animation: burger-start1 0.8s ease forwards;
 			}
 			&:last-child {
-				//animation: burger-start2 0.4s ease forwards;
+				animation: burger-start2 0.8s ease forwards;
 			}
 		}
 

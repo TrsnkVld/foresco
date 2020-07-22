@@ -57,6 +57,7 @@ export default {
 
 	a {
 		pointer-events: all;
+		color: $black;
 	}
 
 	&__wrap {

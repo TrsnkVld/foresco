@@ -1,6 +1,7 @@
 <template>
 	<b-container>
 		<b-row class="case-card">
+			
 			<!--  -->
 			<b-col cols="12" lg="6" class="case-card__img">
 				<div class="image-bg">
@@ -329,9 +330,13 @@ export default {
 		max-height: get-vw(340px, 320);
 
 		img {
-			max-height: 100%;
+			height: 100%;
 			display: block;
 			margin: 0 auto;
+
+			@include upLandscape($xs-land) {
+				max-height: 100%;
+			}
 		}
 
 		.glow {
